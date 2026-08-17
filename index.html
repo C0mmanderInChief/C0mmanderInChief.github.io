@@ -5,45 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Name — Portfolio</title>
 
-<!-- Google Fonts: Space Grotesk for headings, Inter for body text -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 
-  /* ============================================
-     1. SETTINGS — change these to make it yours
-     ============================================ */
   :root {
-    --bg:        #FAFAF8;   /* page background */
-    --bg-soft:   #F1F0EC;   /* card background */
-    --ink:       #1C1C1A;   /* main text */
-    --ink-soft:  #5B5B56;   /* secondary text */
-    --accent:    #3D5A80;   /* your accent color — try changing this! */
-    --line:      #E3E1DA;   /* borders / dividers */
+    --bg:        #FAFAF8;
+    --bg-soft:   #F1F0EC;
+    --ink:       #1C1C1A;
+    --ink-soft:  #5B5B56;
+    --accent:    #3D5A80;
+    --line:      #E3E1DA;
 
-    --font-head: 'Space Grotesk', sans-serif;
+    --font-head: 'Bangers', 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
-  /* ============================================
-     2. RESET — basic cleanup, don't worry about this
-     ============================================ */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
 
   body {
-    /* Background image, with a soft tint over it so text stays readable.
-       The tint color/opacity comes from --bg — tweak the 0.85 below if
-       you want more or less of the artwork showing through. */
     background-image:
       linear-gradient(rgba(250, 250, 248, 0), rgba(250, 250, 248, 0)),
       url('assets/bg-desktop.jpg');
-    background-size: 100% auto;   /* scales to page width, keeps art proportions */
-    background-repeat: repeat-y;  /* tiles downward if the page is taller than the image */
+    background-size: 100% auto;
+    background-repeat: repeat-y;
     background-position: top center;
     color: var(--ink);
     font-family: var(--font-body);
@@ -51,7 +41,6 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Swap in the taller/mobile-cropped artwork on small screens */
   @media (max-width: 700px) {
     body {
       background-image:
@@ -70,11 +59,9 @@
     padding: 90px 24px;
   }
 
-  h1, h2, h3 { font-family: var(--font-head); font-weight: 600; }
+  h1, h2, h3 { font-family: var(--font-head); font-weight: 400; letter-spacing: 0.02em; }
 
-  /* ============================================
-     3. NAVIGATION
-     ============================================ */
+  /* NAV */
   nav {
     position: sticky;
     top: 0;
@@ -84,7 +71,6 @@
     align-items: center;
     padding: 20px 24px;
     background: rgba(250, 250, 248, 0);
-    backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
 
@@ -116,9 +102,7 @@
 
   .nav-links a:hover { color: var(--ink); }
 
-  /* ============================================
-     4. HERO
-     ============================================ */
+  /* HERO */
   .hero {
     padding-top: 130px;
     padding-bottom: 100px;
@@ -144,99 +128,106 @@
   }
 
   .hero h1 {
-    font-size: clamp(34px, 6vw, 52px);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    font-size: clamp(40px, 7vw, 60px);
+    line-height: 1.2;
     margin-bottom: 20px;
+    text-shadow: 3px 3px 0px rgba(255,255,255,0.6);
   }
 
   .hero p {
     font-size: 18px;
-    color: var(--ink-soft);
+    color: var(--ink);
+    background: rgba(250,250,248,0.85);
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 8px;
     max-width: 480px;
     margin-bottom: 32px;
   }
 
   .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
 
+  /* COMIC-STYLE BUTTONS */
   .btn {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 14px;
-  padding: 12px 22px;
-  border-radius: 8px;
-  border: 3px solid #1C1C1A;
-  background: #fff;
-  color: #1C1C1A;
-  box-shadow: 4px 4px 0px #1C1C1A;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    border: 3px solid #1C1C1A;
+    background: #fff;
+    color: #1C1C1A;
+    box-shadow: 4px 4px 0px #1C1C1A;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    cursor: pointer;
+  }
 
-.btn:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #1C1C1A;
-}
+  .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #1C1C1A;
+  }
 
-.btn:active {
-  transform: translate(2px, 2px);
-  box-shadow: 1px 1px 0px #1C1C1A;
-}
+  .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #1C1C1A;
+  }
 
-.btn.primary {
-  background: #E63946;   /* the red from your poster */
-  color: #fff;
-}
+  .btn.primary {
+    background: #E63946;
+    color: #fff;
+  }
 
-.btn.secondary {
-  background: #3EC6C6;   /* the teal from your poster */
-  color: #1C1C1A;
-}
+  .btn.secondary {
+    background: #3EC6C6;
+    color: #1C1C1A;
+  }
 
-  .btn:hover { transform: translateY(-2px); }
-
-  .btn.primary { background: var(--ink); color: var(--bg); }
-  .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
-  .btn.secondary { background: transparent; color: var(--ink); }
-
-  /* ============================================
-     5. SECTION LABELS  (the "01 / 02" style tags)
-     ============================================ */
+  /* SECTION LABELS */
   .section-label {
     font-family: var(--font-mono);
     font-size: 13px;
     color: var(--accent);
+    background: rgba(250,250,248,0.85);
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
     margin-bottom: 12px;
   }
 
   .section-title {
-    font-size: 28px;
+    font-size: 32px;
     margin-bottom: 36px;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.6);
   }
 
-  /* ============================================
-     6. ABOUT
-     ============================================ */
+  /* ABOUT */
   .about p {
-    color: var(--ink-soft);
+    color: var(--ink);
+    background: rgba(250,250,248,0.85);
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 8px;
     font-size: 16px;
     max-width: 560px;
   }
 
-  .about p + p { margin-top: 16px; }
+  .about p + p { margin-top: 12px; }
 
-  /* ============================================
-     7. PROJECTS
-     ============================================ */
+  /* COMIC-STYLE PROJECT CARDS */
   .project {
-    border: 1px solid var(--line);
+    border: 3px solid #1C1C1A;
     border-radius: 12px;
     padding: 28px;
-    margin-bottom: 20px;
-    background: var(--bg-soft);
-    transition: border-color 0.15s ease;
+    margin-bottom: 24px;
+    background: #fff;
+    box-shadow: 6px 6px 0px #1C1C1A;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
-  .project:hover { border-color: var(--accent); }
+  .project:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #1C1C1A;
+  }
 
   .project-head {
     display: flex;
@@ -247,7 +238,7 @@
     flex-wrap: wrap;
   }
 
-  .project h3 { font-size: 18px; }
+  .project h3 { font-size: 22px; }
 
   .project-link {
     font-family: var(--font-mono);
@@ -269,39 +260,39 @@
   .tag {
     font-family: var(--font-mono);
     font-size: 12px;
-    color: var(--ink-soft);
+    font-weight: 700;
+    color: var(--ink);
     background: var(--bg);
-    border: 1px solid var(--line);
+    border: 2px solid #1C1C1A;
     padding: 4px 10px;
     border-radius: 6px;
   }
 
-  /* ============================================
-     8. SKILLS
-     ============================================ */
+  /* COMIC-STYLE SKILL PILLS */
   .skills-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
   }
 
   .skill-pill {
     font-family: var(--font-mono);
+    font-weight: 700;
     font-size: 13px;
     padding: 8px 14px;
     border-radius: 20px;
-    border: 1px solid var(--line);
-    color: var(--ink-soft);
+    border: 2px solid #1C1C1A;
+    background: #fff;
+    box-shadow: 3px 3px 0px #1C1C1A;
   }
 
-  /* ============================================
-     9. CONTACT
-     ============================================ */
+  /* CONTACT */
   .contact-card {
-    border: 1px solid var(--line);
+    border: 3px solid #1C1C1A;
     border-radius: 12px;
     padding: 40px;
-    background: var(--bg-soft);
+    background: #fff;
+    box-shadow: 6px 6px 0px #1C1C1A;
     text-align: left;
   }
 
@@ -317,27 +308,22 @@
     flex-wrap: wrap;
   }
 
-  /* ============================================
-     10. FOOTER
-     ============================================ */
+  /* FOOTER */
   footer {
     text-align: center;
     padding: 40px 24px 60px;
     font-size: 13px;
-    color: var(--ink-soft);
+    color: var(--ink);
+    background: rgba(250,250,248,0.85);
     font-family: var(--font-mono);
   }
 
-  /* ============================================
-     11. MOBILE
-     ============================================ */
   @media (max-width: 600px) {
     .nav-links { gap: 16px; font-size: 13px; }
     section { padding: 60px 20px; }
     .hero { padding-top: 100px; }
   }
 
-  /* Respect users who prefer less motion */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
@@ -347,7 +333,6 @@
 </head>
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <div class="nav-inner">
       <div class="logo">your<span>name</span>.dev</div>
@@ -360,7 +345,6 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="eyebrow">available for opportunities</div>
     <h1>Hi, I'm Your Name.<br>I build things for the web.</h1>
@@ -371,7 +355,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about" class="about">
     <div class="section-label">// about</div>
     <h2 class="section-title">A little about me</h2>
@@ -379,7 +362,6 @@
     <p>You can add a second paragraph about your interests outside of coding, or what kind of projects excite you most.</p>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="section-label">// projects</div>
     <h2 class="section-title">Things I've built</h2>
@@ -410,7 +392,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="section-label">// skills</div>
     <h2 class="section-title">What I know so far</h2>
@@ -423,7 +404,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="section-label">// contact</div>
     <h2 class="section-title">Let's talk</h2>
