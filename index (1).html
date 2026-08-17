@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+
+<!-- Google Fonts: Space Grotesk for headings, Inter for body text -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+
+  /* ============================================
+     1. SETTINGS — change these to make it yours
+     ============================================ */
+  :root {
+    --bg:        #FAFAF8;   /* page background */
+    --bg-soft:   #F1F0EC;   /* card background */
+    --ink:       #1C1C1A;   /* main text */
+    --ink-soft:  #5B5B56;   /* secondary text */
+    --accent:    #3D5A80;   /* your accent color — try changing this! */
+    --line:      #E3E1DA;   /* borders / dividers */
+
+    --font-head: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  /* ============================================
+     2. RESET — basic cleanup, don't worry about this
+     ============================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    /* Background image, with a soft tint over it so text stays readable.
+       The tint color/opacity comes from --bg — tweak the 0.85 below if
+       you want more or less of the artwork showing through. */
+    background-image:
+      linear-gradient(rgba(250, 250, 248, 0.85), rgba(250, 250, 248, 0.85)),
+      url('assets/bg-desktop.jpg');
+    background-size: 100% auto;   /* scales to page width, keeps art proportions */
+    background-repeat: repeat-y;  /* tiles downward if the page is taller than the image */
+    background-position: top center;
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Swap in the taller/mobile-cropped artwork on small screens */
+  @media (max-width: 700px) {
+    body {
+      background-image:
+        linear-gradient(rgba(250, 250, 248, 0.85), rgba(250, 250, 248, 0.85)),
+        url('assets/bg-mobile.jpg');
+    }
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { max-width: 100%; display: block; }
+
+  section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 90px 24px;
+  }
+
+  h1, h2, h3 { font-family: var(--font-head); font-weight: 600; }
+
+  /* ============================================
+     3. NAVIGATION
+     ============================================ */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: rgba(250, 250, 248, 0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ============================================
+     4. HERO
+     ============================================ */
+  .hero {
+    padding-top: 130px;
+    padding-bottom: 100px;
+  }
+
+  .hero .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero .eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 6vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin-bottom: 32px;
+  }
+
+  .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 22px;
+    border-radius: 8px;
+    border: 1px solid var(--ink);
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+  .btn.secondary { background: transparent; color: var(--ink); }
+
+  /* ============================================
+     5. SECTION LABELS  (the "01 / 02" style tags)
+     ============================================ */
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    margin-bottom: 36px;
+  }
+
+  /* ============================================
+     6. ABOUT
+     ============================================ */
+  .about p {
+    color: var(--ink-soft);
+    font-size: 16px;
+    max-width: 560px;
+  }
+
+  .about p + p { margin-top: 16px; }
+
+  /* ============================================
+     7. PROJECTS
+     ============================================ */
+  .project {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    background: var(--bg-soft);
+    transition: border-color 0.15s ease;
+  }
+
+  .project:hover { border-color: var(--accent); }
+
+  .project-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .project h3 { font-size: 18px; }
+
+  .project-link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .project-link:hover { text-decoration: underline; }
+
+  .project p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* ============================================
+     8. SKILLS
+     ============================================ */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .skill-pill {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+
+  /* ============================================
+     9. CONTACT
+     ============================================ */
+  .contact-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 40px;
+    background: var(--bg-soft);
+    text-align: left;
+  }
+
+  .contact-card p {
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+    max-width: 420px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================
+     10. FOOTER
+     ============================================ */
+  footer {
+    text-align: center;
+    padding: 40px 24px 60px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+  }
+
+  /* ============================================
+     11. MOBILE
+     ============================================ */
+  @media (max-width: 600px) {
+    .nav-links { gap: 16px; font-size: 13px; }
+    section { padding: 60px 20px; }
+    .hero { padding-top: 100px; }
+  }
+
+  /* Respect users who prefer less motion */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+      <div class="logo">your<span>name</span>.dev</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="eyebrow">available for opportunities</div>
+    <h1>Hi, I'm Your Name.<br>I build things for the web.</h1>
+    <p>A short line about who you are and what you do — for example: "I'm a self-taught developer learning to build clean, functional websites."</p>
+    <div class="hero-links">
+      <a href="#projects" class="btn primary">View my work</a>
+      <a href="#contact" class="btn secondary">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about">
+    <div class="section-label">// about</div>
+    <h2 class="section-title">A little about me</h2>
+    <p>Write a couple of sentences about yourself here — your background, what got you into building websites, and what you're currently learning or working on.</p>
+    <p>You can add a second paragraph about your interests outside of coding, or what kind of projects excite you most.</p>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">// projects</div>
+    <h2 class="section-title">Things I've built</h2>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Project One</h3>
+        <a href="#" class="project-link">view project →</a>
+      </div>
+      <p>A short description of the project — what it does and why you built it.</p>
+      <div class="tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">JavaScript</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="project-head">
+        <h3>Project Two</h3>
+        <a href="#" class="project-link">view project →</a>
+      </div>
+      <p>A short description of the project — what it does and why you built it.</p>
+      <div class="tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">// skills</div>
+    <h2 class="section-title">What I know so far</h2>
+    <div class="skills-grid">
+      <span class="skill-pill">HTML</span>
+      <span class="skill-pill">CSS</span>
+      <span class="skill-pill">JavaScript</span>
+      <span class="skill-pill">Git & GitHub</span>
+      <span class="skill-pill">Responsive Design</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">// contact</div>
+    <h2 class="section-title">Let's talk</h2>
+    <div class="contact-card">
+      <p>Whether you have a question, a project idea, or just want to say hi — my inbox is open.</p>
+      <div class="contact-links">
+        <a href="mailto:you@example.com" class="btn primary">Email me</a>
+        <a href="#" class="btn secondary">GitHub</a>
+        <a href="#" class="btn secondary">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    built by yourname · 2026
+  </footer>
+
+</body>
+</html>
