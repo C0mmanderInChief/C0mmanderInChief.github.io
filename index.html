@@ -160,14 +160,37 @@
   .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
 
   .btn {
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 14px;
-    padding: 12px 22px;
-    border-radius: 8px;
-    border: 1px solid var(--ink);
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: 3px solid #1C1C1A;
+  background: #fff;
+  color: #1C1C1A;
+  box-shadow: 4px 4px 0px #1C1C1A;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1C1C1A;
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #1C1C1A;
+}
+
+.btn.primary {
+  background: #E63946;   /* the red from your poster */
+  color: #fff;
+}
+
+.btn.secondary {
+  background: #3EC6C6;   /* the teal from your poster */
+  color: #1C1C1A;
+}
 
   .btn:hover { transform: translateY(-2px); }
 
