@@ -40,7 +40,7 @@
        The tint color/opacity comes from --bg — tweak the 0.85 below if
        you want more or less of the artwork showing through. */
     background-image:
-      linear-gradient(rgba(250, 250, 248, 0.5), rgba(250, 250, 248, 0.5)),
+      linear-gradient(rgba(250, 250, 248, 0), rgba(250, 250, 248, 0)),
       url('assets/bg-desktop.jpg');
     background-size: 100% auto;   /* scales to page width, keeps art proportions */
     background-repeat: repeat-y;  /* tiles downward if the page is taller than the image */
@@ -55,7 +55,7 @@
   @media (max-width: 700px) {
     body {
       background-image:
-        linear-gradient(rgba(250, 250, 248, 0.85), rgba(250, 250, 248, 0.85)),
+        linear-gradient(rgba(250, 250, 248, 0), rgba(250, 250, 248, 0)),
         url('assets/bg-mobile.jpg');
     }
   }
