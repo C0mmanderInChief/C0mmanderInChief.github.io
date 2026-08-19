@@ -11,7 +11,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-  /* ========== COLOR & FONT VARIABLES ========== */
   :root {
     --bg:        #FAFAF8;
     --bg-soft:   #F1F0EC;
@@ -30,7 +29,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -44,7 +42,7 @@
   img { max-width: 100%; display: block; }
 
   section {
-    max-width: 1200px;      /* wider for marquee sections */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 70px 24px;
   }
@@ -55,7 +53,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* ========== PARALLAX BACKGROUND LAYERS ========== */
+  /* PARALLAX BACKGROUND */
   .bg-layer {
     position: fixed;
     top: 0; left: 0;
@@ -65,21 +63,15 @@
     z-index: -2;
   }
 
-  #layer-back {
-    background-image: url('assets/bg-desktop-back.jpg');
-  }
-
-  #layer-clouds {
-    background-image: url('assets/bg-desktop-clouds.png');
-    z-index: -1;
-  }
+  #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
+  #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); z-index: -1; }
 
   @media (max-width: 700px) {
     #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
     #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); }
   }
 
-  /* ========== NAVIGATION ========== */
+  /* NAV */
   nav {
     position: sticky;
     top: 0;
@@ -120,11 +112,11 @@
   .nav-links a { transition: color 0.15s ease; }
   .nav-links a:hover { color: var(--ink); }
 
-  /* ========== HERO SECTION ========== */
+  /* HERO */
   .hero {
     padding-top: 160px;
     padding-bottom: 100px;
-    max-width: 720px;      /* keep hero narrow */
+    max-width: 720px;
   }
 
   .hero .eyebrow {
@@ -170,7 +162,7 @@
 
   .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
 
-  /* ========== COMIC-STYLE BUTTONS ========== */
+  /* COMIC BUTTONS */
   .btn {
     font-family: var(--font-body);
     font-weight: 700;
@@ -196,17 +188,10 @@
     box-shadow: 1px 1px 0px #1C1C1A;
   }
 
-  .btn.primary {
-    background: #E63946;
-    color: #fff;
-  }
+  .btn.primary { background: #E63946; color: #fff; }
+  .btn.secondary { background: #3EC6C6; color: #1C1C1A; }
 
-  .btn.secondary {
-    background: #3EC6C6;
-    color: #1C1C1A;
-  }
-
-  /* ========== SECTION LABELS & TITLES ========== */
+  /* SECTION LABELS & TITLES */
   .section-label {
     font-family: var(--font-mono);
     font-size: 13px;
@@ -225,7 +210,7 @@
     text-shadow: 2px 2px 0px rgba(255,255,255,0.6);
   }
 
-  /* ========== ABOUT ========== */
+  /* ABOUT */
   .about p {
     color: var(--ink);
     background: var(--panel);
@@ -238,50 +223,109 @@
 
   .about p + p { margin-top: 12px; }
 
-  /* ========== MARQUEE SECTIONS (new) ========== */
-  .marquee-section {
-    margin-bottom: 60px;
-  }
-
-  .marquee-section .section-title {
-    text-align: center;
+  /* MARQUEE SECTIONS */
+  .marquee-section { margin-bottom: 60px; }
+  .marquee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
   }
+  .marquee-header .section-title { margin-bottom: 0; }
 
-  /* The outer container hides overflow and gives a comic border */
+  /* SEE ALL BUTTON — now styled like the secondary (teal) button */
+  .see-all-btn {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 3px solid #1C1C1A;
+    background: #3EC6C6;           /* same as secondary button */
+    color: #1C1C1A;
+    box-shadow: 4px 4px 0px #1C1C1A;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+
+  .see-all-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #1C1C1A;
+  }
+
+  .see-all-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #1C1C1A;
+  }
+
+  .see-all-btn.active {
+    background: #1C1C1A;
+    color: #fff;
+    border-color: #1C1C1A;
+    box-shadow: 3px 3px 0px #1C1C1A;
+  }
+
+  /* Marquee outer: manual scrollbar + auto-scroll track */
   .marquee-outer {
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     border: 3px solid #1C1C1A;
     border-radius: 12px;
     background: var(--panel);
     box-shadow: 6px 6px 0px #1C1C1A;
     padding: 10px 0;
     position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: #1C1C1A #E3E1DA;
   }
 
-  /* The moving track: a flex row that will be animated */
+  .marquee-outer::-webkit-scrollbar {
+    height: 10px;
+  }
+  .marquee-outer::-webkit-scrollbar-track {
+    background: #E3E1DA;
+    border-radius: 5px;
+    margin: 0 10px;
+  }
+  .marquee-outer::-webkit-scrollbar-thumb {
+    background: #1C1C1A;
+    border-radius: 5px;
+    border: 2px solid #E3E1DA;
+  }
+
+  /* Track: auto-scrolling, pause on hover */
   .marquee-track {
     display: flex;
     gap: 20px;
     padding: 0 20px;
-    width: max-content;              /* ensures the track is as wide as its content */
+    width: max-content;
     animation: marqueeScroll 20s linear infinite;
   }
 
-  /* Pause on hover */
   .marquee-outer:hover .marquee-track {
-    animation-play-state: paused;
+    animation-play-state: paused;   /* pause when user hovers */
   }
 
-  /* Keyframes for infinite horizontal scroll */
   @keyframes marqueeScroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
 
-  /* Each card inside the marquee */
+  /* Expanded mode (for "See All") */
+  .marquee-outer.expanded {
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+  .marquee-outer.expanded .marquee-track {
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px;
+    justify-content: center;
+    animation: none;               /* no auto-scroll in expanded mode */
+  }
+
   .marquee-item {
-    flex: 0 0 auto;                  /* don't shrink or grow */
+    flex: 0 0 auto;
     width: 280px;
     border: 3px solid #1C1C1A;
     border-radius: 10px;
@@ -330,35 +374,14 @@
     font-size: 12px;
   }
 
-  .marquee-info {
-    padding: 12px 14px;
-  }
-
+  .marquee-info { padding: 12px 14px; }
   .marquee-info h3 {
     font-size: 18px;
     margin-bottom: 6px;
     text-shadow: 1px 1px 0px rgba(255,255,255,0.6);
   }
 
-  .marquee-tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 5px;
-    color: #fff;
-    display: inline-block;
-    border: 2px solid #1C1C1A;
-    box-shadow: 2px 2px 0px #1C1C1A;
-  }
-
-  .marquee-tag[data-cat="Film"] { background: var(--tag-film); }
-  .marquee-tag[data-cat="Art"] { background: var(--tag-art); }
-  .marquee-tag[data-cat="Photography"] { background: var(--tag-photo); }
-
-  /* ========== LIGHTBOX (unchanged) ========== */
+  /* LIGHTBOX */
   .lightbox {
     position: fixed;
     inset: 0;
@@ -369,9 +392,7 @@
     justify-content: center;
     padding: 32px 20px;
   }
-
   .lightbox.open { display: flex; }
-
   .lightbox-content {
     max-width: 720px;
     width: 100%;
@@ -384,37 +405,41 @@
     border: 3px solid #1C1C1A;
     box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
   }
-
   .lightbox-media { background: #000; }
   .lightbox-media img { width: 100%; display: block; }
   .lightbox-media iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }
-
   .lightbox-body { padding: 18px 22px; overflow-y: auto; }
   .lightbox-body h3 { font-size: 20px; margin-bottom: 8px; }
   .lightbox-body p { color: var(--ink-soft); font-size: 14px; }
 
+  /* LIGHTBOX CLOSE — now styled like primary (red) button */
   .lightbox-close {
     position: fixed;
     top: 24px;
     right: 28px;
     font-family: var(--font-mono);
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: #fff;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.3);
-    border-radius: 6px;
-    padding: 8px 14px;
+    background: #E63946;             /* red like primary button */
+    border: 3px solid #1C1C1A;
+    border-radius: 8px;
+    padding: 8px 16px;
+    box-shadow: 4px 4px 0px #1C1C1A;
     cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .lightbox-close:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px #1C1C1A;
+  }
+  .lightbox-close:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #1C1C1A;
   }
 
-  /* ========== SKILLS ========== */
-  .skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
+  /* SKILLS */
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
   .skill-pill {
     font-family: var(--font-mono);
     font-weight: 600;
@@ -426,7 +451,7 @@
     box-shadow: 3px 3px 0px #1C1C1A;
   }
 
-  /* ========== CONTACT CARD ========== */
+  /* CONTACT */
   .contact-card {
     border: 3px solid #1C1C1A;
     border-radius: 12px;
@@ -435,20 +460,10 @@
     box-shadow: 6px 6px 0px #1C1C1A;
     text-align: left;
   }
+  .contact-card p { color: var(--ink-soft); margin-bottom: 24px; max-width: 420px; }
+  .contact-links { display: flex; gap: 14px; flex-wrap: wrap; }
 
-  .contact-card p {
-    color: var(--ink-soft);
-    margin-bottom: 24px;
-    max-width: 420px;
-  }
-
-  .contact-links {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  /* ========== FOOTER ========== */
+  /* FOOTER */
   footer {
     text-align: center;
     padding: 40px 24px 60px;
@@ -458,12 +473,13 @@
     font-family: var(--font-mono);
   }
 
-  /* ========== RESPONSIVE TWEAKS ========== */
+  /* RESPONSIVE */
   @media (max-width: 600px) {
     .nav-links { gap: 16px; font-size: 13px; }
     section { padding: 60px 20px; }
     .hero { padding-top: 100px; }
     .marquee-item { width: 220px; }
+    .marquee-header { flex-direction: column; align-items: flex-start; gap: 10px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -509,29 +525,44 @@
     <p>You can add a second paragraph about your interests outside of coding, or what kind of projects excite you most.</p>
   </section>
 
-  <!-- ========== PHOTOGRAPHY MARQUEE ========== -->
+  <!-- Photography Section -->
   <section id="photography" class="marquee-section">
-    <div class="section-label">// photography</div>
-    <h2 class="section-title">Photo Series</h2>
-    <div class="marquee-outer">
+    <div class="marquee-header">
+      <div>
+        <div class="section-label">// photography</div>
+        <h2 class="section-title">Photo Series</h2>
+      </div>
+      <button class="see-all-btn" data-target="photoOuter">See All</button>
+    </div>
+    <div class="marquee-outer" id="photoOuter">
       <div class="marquee-track" id="photoTrack"></div>
     </div>
   </section>
 
-  <!-- ========== FILM MARQUEE ========== -->
+  <!-- Film Section -->
   <section id="film" class="marquee-section">
-    <div class="section-label">// film</div>
-    <h2 class="section-title">Films</h2>
-    <div class="marquee-outer">
+    <div class="marquee-header">
+      <div>
+        <div class="section-label">// film</div>
+        <h2 class="section-title">Films</h2>
+      </div>
+      <button class="see-all-btn" data-target="filmOuter">See All</button>
+    </div>
+    <div class="marquee-outer" id="filmOuter">
       <div class="marquee-track" id="filmTrack"></div>
     </div>
   </section>
 
-  <!-- ========== ART MARQUEE ========== -->
+  <!-- Art Section -->
   <section id="art" class="marquee-section">
-    <div class="section-label">// art</div>
-    <h2 class="section-title">Art</h2>
-    <div class="marquee-outer">
+    <div class="marquee-header">
+      <div>
+        <div class="section-label">// art</div>
+        <h2 class="section-title">Art</h2>
+      </div>
+      <button class="see-all-btn" data-target="artOuter">See All</button>
+    </div>
+    <div class="marquee-outer" id="artOuter">
       <div class="marquee-track" id="artTrack"></div>
     </div>
   </section>
@@ -579,71 +610,33 @@
   </div>
 
 <script>
-  /* ============================================================
-     GALLERY DATA — EDIT THIS ARRAY TO ADD YOUR OWN WORK
-     ============================================================ */
   const galleryItems = [
     // Photography
-    {
-      title: "Photo Series One",
-      category: "Photography",
-      image: "assets/gallery/photo-1.jpg",
-      video: "",
-      description: "A short description of the photo series and where it was shot."
-    },
-    {
-      title: "Photo Series Two",
-      category: "Photography",
-      image: "assets/gallery/photo-2.jpg",
-      video: "",
-      description: "Another photo series description."
-    },
+    { title: "Photo Series One", category: "Photography", image: "assets/gallery/photo-1.jpg", video: "", description: "A short description of the photo series and where it was shot." },
+    { title: "Photo Series Two", category: "Photography", image: "assets/gallery/photo-2.jpg", video: "", description: "Another photo series description." },
+    { title: "Photo Series Three", category: "Photography", image: "assets/gallery/photo-3.jpg", video: "", description: "Third photo series." },
     // Film
-    {
-      title: "Short Film One",
-      category: "Film",
-      image: "assets/gallery/film-1.jpg",
-      video: "", // e.g. "https://www.youtube.com/embed/VIDEO_ID"
-      description: "A short description of the film."
-    },
-    {
-      title: "Short Film Two",
-      category: "Film",
-      image: "assets/gallery/film-2.jpg",
-      video: "",
-      description: "Another film description."
-    },
+    { title: "Short Film One", category: "Film", image: "assets/gallery/film-1.jpg", video: "", description: "A short description of the film." },
+    { title: "Short Film Two", category: "Film", image: "assets/gallery/film-2.jpg", video: "", description: "Another film description." },
+    { title: "Short Film Three", category: "Film", image: "assets/gallery/film-3.jpg", video: "", description: "Third film." },
     // Art
-    {
-      title: "Art Piece One",
-      category: "Art",
-      image: "assets/gallery/art-1.jpg",
-      video: "",
-      description: "A short description of the piece."
-    },
-    {
-      title: "Art Piece Two",
-      category: "Art",
-      image: "assets/gallery/art-2.jpg",
-      video: "",
-      description: "Another art piece description."
-    }
+    { title: "Art Piece One", category: "Art", image: "assets/gallery/art-1.jpg", video: "", description: "A short description of the piece." },
+    { title: "Art Piece Two", category: "Art", image: "assets/gallery/art-2.jpg", video: "", description: "Another art piece description." },
+    { title: "Art Piece Three", category: "Art", image: "assets/gallery/art-3.jpg", video: "", description: "Third art piece." }
   ];
 
-  // References to the three marquee tracks
-  const photoTrack = document.getElementById('photoTrack');
-  const filmTrack = document.getElementById('filmTrack');
-  const artTrack = document.getElementById('artTrack');
+  const tracks = {
+    photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
+    filmTrack: { element: document.getElementById('filmTrack'), category: 'Film' },
+    artTrack: { element: document.getElementById('artTrack'), category: 'Art' }
+  };
 
-  // Lightbox elements
   const lightbox = document.getElementById('lightbox');
   const lightboxMedia = document.getElementById('lightboxMedia');
   const lightboxTitle = document.getElementById('lightboxTitle');
   const lightboxDesc = document.getElementById('lightboxDesc');
 
-  /**
-   * Creates a marquee item (card) and returns the DOM element
-   */
+  // Create a marquee card
   function createMarqueeItem(item) {
     const card = document.createElement('div');
     card.className = 'marquee-item';
@@ -668,10 +661,7 @@
 
     const info = document.createElement('div');
     info.className = 'marquee-info';
-    info.innerHTML = `
-      <span class="marquee-tag" data-cat="${item.category}">${item.category}</span>
-      <h3>${item.title}</h3>
-    `;
+    info.innerHTML = `<h3>${item.title}</h3>`;
 
     card.appendChild(thumb);
     card.appendChild(info);
@@ -679,24 +669,20 @@
     return card;
   }
 
-  /**
-   * Populates a marquee track with items of a given category.
-   * Duplicates the items to create a seamless infinite scroll.
-   */
-  function populateMarquee(trackElement, category) {
-    trackElement.innerHTML = '';
-    const items = galleryItems.filter(item => item.category === category);
-    // Append original set twice (or more) for a seamless loop
-    for (let i = 0; i < 2; i++) {
+  // Render a track: if duplicate=true, add items twice for seamless loop
+  function renderTrack(trackKey, duplicate) {
+    const track = tracks[trackKey];
+    const items = galleryItems.filter(item => item.category === track.category);
+    track.element.innerHTML = '';
+    const count = duplicate ? 2 : 1;
+    for (let i = 0; i < count; i++) {
       items.forEach(item => {
-        trackElement.appendChild(createMarqueeItem(item));
+        track.element.appendChild(createMarqueeItem(item));
       });
     }
   }
 
-  /**
-   * Opens the lightbox with the selected item's media and details.
-   */
+  // Lightbox functions
   function openLightbox(item) {
     lightboxMedia.innerHTML = '';
     if (item.video) {
@@ -721,17 +707,35 @@
     lightboxMedia.innerHTML = '';
   }
 
-  // Lightbox event listeners
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-  // Populate all marquee sections
-  populateMarquee(photoTrack, 'Photography');
-  populateMarquee(filmTrack, 'Film');
-  populateMarquee(artTrack, 'Art');
+  // See All buttons: toggle expanded mode and re-render track
+  document.querySelectorAll('.see-all-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const outer = document.getElementById(targetId);
+      const trackKey = targetId.replace('Outer', 'Track');
+      const trackObj = tracks[trackKey];
+      if (!outer || !trackObj) return;
 
-  // Parallax background scroll
+      outer.classList.toggle('expanded');
+      btn.classList.toggle('active');
+      const isExpanded = outer.classList.contains('expanded');
+      btn.textContent = isExpanded ? 'Show Less' : 'See All';
+
+      // Re-render track with duplicates only when not expanded
+      renderTrack(trackKey, !isExpanded);
+    });
+  });
+
+  // Initial render: duplicate tracks for auto-scroll
+  renderTrack('photoTrack', true);
+  renderTrack('filmTrack', true);
+  renderTrack('artTrack', true);
+
+  // Parallax background
   window.addEventListener('scroll', function() {
     const scrolled = window.scrollY;
     document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
