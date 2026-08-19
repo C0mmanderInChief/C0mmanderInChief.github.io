@@ -376,8 +376,21 @@
     display: flex;
     flex-direction: column;
   }
-  .lightbox-media { background: var(--espresso); }
-  .lightbox-media img { width: 100%; display: block; }
+  .lightbox-media { 
+    background: var(--espresso); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lightbox-media img { 
+    max-width: 100%; 
+    max-height: 60vh; 
+    object-fit: contain; 
+    display: block; 
+    width: auto;
+    height: auto;
+  }
   .lightbox-media iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }
   .lightbox-body { padding: 25px 30px; overflow-y: auto; }
   .lightbox-body h3 { font-size: 28px; margin-bottom: 10px; }
