@@ -5,35 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JOGDA.com — Alejandro Fidel Regueros-Wessels</title>
 
-<!-- Fonts: Bangers for comic headings, Space Grotesk as fallback, Inter for body, JetBrains Mono for code-like labels -->
+<!-- Google Font: Syne -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   /* ========== COLOR & FONT VARIABLES ==========
-     Change these to quickly restyle the whole site.
-     --ink is the main black, --accent the blue,
-     --tag-film/art/photo control category badge colors. */
+     Change these to quickly restyle the whole site. */
   :root {
-    --bg:        #FAFAF8;             /* page background (behind image layers) */
-    --bg-soft:   #F1F0EC;             /* soft neutral for placeholders */
-    --panel:     rgba(250, 250, 248, 0.88); /* semi-transparent white used for text backgrounds */
-    --ink:       #1C1C1A;             /* main text / border color */
-    --ink-soft:  #5B5B56;             /* secondary text color */
-    --accent:    #3D5A80;             /* blue accent */
-    --tag-film:  #3D5A80;             /* Film badge background */
-    --tag-art:   #B08D1A;             /* Art badge background */
-    --tag-photo: #5F8763;             /* Photography badge background */
-    --line:      #E3E1DA;             /* light line color for subtle borders */
+    --bg:        #FAFAF8;
+    --bg-soft:   #F1F0EC;
+    --panel:     rgba(250, 250, 248, 0.88);
+    --ink:       #1C1C1A;
+    --ink-soft:  #5B5B56;
+    --accent:    #3D5A80;
+    --tag-film:  #3D5A80;
+    --tag-art:   #B08D1A;
+    --tag-photo: #5F8763;
+    --line:      #E3E1DA;
 
-    /* Font families */
-    --font-head: 'Bangers', 'Space Grotesk', sans-serif;  /* comic-style headings */
-    --font-body: 'Inter', sans-serif;                     /* body text */
-    --font-mono: 'JetBrains Mono', monospace;             /* labels, buttons, tags */
+    /* All fonts set to Syne */
+    --font-head: 'Syne', sans-serif;
+    --font-body: 'Syne', sans-serif;
+    --font-mono: 'Syne', sans-serif;
   }
 
-  /* Basic reset */
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   html { scroll-behavior: smooth; }
@@ -48,43 +45,37 @@
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
 
-  /* Each main section gets a max width and vertical padding */
   section {
     max-width: 720px;
     margin: 0 auto;
     padding: 90px 24px;
   }
 
-  /* Headings use the comic font, normal weight */
   h1, h2, h3 {
     font-family: var(--font-head);
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
-  /* ========== PARALLAX BACKGROUND LAYERS ==========
-     Two fixed layers behind the content.
-     They move at different speeds on scroll (see JS at bottom). */
+  /* ========== PARALLAX BACKGROUND LAYERS ========== */
   .bg-layer {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background-size: 100% auto;
     background-repeat: repeat-y;
-    z-index: -2;  /* behind everything */
+    z-index: -2;
   }
 
   #layer-back {
-    background-image: url('assets/bg-desktop-back.jpg'); /* background image */
+    background-image: url('assets/bg-desktop-back.jpg');
   }
 
   #layer-clouds {
-    background-image: url('assets/bg-desktop-clouds.png'); /* cloud overlay */
-    z-index: -1;  /* above the back layer but still behind content */
+    background-image: url('assets/bg-desktop-clouds.png');
+    z-index: -1;
   }
 
-  /* On mobile, we currently reuse the desktop images to avoid 404s.
-     You can replace with bg-mobile-back.jpg and bg-mobile-clouds.png if you have them. */
   @media (max-width: 700px) {
     #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
     #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); }
@@ -92,12 +83,12 @@
 
   /* ========== NAVIGATION ========== */
   nav {
-    position: sticky;       /* sticks to top when scrolling */
+    position: sticky;
     top: 0;
     z-index: 10;
     padding: 20px 24px;
     background: rgba(250, 250, 248, 0.7);
-    backdrop-filter: blur(6px);   /* subtle blur behind nav */
+    backdrop-filter: blur(6px);
     border-bottom: 1px solid var(--line);
   }
 
@@ -113,11 +104,11 @@
   .logo {
     font-family: var(--font-mono);
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.04em;
   }
 
-  .logo span { color: var(--accent); }  /* the ".com" part is colored */
+  .logo span { color: var(--accent); }
 
   .nav-links {
     display: flex;
@@ -140,6 +131,7 @@
   .hero .eyebrow {
     font-family: var(--font-mono);
     font-size: 13px;
+    font-weight: 500;
     color: var(--accent);
     margin-bottom: 18px;
     display: inline-flex;
@@ -163,7 +155,7 @@
     font-size: clamp(38px, 6.5vw, 56px);
     line-height: 1.18;
     margin-bottom: 20px;
-    text-shadow: 3px 3px 0px rgba(255,255,255,0); /* subtle white shadow for readability */
+    text-shadow: 3px 3px 0px rgba(255,255,255,0.6);
   }
 
   .hero p {
@@ -179,8 +171,7 @@
 
   .hero-links { display: flex; gap: 14px; flex-wrap: wrap; }
 
-  /* ========== COMIC-STYLE BUTTONS ==========
-     Thick black border + offset shadow = classic comic look. */
+  /* ========== COMIC-STYLE BUTTONS ========== */
   .btn {
     font-family: var(--font-body);
     font-weight: 700;
@@ -190,7 +181,7 @@
     border: 3px solid #1C1C1A;
     background: #fff;
     color: #1C1C1A;
-    box-shadow: 4px 4px 0px #1C1C1A;      /* hard offset shadow */
+    box-shadow: 4px 4px 0px #1C1C1A;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
     cursor: pointer;
     display: inline-block;
@@ -207,12 +198,12 @@
   }
 
   .btn.primary {
-    background: #E63946;   /* red */
+    background: #E63946;
     color: #fff;
   }
 
   .btn.secondary {
-    background: #3EC6C6;   /* teal */
+    background: #3EC6C6;
     color: #1C1C1A;
   }
 
@@ -220,6 +211,7 @@
   .section-label {
     font-family: var(--font-mono);
     font-size: 13px;
+    font-weight: 600;
     color: var(--accent);
     background: var(--panel);
     display: inline-block;
@@ -258,7 +250,7 @@
   .filter-btn {
     font-family: var(--font-mono);
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     padding: 7px 14px;
     border-radius: 6px;
     border: 2px solid #1C1C1A;
@@ -284,15 +276,14 @@
   /* ========== GALLERY GRID & CARDS ========== */
   .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);   /* 2 columns on desktop */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 
   @media (max-width: 560px) {
-    .gallery-grid { grid-template-columns: 1fr; }  /* single column on small screens */
+    .gallery-grid { grid-template-columns: 1fr; }
   }
 
-  /* Each gallery card has the comic style: thick border, yellow background, offset shadow */
   .gallery-item {
     border: 3px solid #1C1C1A;
     border-radius: 12px;
@@ -308,11 +299,10 @@
     box-shadow: 8px 8px 0px #1C1C1A;
   }
 
-  /* The thumbnail area: a fixed aspect ratio, background image set via inline style */
   .gallery-thumb {
     position: relative;
     aspect-ratio: 4 / 5;
-    background: linear-gradient(135deg, var(--bg-soft), #e8e6de); /* fallback gradient */
+    background: linear-gradient(135deg, var(--bg-soft), #e8e6de);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -320,7 +310,6 @@
     color: var(--ink-soft);
   }
 
-  /* If no image is provided, show a placeholder message */
   .gallery-thumb.no-image::after {
     content: "add image →";
     font-family: var(--font-mono);
@@ -329,7 +318,6 @@
     color: var(--ink-soft);
   }
 
-  /* Play badge shown when a video is associated */
   .gallery-thumb .play-badge {
     position: absolute;
     top: 10px;
@@ -352,7 +340,6 @@
     text-shadow: 1px 1px 0px rgba(255,255,255,0.6);
   }
 
-  /* Category tag: color depends on data-cat attribute */
   .gallery-tag {
     font-family: var(--font-mono);
     font-size: 11px;
@@ -377,13 +364,13 @@
     inset: 0;
     background: rgba(20, 20, 18, 0.92);
     z-index: 100;
-    display: none;               /* hidden by default */
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 32px 20px;
   }
 
-  .lightbox.open { display: flex; }   /* shown when .open class added */
+  .lightbox.open { display: flex; }
 
   .lightbox-content {
     max-width: 720px;
@@ -412,6 +399,7 @@
     right: 28px;
     font-family: var(--font-mono);
     font-size: 13px;
+    font-weight: 600;
     color: #fff;
     background: rgba(255,255,255,0.12);
     border: 1px solid rgba(255,255,255,0.3);
@@ -429,7 +417,7 @@
 
   .skill-pill {
     font-family: var(--font-mono);
-    font-weight: 700;
+    font-weight: 600;
     font-size: 13px;
     padding: 8px 14px;
     border-radius: 20px;
@@ -443,7 +431,7 @@
     border: 3px solid #1C1C1A;
     border-radius: 12px;
     padding: 36px;
-    background: #FFEB8A;      /* same yellow as project cards */
+    background: #FFEB8A;
     box-shadow: 6px 6px 0px #1C1C1A;
     text-align: left;
   }
@@ -477,7 +465,6 @@
     .hero { padding-top: 100px; }
   }
 
-  /* Respect users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
@@ -486,11 +473,9 @@
 </head>
 <body>
 
-  <!-- Background layers for parallax effect (moved by JavaScript) -->
   <div id="layer-back" class="bg-layer"></div>
   <div id="layer-clouds" class="bg-layer"></div>
 
-  <!-- Navigation -->
   <nav>
     <div class="nav-inner">
       <div class="logo">JOGDA<span>.com</span></div>
@@ -503,7 +488,6 @@
     </div>
   </nav>
 
-  <!-- Hero section -->
   <section class="hero">
     <div class="eyebrow">available for opportunities</div>
     <h1>Hi, I'm Alejandro Fidel Regueros-Wessels.<br>I build and film.</h1>
@@ -514,7 +498,6 @@
     </div>
   </section>
 
-  <!-- About section -->
   <section id="about" class="about">
     <div class="section-label">// about</div>
     <h2 class="section-title">A little about me</h2>
@@ -522,12 +505,10 @@
     <p>You can add a second paragraph about your interests outside of coding, or what kind of projects excite you most.</p>
   </section>
 
-  <!-- Gallery section with filters and dynamic grid -->
   <section id="gallery">
     <div class="section-label">// gallery</div>
     <h2 class="section-title">Things I've made</h2>
 
-    <!-- Filter buttons: data-filter values match categories in galleryItems -->
     <div class="filter-bar" id="filterBar">
       <button class="filter-btn active" data-filter="All">All</button>
       <button class="filter-btn" data-filter="Film">Film</button>
@@ -535,11 +516,9 @@
       <button class="filter-btn" data-filter="Photography">Photography</button>
     </div>
 
-    <!-- Gallery cards will be inserted here by JavaScript -->
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 
-  <!-- Skills section -->
   <section id="skills">
     <div class="section-label">// skills</div>
     <h2 class="section-title">What I know so far</h2>
@@ -553,14 +532,12 @@
     </div>
   </section>
 
-  <!-- Contact section -->
   <section id="contact">
     <div class="section-label">// contact</div>
     <h2 class="section-title">Let's talk</h2>
     <div class="contact-card">
       <p>Whether you have a question, a project idea, or just want to say hi — my inbox is open.</p>
       <div class="contact-links">
-        <!-- Update the mailto: address with your real email -->
         <a href="mailto:Alejandrowessels05@gmail.com" class="btn primary">Email me</a>
         <a href="#" class="btn secondary">Insta</a>
         <a href="#" class="btn secondary">LinkedIn</a>
@@ -568,12 +545,10 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     built by Alejandro FRW · 2026
   </footer>
 
-  <!-- Lightbox modal (hidden by default, opened by JS) -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">close ✕</button>
     <div class="lightbox-content">
@@ -603,7 +578,7 @@ const galleryItems = [
     title: "Short Film One",
     category: "Film",
     image: "assets/gallery/film-1.jpg",
-    video: "https://www.youtube.com/watch?v=p0pZ9HH-_PM", // e.g. "https://www.youtube.com/embed/VIDEO_ID"
+    video: "", // e.g. "https://www.youtube.com/embed/VIDEO_ID"
     description: "A short description of the film — what it's about and how you made it."
   },
   {
@@ -624,7 +599,6 @@ const galleryItems = [
   // Remember to include a comma after each object except the last.
 ];
 
-// Get references to DOM elements
 const grid = document.getElementById('galleryGrid');
 const filterBar = document.getElementById('filterBar');
 const lightbox = document.getElementById('lightbox');
@@ -632,28 +606,18 @@ const lightboxMedia = document.getElementById('lightboxMedia');
 const lightboxTitle = document.getElementById('lightboxTitle');
 const lightboxDesc = document.getElementById('lightboxDesc');
 
-/**
- * Renders gallery cards based on the selected filter.
- * @param {string} filter - "All", "Film", "Art", or "Photography"
- */
 function renderGallery(filter) {
-  grid.innerHTML = ''; // clear existing cards
-
-  // Filter items: show all if filter is "All", otherwise only matching category
+  grid.innerHTML = '';
   galleryItems
     .filter(item => filter === 'All' || item.category === filter)
     .forEach(item => {
-      // Create card container
       const card = document.createElement('div');
       card.className = 'gallery-item';
 
-      // Thumbnail area
       const thumb = document.createElement('div');
       thumb.className = 'gallery-thumb' + (item.image ? '' : ' no-image');
       if (item.image) {
-        // Set background image
         thumb.style.backgroundImage = `url('${item.image}')`;
-        // Fallback if image fails to load: show placeholder
         const test = new Image();
         test.onerror = () => {
           thumb.style.backgroundImage = '';
@@ -661,7 +625,6 @@ function renderGallery(filter) {
         };
         test.src = item.image;
       }
-      // If video exists, show a play badge
       if (item.video) {
         const badge = document.createElement('div');
         badge.className = 'play-badge';
@@ -669,7 +632,6 @@ function renderGallery(filter) {
         thumb.appendChild(badge);
       }
 
-      // Info area (tag + title)
       const info = document.createElement('div');
       info.className = 'gallery-info';
       info.innerHTML = `
@@ -677,7 +639,6 @@ function renderGallery(filter) {
         <h3>${item.title}</h3>
       `;
 
-      // Assemble card and add click listener to open lightbox
       card.appendChild(thumb);
       card.appendChild(info);
       card.addEventListener('click', () => openLightbox(item));
@@ -685,72 +646,47 @@ function renderGallery(filter) {
     });
 }
 
-/**
- * Opens the lightbox modal with the selected item's media and details.
- * @param {object} item - Gallery item object
- */
 function openLightbox(item) {
-  lightboxMedia.innerHTML = ''; // clear previous media
-
+  lightboxMedia.innerHTML = '';
   if (item.video) {
-    // If video exists, embed an iframe
     const iframe = document.createElement('iframe');
     iframe.src = item.video;
     iframe.allow = "autoplay; fullscreen; picture-in-picture";
     iframe.allowFullscreen = true;
     lightboxMedia.appendChild(iframe);
   } else if (item.image) {
-    // Otherwise show the image
     const img = document.createElement('img');
     img.src = item.image;
     img.alt = item.title;
     lightboxMedia.appendChild(img);
   }
-
-  // Set title and description
   lightboxTitle.textContent = item.title;
   lightboxDesc.textContent = item.description || '';
-  lightbox.classList.add('open'); // show modal
+  lightbox.classList.add('open');
 }
 
-/** Closes the lightbox and clears its content */
 function closeLightbox() {
   lightbox.classList.remove('open');
   lightboxMedia.innerHTML = '';
 }
 
-// Event listeners for closing the lightbox:
-// Click the close button
 document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-// Click outside the content (on the dark background)
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-// Press Escape key
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-// Filter button click handler
 filterBar.addEventListener('click', (e) => {
-  if (!e.target.classList.contains('filter-btn')) return; // ignore clicks on gap
-  // Remove active class from all filter buttons
+  if (!e.target.classList.contains('filter-btn')) return;
   filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  // Add active class to clicked button
   e.target.classList.add('active');
-  // Re-render gallery with the selected filter
   renderGallery(e.target.dataset.filter);
 });
 
-// Initial render: show all items
 renderGallery('All');
 
-/* ============================================================
-   PARALLAX SCROLL EFFECT
-   ------------------------------------------------------------
-   Moves the two background layers at different speeds
-   to create a sense of depth. Lower multiplier = slower movement.
-   ============================================================ */
 window.addEventListener('scroll', function() {
   const scrolled = window.scrollY;
   document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
-  document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 1.5) + 'px';
+  document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
 });
 </script>
 
