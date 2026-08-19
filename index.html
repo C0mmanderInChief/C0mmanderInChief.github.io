@@ -11,13 +11,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
 
 <style>
-  /* ========== STRICT 3-COLOR PALETTE ========== */
   :root {
-    --mustard: #EBD45C;    /* Mustard Grain – accent, highlights, borders */
-    --sand:    #CFC2A9;    /* Warm Sand – main background, canvas */
-    --espresso: #211E1C;   /* Deep Espresso – all text, dark elements */
-    --grain:   0.05;       /* noise overlay opacity */
-
+    --mustard: #EBD45C;
+    --sand:    #CFC2A9;
+    --espresso: #211E1C;
+    --comic-blue: #3D5A80;
+    --grain:   0.05;
     --font-body: 'Archivo Black', sans-serif;
   }
 
@@ -50,7 +49,7 @@
     line-height: 1.1;
   }
 
-  /* Grain / noise overlay */
+  /* Grain overlay */
   body::after {
     content: "";
     position: fixed;
@@ -65,7 +64,7 @@
     background-size: 200px 200px;
   }
 
-  /* ========== PARALLAX BACKGROUND LAYERS ========== */
+  /* Parallax background layers */
   .bg-layer {
     position: fixed;
     top: 0; left: 0;
@@ -74,15 +73,8 @@
     background-repeat: repeat-y;
     z-index: -2;
   }
-
-  #layer-back {
-    background-image: url('assets/bg-desktop-back.jpg');   /* mustard grain image */
-  }
-
-  #layer-clouds {
-    background-image: url('assets/bg-desktop-clouds.png'); /* beige cloud image */
-    z-index: -1;
-  }
+  #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
+  #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); z-index: -1; }
 
   @media (max-width: 700px) {
     #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
@@ -108,7 +100,6 @@
     margin-bottom: 20px;
   }
 
-  /* Black bar with JOGDA (espresso background, mustard text) */
   .hero-bar {
     width: 100%;
     background-color: var(--espresso);
@@ -119,6 +110,16 @@
     letter-spacing: 0.1em;
     margin-bottom: 25px;
     border: none;
+  }
+
+  .hero-lower {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+
+  .hero-left {
+    flex: 1;
   }
 
   .hero-subtitle {
@@ -133,9 +134,7 @@
     list-style: none;
     margin-top: 10px;
   }
-
   .hero-nav li { margin-bottom: 10px; }
-
   .hero-nav a {
     display: inline-block;
     font-size: 14px;
@@ -144,40 +143,67 @@
     color: var(--espresso);
     transition: color 0.2s, transform 0.2s;
   }
-
   .hero-nav a:hover {
-    color: var(--mustard);
+    color: var(--comic-blue);
     transform: translateX(5px);
   }
 
-  /* ========== STATEMENT & CREDITS ========== */
-  .statement-credits {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-    padding-top: 60px;
-    padding-bottom: 60px;
+  /* Rotating image box */
+  .hero-rotator {
+    width: 300px;
+    height: 300px;
+    background-color: var(--espresso);
+    border: 2px solid var(--mustard);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
   }
 
+  .hero-rotator img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .hero-rotator img.active {
+    opacity: 1;
+  }
+
+  /* ========== ABOUT ========== */
+  .about {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 90px 24px;
+  }
   .statement {
-    font-size: 18px;
+    font-size: 20px;
     color: var(--espresso);
     max-width: 550px;
+    margin: 0 auto;
   }
-
   .statement p {
     margin-bottom: 30px;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
-
   .statement p.visible {
     opacity: 1;
     transform: translateY(0);
   }
 
+  /* ========== CREDITS ========== */
+  .credits {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 90px 24px;
+  }
   .credits h3 {
     font-size: 18px;
     margin-bottom: 15px;
@@ -185,31 +211,27 @@
     letter-spacing: 0.05em;
     color: var(--espresso);
   }
-
   .credit-item {
     margin-bottom: 25px;
     padding: 10px 15px;
     border-left: 3px solid var(--mustard);
     background-color: rgba(207, 194, 169, 0.5);
     border-radius: 2px;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s, border-left-color 0.3s;
   }
-
   .credit-item:hover {
     background-color: rgba(207, 194, 169, 0.8);
-    box-shadow: 0 0 20px 5px var(--mustard);
+    box-shadow: 0 0 20px 5px var(--comic-blue);
+    border-left-color: var(--comic-blue);
   }
-
   .credit-title {
     font-size: 18px;
     margin-bottom: 5px;
   }
-
   .credit-detail {
     font-size: 15px;
     color: var(--espresso);
   }
-
   .skill-list {
     list-style: none;
     display: flex;
@@ -217,32 +239,28 @@
     gap: 10px;
     margin-bottom: 30px;
   }
-
   .skill-list li {
     font-size: 14px;
     background: var(--sand);
     padding: 8px 15px;
     border-radius: 20px;
     border: 1px solid var(--espresso);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-list li:hover {
+    border-color: var(--comic-blue);
+    color: var(--comic-blue);
   }
 
-  /* ========== GALLERY / MARQUEE SECTIONS ========== */
-  .marquee-section {
-    margin-bottom: 60px;
-  }
-
+  /* ========== GALLERY ========== */
+  .marquee-section { margin-bottom: 60px; }
   .marquee-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 25px;
   }
-
-  .marquee-header .section-title {
-    font-size: 30px;
-    letter-spacing: -0.01em;
-  }
-
+  .marquee-header .section-title { font-size: 30px; letter-spacing: -0.01em; }
   .see-all-btn {
     font-size: 14px;
     letter-spacing: 0.1em;
@@ -253,10 +271,8 @@
     cursor: pointer;
     transition: color 0.2s;
   }
-
-  .see-all-btn:hover { color: var(--mustard); }
-  .see-all-btn.active { color: var(--mustard); }
-
+  .see-all-btn:hover { color: var(--comic-blue); }
+  .see-all-btn.active { color: var(--comic-blue); }
   .marquee-outer {
     overflow-x: auto;
     overflow-y: hidden;
@@ -266,11 +282,9 @@
     scrollbar-width: thin;
     scrollbar-color: var(--espresso) transparent;
   }
-
   .marquee-outer::-webkit-scrollbar { height: 6px; }
   .marquee-outer::-webkit-scrollbar-track { background: transparent; }
   .marquee-outer::-webkit-scrollbar-thumb { background: var(--espresso); border-radius: 3px; }
-
   .marquee-track {
     display: flex;
     gap: 25px;
@@ -278,14 +292,11 @@
     width: max-content;
     animation: marqueeScroll 25s linear infinite;
   }
-
   .marquee-outer:hover .marquee-track { animation-play-state: paused; }
-
   @keyframes marqueeScroll {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
-
   .marquee-item {
     flex: 0 0 auto;
     width: 260px;
@@ -296,12 +307,10 @@
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
-
   .marquee-item:hover {
-    box-shadow: 0 0 25px 3px var(--mustard);
+    box-shadow: 0 0 25px 3px var(--comic-blue);
     transform: translateY(-4px);
   }
-
   .marquee-thumb {
     position: relative;
     aspect-ratio: 4 / 5;
@@ -309,7 +318,6 @@
     background-size: cover;
     background-position: center;
   }
-
   .marquee-thumb.no-image::after {
     content: "add image →";
     position: absolute;
@@ -322,7 +330,6 @@
     color: var(--espresso);
     opacity: 0.5;
   }
-
   .marquee-thumb .play-badge {
     position: absolute;
     top: 10px;
@@ -336,18 +343,12 @@
     justify-content: center;
     font-size: 12px;
   }
-
   .marquee-info { padding: 15px 18px; }
-  .marquee-info h3 {
-    font-size: 20px;
-    font-weight: 400;
-  }
-
+  .marquee-info h3 { font-size: 20px; font-weight: 400; }
   .marquee-outer.expanded {
     overflow-x: visible;
     overflow-y: visible;
   }
-
   .marquee-outer.expanded .marquee-track {
     flex-wrap: wrap;
     width: 100%;
@@ -360,7 +361,7 @@
   .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(33, 30, 28, 0.92); /* espresso overlay */
+    background: rgba(33, 30, 28, 0.92);
     z-index: 100;
     display: none;
     align-items: center;
@@ -382,10 +383,7 @@
   .lightbox-media img { width: 100%; display: block; }
   .lightbox-media iframe { width: 100%; aspect-ratio: 16 / 9; border: 0; display: block; }
   .lightbox-body { padding: 25px 30px; overflow-y: auto; }
-  .lightbox-body h3 {
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
+  .lightbox-body h3 { font-size: 28px; margin-bottom: 10px; }
   .lightbox-body p { font-size: 16px; color: var(--espresso); }
   .lightbox-close {
     position: fixed;
@@ -406,10 +404,7 @@
     border-radius: 2px;
     text-align: center;
   }
-  .contact-card p {
-    font-size: 18px;
-    margin-bottom: 35px;
-  }
+  .contact-card p { font-size: 18px; margin-bottom: 35px; }
   .contact-links {
     display: flex;
     gap: 20px;
@@ -421,9 +416,7 @@
     font-size: 18px;
     transition: color 0.2s;
   }
-  .contact-links a:hover {
-    color: var(--mustard);
-  }
+  .contact-links a:hover { color: var(--comic-blue); }
 
   /* ========== FOOTER ========== */
   footer {
@@ -439,23 +432,25 @@
 
   /* ========== RESPONSIVE ========== */
   @media (max-width: 800px) {
-    .statement-credits {
-      grid-template-columns: 1fr;
-      gap: 40px;
+    .hero-lower {
+      flex-direction: column;
+      align-items: stretch;
     }
-    .hero {
-      padding-top: 20px;
+    .hero-rotator {
+      width: 100%;
+      height: 250px;
+      margin-top: 20px;
     }
-    .hero-title {
-      font-size: 12vw;
-    }
+    .about { padding: 60px 20px; }
+    .credits { padding: 60px 20px; }
+    .hero { padding-top: 20px; }
+    .hero-title { font-size: 12vw; }
     .marquee-item { width: 210px; }
   }
 </style>
 </head>
 <body>
 
-  <!-- Parallax background layers -->
   <div id="layer-back" class="bg-layer"></div>
   <div id="layer-clouds" class="bg-layer"></div>
 
@@ -466,58 +461,33 @@
     <!-- Black bar with JOGDA -->
     <div class="hero-bar">JOGDA</div>
 
-    <!-- Abbreviation under the bar -->
-    <div class="hero-subtitle">Journal of glances, digital archive</div>
+    <!-- Lower area: left subtitle + nav, right rotating images -->
+    <div class="hero-lower">
+      <div class="hero-left">
+        <div class="hero-subtitle">journal of glances digital archive</div>
+        <ul class="hero-nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#photography">Photography</a></li>
+          <li><a href="#film">Film</a></li>
+          <li><a href="#art">Art</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
 
-    <!-- Vertical navigation -->
-    <ul class="hero-nav">
-      <li><a href="#about">About</a></li>
-      <li><a href="#photography">Photography</a></li>
-      <li><a href="#film">Film</a></li>
-      <li><a href="#art">Art</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+      <!-- Rotating image box (right side) with hero-1, hero-2, hero-3 -->
+      <div class="hero-rotator" id="heroRotator">
+        <img src="assets/gallery/hero-1.jpg" alt="Rotating image 1" class="active">
+        <img src="assets/gallery/hero-2.jpg" alt="Rotating image 2">
+        <img src="assets/gallery/hero-3.jpg" alt="Rotating image 3">
+      </div>
+    </div>
   </section>
 
-  <!-- ========== STATEMENT & CREDITS ========== -->
-  <section class="statement-credits" id="about">
+  <!-- ========== ABOUT ========== -->
+  <section class="about" id="about">
     <div class="statement">
-      <p>"I personally use visuals as a way of expression, for i have described to many scenes and experiences but finding a way to discribe those scenes without words makes people really understand what you where saying all along."</p>
-    </div>
-    <div class="credits">
-      <h3>Production Experience</h3>
-      <div class="credit-item">
-        <div class="credit-title">Runner | <em>Mizuko</em></div>
-        <div class="credit-detail">Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.</div>
-      </div>
-      <div class="credit-item">
-        <div class="credit-title">Actor | Diprente / Netflix Production</div>
-        <div class="credit-detail">Johannesburg, South Africa<br>Supporting role, on-set character development.</div>
-      </div>
-
-      <h3 style="margin-top:40px;">Key Skills</h3>
-      <ul class="skill-list">
-        <li>On-Set Coordination</li>
-        <li>Multilingual Communication (EN/DE/NL)</li>
-        <li>Actor Coaching</li>
-        <li>Scene Analysis</li>
-        <li>Set Etiquette</li>
-        <li>Post-Production Organization</li>
-      </ul>
-
-      <h3>Tech Arsenal</h3>
-      <ul class="skill-list">
-        <li>Photoshop</li>
-        <li>Microsoft Office</li>
-        <li>Google Workspace</li>
-      </ul>
-
-      <h3>Language Proficiency</h3>
-      <ul class="skill-list">
-        <li>English (Native)</li>
-        <li>German (B2)</li>
-        <li>Dutch (B1)</li>
-      </ul>
+      <p>"Cinema often unfolds in subtle moments. A misplaced light, a missed mark, a silent decision on set can alter an entire narrative. As a filmmaker and actor, I move through productions absorbed in the details—recognizing that the most powerful scenes depend on tiny, deliberate choices. Multilingual and calm under the pressure of a rolling camera, I believe that the real danger in art lies not in taking risks, but in not acknowledging the fragile threads we overlook until the final cut."</p>
     </div>
   </section>
 
@@ -550,6 +520,43 @@
     <div class="marquee-outer" id="artOuter">
       <div class="marquee-track" id="artTrack"></div>
     </div>
+  </section>
+
+  <!-- ========== EXPERIENCE / CREDITS ========== -->
+  <section class="credits" id="experience">
+    <h3>Production Experience</h3>
+    <div class="credit-item">
+      <div class="credit-title">Runner | <em>Mizuko</em></div>
+      <div class="credit-detail">Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.</div>
+    </div>
+    <div class="credit-item">
+      <div class="credit-title">Actor | Diprente / Netflix Production</div>
+      <div class="credit-detail">Johannesburg, South Africa<br>Supporting role, on-set character development.</div>
+    </div>
+
+    <h3 style="margin-top:40px;">Key Skills</h3>
+    <ul class="skill-list">
+      <li>On-Set Coordination</li>
+      <li>Multilingual Communication (EN/DE/NL)</li>
+      <li>Actor Coaching</li>
+      <li>Scene Analysis</li>
+      <li>Set Etiquette</li>
+      <li>Post-Production Organization</li>
+    </ul>
+
+    <h3>Tech Arsenal</h3>
+    <ul class="skill-list">
+      <li>Photoshop</li>
+      <li>Microsoft Office</li>
+      <li>Google Workspace</li>
+    </ul>
+
+    <h3>Language Proficiency</h3>
+    <ul class="skill-list">
+      <li>English (Native)</li>
+      <li>German (B2)</li>
+      <li>Dutch (B1)</li>
+    </ul>
   </section>
 
   <!-- ========== CONTACT ========== -->
@@ -702,6 +709,18 @@
   renderTrack('filmTrack', true);
   renderTrack('artTrack', true);
 
+  /* ========== ROTATING IMAGES IN HERO ========== */
+  const rotatorImages = document.querySelectorAll('#heroRotator img');
+  let currentImageIndex = 0;
+
+  function rotateImages() {
+    rotatorImages.forEach(img => img.classList.remove('active'));
+    currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
+    rotatorImages[currentImageIndex].classList.add('active');
+  }
+
+  setInterval(rotateImages, 3000);
+
   // Parallax
   window.addEventListener('scroll', function() {
     const scrolled = window.scrollY;
@@ -709,9 +728,9 @@
     document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
   });
 
-  // Background darkening (subtle, using sand to slightly darker sand)
-  const baseBg = { r: 207, g: 194, b: 169 };  // #CFC2A9
-  const darkBg = { r: 185, g: 170, b: 145 };  // slightly darker
+  // Background darkening
+  const baseBg = { r: 207, g: 194, b: 169 };
+  const darkBg = { r: 185, g: 170, b: 145 };
   function handleBackgroundScroll() {
     const scrollY = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -723,7 +742,7 @@
   }
   window.addEventListener('scroll', handleBackgroundScroll);
 
-  // Fade in statement paragraphs
+  // Fade in statement
   const statementParagraphs = document.querySelectorAll('.statement p');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
