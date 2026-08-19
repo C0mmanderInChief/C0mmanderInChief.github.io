@@ -11,8 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-  /* ========== COLOR & FONT VARIABLES ==========
-     Change these to quickly restyle the whole site. */
+  /* ========== COLOR & FONT VARIABLES ========== */
   :root {
     --bg:        #FAFAF8;
     --bg-soft:   #F1F0EC;
@@ -25,7 +24,6 @@
     --tag-photo: #5F8763;
     --line:      #E3E1DA;
 
-    /* All fonts set to Syne */
     --font-head: 'Syne', sans-serif;
     --font-body: 'Syne', sans-serif;
     --font-mono: 'Syne', sans-serif;
@@ -46,9 +44,9 @@
   img { max-width: 100%; display: block; }
 
   section {
-    max-width: 720px;
+    max-width: 1200px;      /* wider for marquee sections */
     margin: 0 auto;
-    padding: 90px 24px;
+    padding: 70px 24px;
   }
 
   h1, h2, h3 {
@@ -93,7 +91,7 @@
   }
 
   .nav-inner {
-    max-width: 720px;
+    max-width: 1200px;
     margin: 0 auto;
     width: 100%;
     display: flex;
@@ -126,6 +124,7 @@
   .hero {
     padding-top: 160px;
     padding-bottom: 100px;
+    max-width: 720px;      /* keep hero narrow */
   }
 
   .hero .eyebrow {
@@ -239,67 +238,66 @@
 
   .about p + p { margin-top: 12px; }
 
-  /* ========== GALLERY FILTERS ========== */
-  .filter-bar {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
+  /* ========== MARQUEE SECTIONS (new) ========== */
+  .marquee-section {
+    margin-bottom: 60px;
   }
 
-  .filter-btn {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    font-weight: 600;
-    padding: 7px 14px;
-    border-radius: 6px;
-    border: 2px solid #1C1C1A;
-    background: #fff;
-    color: var(--ink);
-    box-shadow: 3px 3px 0px #1C1C1A;
-    cursor: pointer;
-    transition: all 0.15s ease;
+  .marquee-section .section-title {
+    text-align: center;
+    margin-bottom: 20px;
   }
 
-  .filter-btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0px #1C1C1A;
-  }
-
-  .filter-btn.active {
-    background: #1C1C1A;
-    color: #fff;
-    border-color: #1C1C1A;
-    box-shadow: 3px 3px 0px #1C1C1A;
-  }
-
-  /* ========== GALLERY GRID & CARDS ========== */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  @media (max-width: 560px) {
-    .gallery-grid { grid-template-columns: 1fr; }
-  }
-
-  .gallery-item {
+  /* The outer container hides overflow and gives a comic border */
+  .marquee-outer {
+    overflow: hidden;
     border: 3px solid #1C1C1A;
     border-radius: 12px;
+    background: var(--panel);
+    box-shadow: 6px 6px 0px #1C1C1A;
+    padding: 10px 0;
+    position: relative;
+  }
+
+  /* The moving track: a flex row that will be animated */
+  .marquee-track {
+    display: flex;
+    gap: 20px;
+    padding: 0 20px;
+    width: max-content;              /* ensures the track is as wide as its content */
+    animation: marqueeScroll 20s linear infinite;
+  }
+
+  /* Pause on hover */
+  .marquee-outer:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Keyframes for infinite horizontal scroll */
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* Each card inside the marquee */
+  .marquee-item {
+    flex: 0 0 auto;                  /* don't shrink or grow */
+    width: 280px;
+    border: 3px solid #1C1C1A;
+    border-radius: 10px;
     overflow: hidden;
     background: #FFEB8A;
-    box-shadow: 6px 6px 0px #1C1C1A;
+    box-shadow: 3px 3px 0px #1C1C1A;
     cursor: pointer;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
-  .gallery-item:hover {
+  .marquee-item:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #1C1C1A;
+    box-shadow: 5px 5px 0px #1C1C1A;
   }
 
-  .gallery-thumb {
+  .marquee-thumb {
     position: relative;
     aspect-ratio: 4 / 5;
     background: linear-gradient(135deg, var(--bg-soft), #e8e6de);
@@ -310,7 +308,7 @@
     color: var(--ink-soft);
   }
 
-  .gallery-thumb.no-image::after {
+  .marquee-thumb.no-image::after {
     content: "add image →";
     font-family: var(--font-mono);
     font-size: 12px;
@@ -318,7 +316,7 @@
     color: var(--ink-soft);
   }
 
-  .gallery-thumb .play-badge {
+  .marquee-thumb .play-badge {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -332,15 +330,17 @@
     font-size: 12px;
   }
 
-  .gallery-info { padding: 14px 16px 16px; }
+  .marquee-info {
+    padding: 12px 14px;
+  }
 
-  .gallery-info h3 {
-    font-size: 20px;
+  .marquee-info h3 {
+    font-size: 18px;
     margin-bottom: 6px;
     text-shadow: 1px 1px 0px rgba(255,255,255,0.6);
   }
 
-  .gallery-tag {
+  .marquee-tag {
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 700;
@@ -354,11 +354,11 @@
     box-shadow: 2px 2px 0px #1C1C1A;
   }
 
-  .gallery-tag[data-cat="Film"] { background: var(--tag-film); }
-  .gallery-tag[data-cat="Art"] { background: var(--tag-art); }
-  .gallery-tag[data-cat="Photography"] { background: var(--tag-photo); }
+  .marquee-tag[data-cat="Film"] { background: var(--tag-film); }
+  .marquee-tag[data-cat="Art"] { background: var(--tag-art); }
+  .marquee-tag[data-cat="Photography"] { background: var(--tag-photo); }
 
-  /* ========== LIGHTBOX (modal) ========== */
+  /* ========== LIGHTBOX (unchanged) ========== */
   .lightbox {
     position: fixed;
     inset: 0;
@@ -463,11 +463,13 @@
     .nav-links { gap: 16px; font-size: 13px; }
     section { padding: 60px 20px; }
     .hero { padding-top: 100px; }
+    .marquee-item { width: 220px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
+    .marquee-track { animation: none !important; }
   }
 </style>
 </head>
@@ -481,7 +483,9 @@
       <div class="logo">JOGDA<span>.com</span></div>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#photography">Photography</a></li>
+        <li><a href="#film">Film</a></li>
+        <li><a href="#art">Art</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -493,7 +497,7 @@
     <h1>Hi, I'm Alejandro Fidel Regueros-Wessels.<br>I build and film.</h1>
     <p>Hiya, im a young Director from south africa with a spanish name living in vienna and i make all sorts of things from Art, Websites, Photos and Film.</p>
     <div class="hero-links">
-      <a href="#gallery" class="btn primary">View my work</a>
+      <a href="#photography" class="btn primary">View my work</a>
       <a href="#contact" class="btn secondary">Wanna work together?</a>
     </div>
   </section>
@@ -505,18 +509,31 @@
     <p>You can add a second paragraph about your interests outside of coding, or what kind of projects excite you most.</p>
   </section>
 
-  <section id="gallery">
-    <div class="section-label">// gallery</div>
-    <h2 class="section-title">Things I've made</h2>
-
-    <div class="filter-bar" id="filterBar">
-      <button class="filter-btn active" data-filter="All">All</button>
-      <button class="filter-btn" data-filter="Film">Film</button>
-      <button class="filter-btn" data-filter="Art">Art</button>
-      <button class="filter-btn" data-filter="Photography">Photography</button>
+  <!-- ========== PHOTOGRAPHY MARQUEE ========== -->
+  <section id="photography" class="marquee-section">
+    <div class="section-label">// photography</div>
+    <h2 class="section-title">Photo Series</h2>
+    <div class="marquee-outer">
+      <div class="marquee-track" id="photoTrack"></div>
     </div>
+  </section>
 
-    <div class="gallery-grid" id="galleryGrid"></div>
+  <!-- ========== FILM MARQUEE ========== -->
+  <section id="film" class="marquee-section">
+    <div class="section-label">// film</div>
+    <h2 class="section-title">Films</h2>
+    <div class="marquee-outer">
+      <div class="marquee-track" id="filmTrack"></div>
+    </div>
+  </section>
+
+  <!-- ========== ART MARQUEE ========== -->
+  <section id="art" class="marquee-section">
+    <div class="section-label">// art</div>
+    <h2 class="section-title">Art</h2>
+    <div class="marquee-outer">
+      <div class="marquee-track" id="artTrack"></div>
+    </div>
   </section>
 
   <section id="skills">
@@ -549,6 +566,7 @@
     built by Alejandro FRW · 2026
   </footer>
 
+  <!-- Lightbox Modal -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">close ✕</button>
     <div class="lightbox-content">
@@ -561,133 +579,164 @@
   </div>
 
 <script>
-/* ============================================================
-   GALLERY DATA — THIS IS THE MAIN PLACE YOU EDIT
-   ------------------------------------------------------------
-   Each object represents one gallery item.
-   - title: shown on card and in lightbox
-   - category: "Film", "Art", or "Photography" (must match filter buttons)
-   - image: path to thumbnail image (e.g., "assets/gallery/my-pic.jpg")
-            Leave as empty string "" to show a placeholder.
-   - video: optional embed URL (YouTube/Vimeo "embed" format)
-            If provided, the lightbox will play the video instead of showing the image.
-   - description: text shown in the lightbox
-   ============================================================ */
-const galleryItems = [
-  {
-    title: "Short Film One",
-    category: "Film",
-    image: "assets/gallery/film-1.jpg",
-    video: "https://youtu.be/p0pZ9HH-_PM", // e.g. "https://www.youtube.com/embed/VIDEO_ID"
-    description: "A short description of the film — what it's about and how you made it."
-  },
-  {
-    title: "Photo Series One",
-    category: "Photography",
-    image: "assets/gallery/photo-1.jpg",
-    video: "",
-    description: "A short description of the photo series and where it was shot."
-  },
-  {
-    title: "Art Piece One",
-    category: "Art",
-    image: "assets/gallery/art-1.jpg",
-    video: "",
-    description: "A short description of the piece — medium, size, and concept."
+  /* ============================================================
+     GALLERY DATA — EDIT THIS ARRAY TO ADD YOUR OWN WORK
+     ============================================================ */
+  const galleryItems = [
+    // Photography
+    {
+      title: "Photo Series One",
+      category: "Photography",
+      image: "assets/gallery/photo-1.jpg",
+      video: "",
+      description: "A short description of the photo series and where it was shot."
+    },
+    {
+      title: "Photo Series Two",
+      category: "Photography",
+      image: "assets/gallery/photo-2.jpg",
+      video: "",
+      description: "Another photo series description."
+    },
+    // Film
+    {
+      title: "Short Film One",
+      category: "Film",
+      image: "assets/gallery/film-1.jpg",
+      video: "", // e.g. "https://www.youtube.com/embed/VIDEO_ID"
+      description: "A short description of the film."
+    },
+    {
+      title: "Short Film Two",
+      category: "Film",
+      image: "assets/gallery/film-2.jpg",
+      video: "",
+      description: "Another film description."
+    },
+    // Art
+    {
+      title: "Art Piece One",
+      category: "Art",
+      image: "assets/gallery/art-1.jpg",
+      video: "",
+      description: "A short description of the piece."
+    },
+    {
+      title: "Art Piece Two",
+      category: "Art",
+      image: "assets/gallery/art-2.jpg",
+      video: "",
+      description: "Another art piece description."
+    }
+  ];
+
+  // References to the three marquee tracks
+  const photoTrack = document.getElementById('photoTrack');
+  const filmTrack = document.getElementById('filmTrack');
+  const artTrack = document.getElementById('artTrack');
+
+  // Lightbox elements
+  const lightbox = document.getElementById('lightbox');
+  const lightboxMedia = document.getElementById('lightboxMedia');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxDesc = document.getElementById('lightboxDesc');
+
+  /**
+   * Creates a marquee item (card) and returns the DOM element
+   */
+  function createMarqueeItem(item) {
+    const card = document.createElement('div');
+    card.className = 'marquee-item';
+
+    const thumb = document.createElement('div');
+    thumb.className = 'marquee-thumb' + (item.image ? '' : ' no-image');
+    if (item.image) {
+      thumb.style.backgroundImage = `url('${item.image}')`;
+      const test = new Image();
+      test.onerror = () => {
+        thumb.style.backgroundImage = '';
+        thumb.classList.add('no-image');
+      };
+      test.src = item.image;
+    }
+    if (item.video) {
+      const badge = document.createElement('div');
+      badge.className = 'play-badge';
+      badge.textContent = '▶';
+      thumb.appendChild(badge);
+    }
+
+    const info = document.createElement('div');
+    info.className = 'marquee-info';
+    info.innerHTML = `
+      <span class="marquee-tag" data-cat="${item.category}">${item.category}</span>
+      <h3>${item.title}</h3>
+    `;
+
+    card.appendChild(thumb);
+    card.appendChild(info);
+    card.addEventListener('click', () => openLightbox(item));
+    return card;
   }
-  // Add more items here by copying the structure above.
-  // Remember to include a comma after each object except the last.
-];
 
-const grid = document.getElementById('galleryGrid');
-const filterBar = document.getElementById('filterBar');
-const lightbox = document.getElementById('lightbox');
-const lightboxMedia = document.getElementById('lightboxMedia');
-const lightboxTitle = document.getElementById('lightboxTitle');
-const lightboxDesc = document.getElementById('lightboxDesc');
-
-function renderGallery(filter) {
-  grid.innerHTML = '';
-  galleryItems
-    .filter(item => filter === 'All' || item.category === filter)
-    .forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'gallery-item';
-
-      const thumb = document.createElement('div');
-      thumb.className = 'gallery-thumb' + (item.image ? '' : ' no-image');
-      if (item.image) {
-        thumb.style.backgroundImage = `url('${item.image}')`;
-        const test = new Image();
-        test.onerror = () => {
-          thumb.style.backgroundImage = '';
-          thumb.classList.add('no-image');
-        };
-        test.src = item.image;
-      }
-      if (item.video) {
-        const badge = document.createElement('div');
-        badge.className = 'play-badge';
-        badge.textContent = '▶';
-        thumb.appendChild(badge);
-      }
-
-      const info = document.createElement('div');
-      info.className = 'gallery-info';
-      info.innerHTML = `
-        <span class="gallery-tag" data-cat="${item.category}">${item.category}</span>
-        <h3>${item.title}</h3>
-      `;
-
-      card.appendChild(thumb);
-      card.appendChild(info);
-      card.addEventListener('click', () => openLightbox(item));
-      grid.appendChild(card);
-    });
-}
-
-function openLightbox(item) {
-  lightboxMedia.innerHTML = '';
-  if (item.video) {
-    const iframe = document.createElement('iframe');
-    iframe.src = item.video;
-    iframe.allow = "autoplay; fullscreen; picture-in-picture";
-    iframe.allowFullscreen = true;
-    lightboxMedia.appendChild(iframe);
-  } else if (item.image) {
-    const img = document.createElement('img');
-    img.src = item.image;
-    img.alt = item.title;
-    lightboxMedia.appendChild(img);
+  /**
+   * Populates a marquee track with items of a given category.
+   * Duplicates the items to create a seamless infinite scroll.
+   */
+  function populateMarquee(trackElement, category) {
+    trackElement.innerHTML = '';
+    const items = galleryItems.filter(item => item.category === category);
+    // Append original set twice (or more) for a seamless loop
+    for (let i = 0; i < 2; i++) {
+      items.forEach(item => {
+        trackElement.appendChild(createMarqueeItem(item));
+      });
+    }
   }
-  lightboxTitle.textContent = item.title;
-  lightboxDesc.textContent = item.description || '';
-  lightbox.classList.add('open');
-}
 
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  lightboxMedia.innerHTML = '';
-}
+  /**
+   * Opens the lightbox with the selected item's media and details.
+   */
+  function openLightbox(item) {
+    lightboxMedia.innerHTML = '';
+    if (item.video) {
+      const iframe = document.createElement('iframe');
+      iframe.src = item.video;
+      iframe.allow = "autoplay; fullscreen; picture-in-picture";
+      iframe.allowFullscreen = true;
+      lightboxMedia.appendChild(iframe);
+    } else if (item.image) {
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.title;
+      lightboxMedia.appendChild(img);
+    }
+    lightboxTitle.textContent = item.title;
+    lightboxDesc.textContent = item.description || '';
+    lightbox.classList.add('open');
+  }
 
-document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxMedia.innerHTML = '';
+  }
 
-filterBar.addEventListener('click', (e) => {
-  if (!e.target.classList.contains('filter-btn')) return;
-  filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  e.target.classList.add('active');
-  renderGallery(e.target.dataset.filter);
-});
+  // Lightbox event listeners
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-renderGallery('All');
+  // Populate all marquee sections
+  populateMarquee(photoTrack, 'Photography');
+  populateMarquee(filmTrack, 'Film');
+  populateMarquee(artTrack, 'Art');
 
-window.addEventListener('scroll', function() {
-  const scrolled = window.scrollY;
-  document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
-  document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
-});
+  // Parallax background scroll
+  window.addEventListener('scroll', function() {
+    const scrolled = window.scrollY;
+    document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
+    document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
+  });
 </script>
 
 </body>
