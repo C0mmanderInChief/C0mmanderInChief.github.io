@@ -15,7 +15,7 @@
     --mustard: #EBD45C;
     --sand:    #CFC2A9;
     --espresso: #211E1C;
-    --comic-blue: #3D5A80;
+    --comic-blue: #000000; /* black */
     --grain:   0.05;
     --font-body: 'Archivo Black', sans-serif;
   }
@@ -144,7 +144,7 @@
     transition: color 0.2s, transform 0.2s;
   }
   .hero-nav a:hover {
-    color: var(--comic-blue);
+    color: var(--comic-blue); /* black */
     transform: translateX(5px);
   }
 
@@ -152,7 +152,6 @@
   .hero-rotator { 
     width: 300px; 
     height: 300px; 
-    background-color:
     border-radius: 2px; 
     overflow: hidden; 
     position: relative; 
@@ -213,15 +212,14 @@
   .credit-item {
     margin-bottom: 25px;
     padding: 10px 15px;
-    border-left: 3px solid var(--mustard);
+    border-left: none; /* yellow line removed */
     background-color: rgba(207, 194, 169, 0.5);
     border-radius: 2px;
-    transition: background-color 0.3s, box-shadow 0.3s, border-left-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
   }
   .credit-item:hover {
     background-color: rgba(207, 194, 169, 0.8);
-    box-shadow: 0 0 20px 5px var(--comic-blue);
-    border-left-color: var(--comic-blue);
+    box-shadow: 5px 5px 0 0 var(--comic-blue); /* hard black shadow bottom-right */
   }
   .credit-title {
     font-size: 18px;
@@ -307,7 +305,7 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
   .marquee-item:hover {
-    box-shadow: 0 0 25px 3px var(--comic-blue);
+    box-shadow: 6px 6px 0 0 var(--comic-blue); /* hard black shadow bottom-right */
     transform: translateY(-4px);
   }
   .marquee-thumb {
