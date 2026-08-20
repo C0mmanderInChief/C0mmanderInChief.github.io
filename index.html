@@ -130,14 +130,27 @@
     background: #f0f0f0;
   }
 
+  /* Active states - swap colors */
   .day-btn.active {
     background: #000000;
+    color: #ffffff;
     box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
   }
 
   .night-btn.active {
-    background: #f5f5f5;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #000000;
+    color: #ffffff;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+
+  .day-btn.inactive {
+    background: #ffffff;
+    color: var(--espresso);
+  }
+
+  .night-btn.inactive {
+    background: #ffffff;
+    color: var(--espresso);
   }
 
   /* ========== HERO SECTION ========== */
@@ -536,7 +549,7 @@
   <!-- Day/Night toggle -->
   <div class="day-night-toggle">
     <button class="day-btn active" id="dayBtn">Day</button>
-    <button class="night-btn" id="nightBtn">Night</button>
+    <button class="night-btn inactive" id="nightBtn">Night</button>
   </div>
 
   <!-- ========== HERO SECTION ========== -->
@@ -815,12 +828,16 @@
   function setDayMode() {
     layerBack.style.backgroundImage = "url('assets/bg-desktop-back.jpg')";
     dayBtn.classList.add('active');
+    dayBtn.classList.remove('inactive');
+    nightBtn.classList.add('inactive');
     nightBtn.classList.remove('active');
   }
 
   function setNightMode() {
     layerBack.style.backgroundImage = "url('assets/bg-desktop-back-night.jpg')";
     nightBtn.classList.add('active');
+    nightBtn.classList.remove('inactive');
+    dayBtn.classList.add('inactive');
     dayBtn.classList.remove('active');
   }
 
