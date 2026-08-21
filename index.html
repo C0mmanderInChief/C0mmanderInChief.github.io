@@ -6,7 +6,6 @@
 <title>JOGDA.com</title>
 
 <!-- ================= FONT ================= -->
-<!-- Load Archivo Black font for all text -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
@@ -14,17 +13,17 @@
 <style>
   /* ================= CSS VARIABLES ================= */
   :root {
-    --mustard: #EBD45C;      /* Accent yellow */
-    --sand:    #CFC2A9;      /* Background sand color */
-    --espresso: #211E1C;     /* Dark text/background */
-    --comic-blue: #000000;   /* Black for shadows/hover */
-    --grain:   0.05;         /* Grain overlay opacity */
+    --mustard: #EBD45C;
+    --sand:    #CFC2A9;
+    --espresso: #211E1C;
+    --comic-blue: #000000;
+    --grain:   0.04;
     --font-body: 'Archivo Black', sans-serif;
   }
 
   /* ================= GLOBAL RESET ================= */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; } /* Smooth anchor scrolling */
+  html { scroll-behavior: smooth; }
 
   body {
     background-color: var(--sand);
@@ -34,7 +33,7 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
-    transition: background-color 0.4s ease; /* For background darkening on scroll */
+    transition: background-color 0.4s ease;
   }
 
   a { color: inherit; text-decoration: none; }
@@ -52,8 +51,8 @@
     line-height: 1.1;
   }
 
-  /* ================= GRAIN OVERLAY ================= */
-  /* Adds a subtle film grain over entire page */
+  /* ================= GRAIN OVERLAY (simplified) ================= */
+  /* Uses a static noise pattern instead of heavy SVG filter for better performance */
   body::after {
     content: "";
     position: fixed;
@@ -63,9 +62,9 @@
     pointer-events: none;
     z-index: 999;
     opacity: var(--grain);
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23fff' fill-opacity='0.03'/%3E%3C/svg%3E");
     background-repeat: repeat;
-    background-size: 200px 200px;
+    background-size: 100px 100px;
   }
 
   /* ================= PARALLAX BACKGROUND LAYERS ================= */
@@ -76,23 +75,17 @@
     background-size: 100% auto;
     background-repeat: repeat-y;
     z-index: -2;
-    will-change: transform; /* Hint for GPU acceleration */
+    will-change: transform;
+    /* Background images are set via JS after page load */
   }
-  #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
-  #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); z-index: -1; }
-
-  /* Mobile: keep same images (you can change later) */
-  @media (max-width: 700px) {
-    #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
-    #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); }
-  }
+  #layer-clouds { z-index: -1; }
 
   /* ================= LANGUAGE TOGGLE BUTTON ================= */
   .lang-toggle {
     position: fixed;
     top: 20px;
     right: 25px;
-    z-index: 1000; /* Above everything except lightbox? */
+    z-index: 1000;
     background: var(--espresso);
     color: var(--sand);
     border: none;
@@ -175,7 +168,7 @@
     transform: translateX(5px);
   }
 
-  /* Rotating image box in hero */
+  /* Rotating image box */
   .hero-rotator {
     width: 300px;
     height: 300px;
@@ -315,7 +308,8 @@
     padding: 0 20px;
     width: max-content;
     animation: marqueeScroll 25s linear infinite;
-    will-change: transform; /* Performance */
+    will-change: transform;
+    transform: translateZ(0); /* Force GPU acceleration */
   }
   .marquee-outer:hover .marquee-track { animation-play-state: paused; }
   @keyframes marqueeScroll {
@@ -331,7 +325,7 @@
     overflow: hidden;
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    content-visibility: auto; /* Performance: skip rendering off-screen items */
+    content-visibility: auto; /* Skip rendering off-screen items */
     contain-intrinsic-size: 260px 325px;
   }
   .marquee-item:hover {
@@ -341,7 +335,7 @@
   .marquee-thumb {
     position: relative;
     aspect-ratio: 4 / 5;
-    background-color: #e0d5c0; /* Placeholder background */
+    background-color: #e0d5c0;
     overflow: hidden;
   }
   .marquee-thumb img {
@@ -403,7 +397,7 @@
     animation: none;
   }
   .marquee-outer.expanded .marquee-item {
-    content-visibility: visible; /* Ensure all items rendered when expanded */
+    content-visibility: visible;
   }
 
   /* ================= LIGHTBOX ================= */
@@ -446,7 +440,7 @@
   }
   .lightbox-close {
     position: fixed;
-    top: 80px; /* Moved lower to avoid overlap with language toggle */
+    top: 80px; /* Below language toggle */
     right: 25px;
     font-size: 18px;
     color: #ffffff;
@@ -492,15 +486,15 @@
   .contact-links a {
     color: var(--espresso);
     font-size: 18px;
-    padding: 8px 15px;          /* Added padding for hover shadow */
+    padding: 8px 15px;
     display: inline-block;
     border-radius: 2px;
     transition: color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
   .contact-links a:hover {
     color: var(--comic-blue);
-    box-shadow: 5px 5px 0 0 var(--comic-blue); /* Hard shadow like gallery */
-    transform: translateY(-2px);               /* Slight lift */
+    box-shadow: 5px 5px 0 0 var(--comic-blue);
+    transform: translateY(-2px);
   }
 
   /* ================= FOOTER ================= */
@@ -514,6 +508,15 @@
     background: var(--sand);
   }
   footer p { margin-bottom: 5px; }
+
+  /* ================= PERFORMANCE: content-visibility ================= */
+  .about,
+  .credits,
+  .marquee-section,
+  .contact {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
+  }
 
   /* ================= RESPONSIVE ================= */
   @media (max-width: 800px) {
@@ -536,26 +539,20 @@
 </head>
 <body>
 
-  <!-- Language toggle button (fixed top-right) -->
+  <!-- Language toggle button -->
   <button class="lang-toggle" id="langToggle">DE</button>
 
-  <!-- Parallax background layers -->
-  <div id="layer-back" class="bg-layer"></div>
-  <div id="layer-clouds" class="bg-layer"></div>
+  <!-- Parallax background layers (background images loaded via JS) -->
+  <div id="layer-back" class="bg-layer" data-bg="assets/bg-desktop-back.jpg"></div>
+  <div id="layer-clouds" class="bg-layer" data-bg="assets/bg-desktop-clouds.png"></div>
 
   <!-- ================= HERO SECTION ================= -->
   <section class="hero" id="hero">
-    <!-- Your name / logo -->
     <h1 class="hero-title">Alejandro Fidel<br>Regueros-Wessels</h1>
-
-    <!-- Black bar with JOGDA -->
     <div class="hero-bar">JOGDA</div>
-
-    <!-- Lower area: left subtitle + nav, right rotating images -->
     <div class="hero-lower">
       <div class="hero-left">
         <div class="hero-subtitle" data-i18n="heroSubtitle">Journey of Gestures, Digital Archive</div>
-        <!-- Navigation links -->
         <ul class="hero-nav">
           <li><a href="#about" data-i18n="navAbout">About</a></li>
           <li><a href="#photography" data-i18n="navPhotography">Photography</a></li>
@@ -565,32 +562,27 @@
           <li><a href="#contact" data-i18n="navContact">Contact</a></li>
         </ul>
       </div>
-
-      <!-- Rotating image box (right side) with hero-1, hero-2, hero-3 -->
       <div class="hero-rotator" id="heroRotator">
-        <!-- Note: images are lazy loaded; swap src with your own images -->
-        <img src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active" loading="lazy">
-        <img src="assets/gallery/hero-2.png" alt="Rotating image 2" loading="lazy">
-        <img src="assets/gallery/hero-3.png" alt="Rotating image 3" loading="lazy">
+        <!-- Images will be lazy loaded via data-src -->
+        <img src="" data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active">
+        <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2">
+        <img src="" data-src="assets/gallery/hero-3.png" alt="Rotating image 3">
       </div>
     </div>
   </section>
 
-  <!-- ================= ABOUT SECTION ================= -->
+  <!-- ================= ABOUT ================= -->
   <section class="about" id="about">
     <div class="statement">
-      <!-- These paragraphs fade in on scroll (IntersectionObserver) -->
       <p data-i18n="aboutQuote">"I have legitemetly no fucking clue what i am doing..."</p>
       <p data-i18n="aboutAuthor">-Alejo</p>
     </div>
   </section>
 
   <!-- ================= GALLERY SECTIONS ================= -->
-  <!-- Photography section (folders) -->
   <section id="photography" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionPhotography">Photography</h2>
-      <!-- See All button toggles expanded grid -->
       <button class="see-all-btn" data-target="photoOuter" data-i18n="seeAll">See All</button>
     </div>
     <div class="marquee-outer" id="photoOuter">
@@ -598,7 +590,6 @@
     </div>
   </section>
 
-  <!-- Film section (individual items) -->
   <section id="film" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionFilm">Film</h2>
@@ -609,7 +600,6 @@
     </div>
   </section>
 
-  <!-- Art section (individual items) -->
   <section id="art" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionArt">Art</h2>
@@ -636,7 +626,6 @@
       <div class="credit-detail" data-i18n="credit2Detail">Johannesburg, South Africa<br>Supporting role, on-set character development.</div>
     </div>
 
-    <!-- Key Skills -->
     <h3 style="margin-top:40px;" data-i18n="skillsTitle">Key Skills</h3>
     <ul class="skill-list">
       <li data-i18n="skill1">On-Set Coordination</li>
@@ -647,7 +636,6 @@
       <li data-i18n="skill6">Post-Production Organization</li>
     </ul>
 
-    <!-- Tech Arsenal -->
     <h3 data-i18n="techTitle">Tech Arsenal</h3>
     <ul class="skill-list">
       <li>Photoshop</li>
@@ -655,7 +643,6 @@
       <li>Google Workspace</li>
     </ul>
 
-    <!-- Language Proficiency -->
     <h3 data-i18n="langTitle">Language Proficiency</h3>
     <ul class="skill-list">
       <li data-i18n="lang1">English (Native)</li>
@@ -697,8 +684,6 @@
   /* =================================================================
      LANGUAGE HANDLING
      ================================================================= */
-  // Translation dictionary for English and German.
-  // To add a new language, duplicate one of these objects and translate all values.
   const translations = {
     en: {
       heroSubtitle: "Journey of Gestures, Digital Archive",
@@ -737,7 +722,6 @@
       close: "close ✕",
       prev: "←",
       next: "→",
-      // Folder names for photography. Add or rename these keys as you wish.
       folderAlbum1: "Album 1",
       folderAlbum2: "Album 2",
       folderAlbum3: "Album 3",
@@ -789,9 +773,8 @@
     }
   };
 
-  let currentLang = 'en'; // Start language
+  let currentLang = 'en';
 
-  // Applies the selected language to all elements with data-i18n attributes
   function applyLanguage(lang) {
     currentLang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -800,7 +783,6 @@
         el.innerHTML = translations[lang][key];
       }
     });
-    // Update see-all buttons text based on expanded state
     document.querySelectorAll('.see-all-btn').forEach(btn => {
       const outer = document.getElementById(btn.dataset.target);
       if (outer && outer.classList.contains('expanded')) {
@@ -809,20 +791,16 @@
         btn.textContent = translations[lang].seeAll;
       }
     });
-    // Update lightbox close text
     document.getElementById('lightboxClose').textContent = translations[lang].close;
-    // Re-render gallery tracks to update folder names and item titles
     renderTrack('photoTrack', false);
     renderTrack('filmTrack', false);
     renderTrack('artTrack', false);
-    // Restore expanded state if any
     document.querySelectorAll('.marquee-outer.expanded').forEach(outer => {
       const trackKey = outer.id.replace('Outer', 'Track');
       renderTrack(trackKey, false);
     });
   }
 
-  // Language toggle button event
   document.getElementById('langToggle').addEventListener('click', () => {
     const newLang = currentLang === 'en' ? 'de' : 'en';
     applyLanguage(newLang);
@@ -832,17 +810,7 @@
   /* =================================================================
      GALLERY DATA
      ================================================================= */
-  // Array of all gallery items.
-  // Each item has:
-  //   title: displayed on card
-  //   category: "Photography", "Film", or "Art" (determines which section)
-  //   folder: (for Photography) groups photos into albums. Use any key,
-  //           but define the display name in translations above.
-  //   image: path to image file
-  //   video: optional YouTube embed URL (for film)
-  //   description: optional (not currently shown, but can be used later)
   const galleryItems = [
-    // Photography – grouped into folders. Change "folder" values to reorganize.
     { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.JPG", video: "", description: "A short description of the photo series and where it was shot." },
     { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.JPG", video: "", description: "Another photo series description." },
     { title: "Joy", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/03.JPG", video: "", description: "Third photo series." },
@@ -857,87 +825,70 @@
     { title: "Existence", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/12.JPG", video: "", description: "Third photo series." },
     { title: "The dark angel", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/13.JPG", video: "", description: "A short description of the photo series and where it was shot." },
     { title: "Curiosity", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/14.JPG", video: "", description: "Another photo series description." },
-    
-    // Film (individual item)
-    {
-      title: "Midnight Snack",
-      category: "Film",
-      image: "assets/gallery/film-1.jpg",
-      video: "https://www.youtube.com/embed/p0pZ9HH-_PM",
-      description: "A short description of the film."
-    },
-    // Art (individual items)
+    { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM", description: "A short description of the film." },
     { title: "Land of art", category: "Art", image: "assets/gallery/A01.png", video: "", description: "A short description of the piece." },
     { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png", video: "", description: "Another art piece description." },
     { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png", video: "", description: "Third art piece." },
     { title: "Jippy in catch me", category: "Art", image: "assets/gallery/A04.png", video: "", description: "Third art piece." },
   ];
 
-  // References to the three marquee tracks and their categories
   const tracks = {
     photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
     filmTrack:  { element: document.getElementById('filmTrack'),  category: 'Film' },
     artTrack:   { element: document.getElementById('artTrack'),   category: 'Art' }
   };
 
-  // Lightbox elements
   const lightbox = document.getElementById('lightbox');
   const lightboxMedia = document.getElementById('lightboxMedia');
 
   /* =================================================================
-     HELPER FUNCTIONS
+     LAZY LOADING UTILITY
      ================================================================= */
-
-  // Group photography items by their "folder" property.
-  // Returns an object: { folderKey: [items], ... }
-  function groupByFolder(items) {
-    const groups = {};
-    items.forEach(item => {
-      const folderKey = item.folder || 'folderAlbum1'; // fallback
-      if (!groups[folderKey]) {
-        groups[folderKey] = [];
-      }
-      groups[folderKey].push(item);
-    });
-    return groups;
-  }
-
-  // Returns the translated name for a folder key
-  function getFolderDisplayName(folderKey) {
-    return translations[currentLang][folderKey] || folderKey;
+  // Loads an image when it becomes visible in the viewport
+  function lazyLoadImage(img) {
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = entry.target;
+            target.src = target.dataset.src;
+            observer.unobserve(target);
+          }
+        });
+      }, { rootMargin: '200px' });
+      observer.observe(img);
+    } else {
+      // Fallback for older browsers
+      img.src = img.dataset.src;
+    }
   }
 
   /* =================================================================
      CREATE CARDS
      ================================================================= */
-
-  // Create a folder card for photography (shows cover image + count)
   function createFolderCard(folderKey, items) {
     const card = document.createElement('div');
     card.className = 'marquee-item folder-card';
 
-    // Use first photo as cover
     const coverItem = items[0];
     const thumb = document.createElement('div');
     thumb.className = 'marquee-thumb' + (coverItem.image ? '' : ' no-image');
 
-    // If image exists, add an <img> element (lazy loaded)
     if (coverItem.image) {
       const img = document.createElement('img');
-      img.src = coverItem.image;
+      img.dataset.src = coverItem.image;
       img.alt = getFolderDisplayName(folderKey);
-      img.loading = 'lazy';
+      // The image will be loaded when near viewport
       img.onerror = () => { thumb.classList.add('no-image'); img.remove(); };
       thumb.appendChild(img);
+      lazyLoadImage(img);
     }
 
-    // Add photo count badge
     const countBadge = document.createElement('div');
     countBadge.className = 'folder-count';
     countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
     thumb.appendChild(countBadge);
 
-    // Folder name
     const info = document.createElement('div');
     info.className = 'marquee-info';
     const folderName = getFolderDisplayName(folderKey);
@@ -945,13 +896,10 @@
 
     card.appendChild(thumb);
     card.appendChild(info);
-
-    // Clicking opens slideshow of all photos in folder
     card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
     return card;
   }
 
-  // Create a standard card for individual items (Film/Art)
   function createMarqueeItem(item) {
     const card = document.createElement('div');
     card.className = 'marquee-item';
@@ -959,17 +907,15 @@
     const thumb = document.createElement('div');
     thumb.className = 'marquee-thumb' + (item.image ? '' : ' no-image');
 
-    // Add image if exists
     if (item.image) {
       const img = document.createElement('img');
-      img.src = item.image;
+      img.dataset.src = item.image;
       img.alt = item.title;
-      img.loading = 'lazy';
       img.onerror = () => { thumb.classList.add('no-image'); img.remove(); };
       thumb.appendChild(img);
+      lazyLoadImage(img);
     }
 
-    // Play badge if video
     if (item.video) {
       const badge = document.createElement('div');
       badge.className = 'play-badge';
@@ -990,29 +936,23 @@
   /* =================================================================
      RENDER TRACKS
      ================================================================= */
-
-  // Render a marquee track with optional duplication for seamless scroll.
-  // For photography: folder cards are rendered.
-  // For film/art: individual cards are rendered.
   function renderTrack(trackKey, duplicate) {
     const track = tracks[trackKey];
     if (!track) return;
 
     const items = galleryItems.filter(item => item.category === track.category);
-    track.element.innerHTML = ''; // Clear existing
+    track.element.innerHTML = '';
 
     if (track.category === 'Photography') {
-      // Render folder cards
       const groups = groupByFolder(items);
       const folderKeys = Object.keys(groups);
-      const count = duplicate ? 2 : 1; // Duplicate if needed for marquee animation
+      const count = duplicate ? 2 : 1;
       for (let i = 0; i < count; i++) {
         folderKeys.forEach(folderKey => {
           track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
         });
       }
     } else {
-      // Film and Art: individual items
       const count = duplicate ? 2 : 1;
       for (let i = 0; i < count; i++) {
         items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
@@ -1020,25 +960,36 @@
     }
   }
 
+  function groupByFolder(items) {
+    const groups = {};
+    items.forEach(item => {
+      const folderKey = item.folder || 'folderAlbum1';
+      if (!groups[folderKey]) {
+        groups[folderKey] = [];
+      }
+      groups[folderKey].push(item);
+    });
+    return groups;
+  }
+
+  function getFolderDisplayName(folderKey) {
+    return translations[currentLang][folderKey] || folderKey;
+  }
+
   /* =================================================================
      LIGHTBOX SLIDESHOW
      ================================================================= */
-
-  // Holds currently displayed slideshow items (array) and current index
   let currentSlideshow = [];
   let currentSlideIndex = 0;
 
-  // Opens lightbox with a single item (Film/Art)
   function openLightbox(item) {
     openSlideshow([item], 0);
   }
 
-  // Opens lightbox with all photos from a folder
   function openFolderSlideshow(folderKey, items) {
     openSlideshow(items, 0);
   }
 
-  // Opens the lightbox with an array of items, starting at startIndex
   function openSlideshow(items, startIndex) {
     currentSlideshow = items;
     currentSlideIndex = startIndex;
@@ -1047,7 +998,6 @@
     updateNavButtons();
   }
 
-  // Displays the current slide (image or video) in the lightbox
   function updateLightboxMedia() {
     const item = currentSlideshow[currentSlideIndex];
     lightboxMedia.innerHTML = '';
@@ -1066,7 +1016,6 @@
     }
   }
 
-  // Previous slide
   function showPrevSlide() {
     if (currentSlideshow.length === 0) return;
     currentSlideIndex = (currentSlideIndex - 1 + currentSlideshow.length) % currentSlideshow.length;
@@ -1074,7 +1023,6 @@
     updateNavButtons();
   }
 
-  // Next slide
   function showNextSlide() {
     if (currentSlideshow.length === 0) return;
     currentSlideIndex = (currentSlideIndex + 1) % currentSlideshow.length;
@@ -1082,7 +1030,6 @@
     updateNavButtons();
   }
 
-  // Show/hide navigation arrows based on number of slides
   function updateNavButtons() {
     const prevBtn = document.getElementById('lightboxPrev');
     const nextBtn = document.getElementById('lightboxNext');
@@ -1092,7 +1039,6 @@
     nextBtn.style.display = single ? 'none' : 'block';
   }
 
-  // Close lightbox and clear state
   function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxMedia.innerHTML = '';
@@ -1100,15 +1046,10 @@
     currentSlideIndex = 0;
   }
 
-  // Event listeners for lightbox controls
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
   document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
-
-  // Close when clicking outside content
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-
-  // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') showPrevSlide();
@@ -1118,8 +1059,6 @@
   /* =================================================================
      SEE ALL BUTTONS
      ================================================================= */
-
-  // Toggle between marquee and expanded grid view
   document.querySelectorAll('.see-all-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.target;
@@ -1132,7 +1071,6 @@
       const isExpanded = outer.classList.contains('expanded');
       btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
 
-      // When expanded, show all items without duplication; otherwise duplicate for marquee
       renderTrack(trackKey, !isExpanded);
     });
   });
@@ -1140,11 +1078,14 @@
   /* =================================================================
      HERO ROTATING IMAGES
      ================================================================= */
-
   const rotatorImages = document.querySelectorAll('#heroRotator img');
   let currentImageIndex = 0;
 
-  // Rotate hero images every 800ms
+  // Load hero images immediately (they are above the fold)
+  rotatorImages.forEach(img => {
+    img.src = img.dataset.src;
+  });
+
   function rotateImages() {
     rotatorImages.forEach(img => img.classList.remove('active'));
     currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
@@ -1155,10 +1096,16 @@
   /* =================================================================
      PARALLAX BACKGROUND
      ================================================================= */
+  // Load background images after the page has loaded
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.bg-layer').forEach(layer => {
+      const bg = layer.getAttribute('data-bg');
+      if (bg) layer.style.backgroundImage = `url('${bg}')`;
+    });
+  });
 
   window.addEventListener('scroll', function() {
     const scrolled = window.scrollY;
-    // Different speeds for back and clouds layers
     document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
     document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
   });
@@ -1166,10 +1113,8 @@
   /* =================================================================
      BACKGROUND DARKENING ON SCROLL
      ================================================================= */
-
-  // Slightly darkens the background as you scroll down
-  const baseBg = { r: 207, g: 194, b: 169 };   // Sand at top
-  const darkBg = { r: 185, g: 170, b: 145 };   // Darker at bottom
+  const baseBg = { r: 207, g: 194, b: 169 };
+  const darkBg = { r: 185, g: 170, b: 145 };
   function handleBackgroundScroll() {
     const scrollY = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1184,7 +1129,6 @@
   /* =================================================================
      FADE IN ABOUT STATEMENT
      ================================================================= */
-
   const statementParagraphs = document.querySelectorAll('.statement p');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1198,11 +1142,15 @@
   /* =================================================================
      INITIAL SETUP
      ================================================================= */
-
-  // Apply English by default
   applyLanguage('en');
-  // Initial background color
   handleBackgroundScroll();
+
+  // Load hero images after initial render
+  setTimeout(() => {
+    rotatorImages.forEach(img => {
+      if (!img.src) img.src = img.dataset.src;
+    });
+  }, 100);
 </script>
 
 </body>
