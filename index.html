@@ -72,6 +72,7 @@
     background-size: 100% auto;
     background-repeat: repeat-y;
     z-index: -2;
+    will-change: transform;
   }
   #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
   #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); z-index: -1; }
@@ -309,6 +310,7 @@
     padding: 0 20px;
     width: max-content;
     animation: marqueeScroll 25s linear infinite;
+    will-change: transform;
   }
   .marquee-outer:hover .marquee-track { animation-play-state: paused; }
   @keyframes marqueeScroll {
@@ -324,6 +326,8 @@
     overflow: hidden;
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
+    content-visibility: auto;  /* Optimisation: skip rendering off-screen items */
+    contain-intrinsic-size: 260px 325px;
   }
   .marquee-item:hover {
     box-shadow: 6px 6px 0 0 var(--comic-blue);
@@ -332,9 +336,15 @@
   .marquee-thumb {
     position: relative;
     aspect-ratio: 4 / 5;
-    background: var(--sand);
-    background-size: cover;
-    background-position: center;
+    background-color: #e0d5c0; /* placeholder */
+    overflow: hidden;
+  }
+  .marquee-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .marquee-thumb.no-image::after {
     content: "add image →";
@@ -347,6 +357,7 @@
     letter-spacing: 0.05em;
     color: var(--espresso);
     opacity: 0.5;
+    z-index: 2;
   }
   .marquee-thumb .play-badge {
     position: absolute;
@@ -360,6 +371,7 @@
     align-items: center;
     justify-content: center;
     font-size: 12px;
+    z-index: 3;
   }
   .folder-count {
     position: absolute;
@@ -370,6 +382,7 @@
     font-size: 12px;
     padding: 4px 10px;
     border-radius: 12px;
+    z-index: 3;
   }
   .marquee-info { padding: 15px 18px; }
   .marquee-info h3 { font-size: 20px; font-weight: 400; }
@@ -383,6 +396,9 @@
     padding: 20px;
     justify-content: center;
     animation: none;
+  }
+  .marquee-outer.expanded .marquee-item {
+    content-visibility: visible; /* ensure all items are rendered when expanded */
   }
 
   /* ========== LIGHTBOX ========== */
@@ -425,7 +441,7 @@
   }
   .lightbox-close {
     position: fixed;
-    top: 20px;
+    top: 80px;  /* moved lower to avoid overlap with language toggle */
     right: 25px;
     font-size: 18px;
     color: #ffffff;
@@ -530,9 +546,9 @@
         </ul>
       </div>
       <div class="hero-rotator" id="heroRotator">
-        <img src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active">
-        <img src="assets/gallery/hero-2.png" alt="Rotating image 2">
-        <img src="assets/gallery/hero-3.png" alt="Rotating image 3">
+        <img src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active" loading="lazy">
+        <img src="assets/gallery/hero-2.png" alt="Rotating image 2" loading="lazy">
+        <img src="assets/gallery/hero-3.png" alt="Rotating image 3" loading="lazy">
       </div>
     </div>
   </section>
@@ -685,7 +701,6 @@
       close: "close ✕",
       prev: "←",
       next: "→",
-      // Folder names (for photography)
       folderAlbum1: "Album 1",
       folderAlbum2: "Album 2",
       folderAlbum3: "Album 3",
@@ -793,7 +808,7 @@
     { title: "The dark angel", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/13.JPG", video: "", description: "A short description of the photo series and where it was shot." },
     { title: "Curiosity", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/14.JPG", video: "", description: "Another photo series description." },
     
-    // Film (unchanged)
+    // Film
     {
       title: "Midnight Snack",
       category: "Film",
@@ -801,7 +816,7 @@
       video: "https://www.youtube.com/embed/p0pZ9HH-_PM",
       description: "A short description of the film."
     },
-    // Art (unchanged)
+    // Art
     { title: "Land of art", category: "Art", image: "assets/gallery/A01.png", video: "", description: "A short description of the piece." },
     { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png", video: "", description: "Another art piece description." },
     { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png", video: "", description: "Third art piece." },
@@ -843,8 +858,14 @@
     const coverItem = items[0];
     const thumb = document.createElement('div');
     thumb.className = 'marquee-thumb' + (coverItem.image ? '' : ' no-image');
+
     if (coverItem.image) {
-      thumb.style.backgroundImage = `url('${coverItem.image}')`;
+      const img = document.createElement('img');
+      img.src = coverItem.image;
+      img.alt = getFolderDisplayName(folderKey);
+      img.loading = 'lazy';
+      img.onerror = () => { thumb.classList.add('no-image'); img.remove(); };
+      thumb.appendChild(img);
     }
 
     const countBadge = document.createElement('div');
@@ -871,15 +892,16 @@
 
     const thumb = document.createElement('div');
     thumb.className = 'marquee-thumb' + (item.image ? '' : ' no-image');
+
     if (item.image) {
-      thumb.style.backgroundImage = `url('${item.image}')`;
-      const test = new Image();
-      test.onerror = () => {
-        thumb.style.backgroundImage = '';
-        thumb.classList.add('no-image');
-      };
-      test.src = item.image;
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = item.title;
+      img.loading = 'lazy';
+      img.onerror = () => { thumb.classList.add('no-image'); img.remove(); };
+      thumb.appendChild(img);
     }
+
     if (item.video) {
       const badge = document.createElement('div');
       badge.className = 'play-badge';
@@ -905,17 +927,15 @@
     track.element.innerHTML = '';
 
     if (track.category === 'Photography') {
-      // Render folder cards
       const groups = groupByFolder(items);
       const folderKeys = Object.keys(groups);
-      const count = duplicate ? 2 : 1; // duplicate for marquee if needed
+      const count = duplicate ? 2 : 1;
       for (let i = 0; i < count; i++) {
         folderKeys.forEach(folderKey => {
           track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
         });
       }
     } else {
-      // Film and Art: individual items
       const count = duplicate ? 2 : 1;
       for (let i = 0; i < count; i++) {
         items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
@@ -1015,7 +1035,6 @@
       const isExpanded = outer.classList.contains('expanded');
       btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
 
-      // When expanded, we want to show all items without duplication; otherwise, duplicate for marquee
       renderTrack(trackKey, !isExpanded);
     });
   });
