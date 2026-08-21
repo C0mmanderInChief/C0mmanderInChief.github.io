@@ -15,7 +15,7 @@
     --mustard: #EBD45C;
     --sand:    #CFC2A9;
     --espresso: #211E1C;
-    --comic-blue: #000000; /* black */
+    --comic-blue: #000000;
     --grain:   0.05;
     --font-body: 'Archivo Black', sans-serif;
   }
@@ -81,6 +81,28 @@
     #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); }
   }
 
+  /* Language toggle button */
+  .lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    z-index: 1000;
+    background: var(--espresso);
+    color: var(--sand);
+    border: none;
+    padding: 10px 18px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .lang-toggle:hover {
+    background: var(--mustard);
+    color: var(--espresso);
+  }
+
   /* ========== HERO SECTION ========== */
   .hero {
     min-height: 100vh;
@@ -127,7 +149,6 @@
     letter-spacing: 0.02em;
     color: var(--espresso);
     margin-bottom: 40px;
-    
   }
 
   .hero-nav {
@@ -144,7 +165,7 @@
     transition: color 0.2s, transform 0.2s;
   }
   .hero-nav a:hover {
-    color: var(--comic-blue); /* black */
+    color: var(--comic-blue);
     transform: translateX(5px);
   }
 
@@ -212,14 +233,14 @@
   .credit-item {
     margin-bottom: 25px;
     padding: 10px 15px;
-    border-left: none; /* yellow line removed */
+    border-left: none;
     background-color: rgba(207, 194, 169, 0.5);
     border-radius: 2px;
     transition: background-color 0.3s, box-shadow 0.3s;
   }
   .credit-item:hover {
     background-color: rgba(207, 194, 169, 0.8);
-    box-shadow: 5px 5px 0 0 var(--comic-blue); /* hard black shadow bottom-right */
+    box-shadow: 5px 5px 0 0 var(--comic-blue);
   }
   .credit-title {
     font-size: 18px;
@@ -305,7 +326,7 @@
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
   .marquee-item:hover {
-    box-shadow: 6px 6px 0 0 var(--comic-blue); /* hard black shadow bottom-right */
+    box-shadow: 6px 6px 0 0 var(--comic-blue);
     transform: translateY(-4px);
   }
   .marquee-thumb {
@@ -339,6 +360,16 @@
     align-items: center;
     justify-content: center;
     font-size: 12px;
+  }
+  .folder-count {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: var(--espresso);
+    color: var(--sand);
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 12px;
   }
   .marquee-info { padding: 15px 18px; }
   .marquee-info h3 { font-size: 20px; font-weight: 400; }
@@ -407,6 +438,21 @@
   .lightbox-close:hover {
     color: var(--mustard);
   }
+  .lightbox-nav {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 102;
+    padding: 10px;
+  }
+  .lightbox-prev { left: 20px; }
+  .lightbox-next { right: 20px; }
+  .lightbox-nav:hover { color: var(--mustard); }
 
   /* ========== CONTACT ========== */
   .contact-card {
@@ -462,31 +508,27 @@
 </head>
 <body>
 
+  <button class="lang-toggle" id="langToggle">DE</button>
+
   <div id="layer-back" class="bg-layer"></div>
   <div id="layer-clouds" class="bg-layer"></div>
 
   <!-- ========== HERO SECTION ========== -->
   <section class="hero" id="hero">
     <h1 class="hero-title">Alejandro Fidel<br>Regueros-Wessels</h1>
-
-    <!-- Black bar with JOGDA -->
     <div class="hero-bar">JOGDA</div>
-
-    <!-- Lower area: left subtitle + nav, right rotating images -->
     <div class="hero-lower">
       <div class="hero-left">
-        <div class="hero-subtitle">Journey of Gestures, Digital Archive</div>
+        <div class="hero-subtitle" data-i18n="heroSubtitle">Journey of Gestures, Digital Archive</div>
         <ul class="hero-nav">
-          <li><a href="#about">About</a></li>
-          <li><a href="#photography">Photography</a></li>
-          <li><a href="#film">Film</a></li>
-          <li><a href="#art">Art</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about" data-i18n="navAbout">About</a></li>
+          <li><a href="#photography" data-i18n="navPhotography">Photography</a></li>
+          <li><a href="#film" data-i18n="navFilm">Film</a></li>
+          <li><a href="#art" data-i18n="navArt">Art</a></li>
+          <li><a href="#experience" data-i18n="navExperience">Experience</a></li>
+          <li><a href="#contact" data-i18n="navContact">Contact</a></li>
         </ul>
       </div>
-
-      <!-- Rotating image box (right side) with hero-1, hero-2, hero-3 -->
       <div class="hero-rotator" id="heroRotator">
         <img src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active">
         <img src="assets/gallery/hero-2.png" alt="Rotating image 2">
@@ -498,16 +540,16 @@
   <!-- ========== ABOUT ========== -->
   <section class="about" id="about">
     <div class="statement">
-      <p>"I have legitemetly no fucking clue what i am doing..."</p>
-      <p>-Alejo</p>
+      <p data-i18n="aboutQuote">"I have legitemetly no fucking clue what i am doing..."</p>
+      <p data-i18n="aboutAuthor">-Alejo</p>
     </div>
   </section>
 
   <!-- ========== GALLERY SECTIONS ========== -->
   <section id="photography" class="marquee-section">
     <div class="marquee-header">
-      <h2 class="section-title">Photography</h2>
-      <button class="see-all-btn" data-target="photoOuter">See All</button>
+      <h2 class="section-title" data-i18n="sectionPhotography">Photography</h2>
+      <button class="see-all-btn" data-target="photoOuter" data-i18n="seeAll">See All</button>
     </div>
     <div class="marquee-outer" id="photoOuter">
       <div class="marquee-track" id="photoTrack"></div>
@@ -516,8 +558,8 @@
 
   <section id="film" class="marquee-section">
     <div class="marquee-header">
-      <h2 class="section-title">Film</h2>
-      <button class="see-all-btn" data-target="filmOuter">See All</button>
+      <h2 class="section-title" data-i18n="sectionFilm">Film</h2>
+      <button class="see-all-btn" data-target="filmOuter" data-i18n="seeAll">See All</button>
     </div>
     <div class="marquee-outer" id="filmOuter">
       <div class="marquee-track" id="filmTrack"></div>
@@ -526,8 +568,8 @@
 
   <section id="art" class="marquee-section">
     <div class="marquee-header">
-      <h2 class="section-title">Art</h2>
-      <button class="see-all-btn" data-target="artOuter">See All</button>
+      <h2 class="section-title" data-i18n="sectionArt">Art</h2>
+      <button class="see-all-btn" data-target="artOuter" data-i18n="seeAll">See All</button>
     </div>
     <div class="marquee-outer" id="artOuter">
       <div class="marquee-track" id="artTrack"></div>
@@ -536,47 +578,51 @@
 
   <!-- ========== EXPERIENCE / CREDITS ========== -->
   <section class="credits" id="experience">
-    <h3>Production Experience</h3>
+    <h3 data-i18n="experienceTitle">Production Experience</h3>
     <div class="credit-item">
-      <div class="credit-title">Runner | <em>Mizuko</em></div>
-      <div class="credit-detail">Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.</div>
+      <div class="credit-title">
+        <span data-i18n="credit1Title">Runner</span> | <em>Mizuko</em>
+      </div>
+      <div class="credit-detail" data-i18n="credit1Detail">Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.</div>
     </div>
     <div class="credit-item">
-      <div class="credit-title">Actor | Diprente / Netflix Production</div>
-      <div class="credit-detail">Johannesburg, South Africa<br>Supporting role, on-set character development.</div>
+      <div class="credit-title">
+        <span data-i18n="credit2Title">Actor</span> | Diprente / Netflix Production
+      </div>
+      <div class="credit-detail" data-i18n="credit2Detail">Johannesburg, South Africa<br>Supporting role, on-set character development.</div>
     </div>
 
-    <h3 style="margin-top:40px;">Key Skills</h3>
+    <h3 style="margin-top:40px;" data-i18n="skillsTitle">Key Skills</h3>
     <ul class="skill-list">
-      <li>On-Set Coordination</li>
-      <li>Multilingual Communication (EN/DE/NL)</li>
-      <li>Actor Coaching</li>
-      <li>Scene Analysis</li>
-      <li>Set Etiquette</li>
-      <li>Post-Production Organization</li>
+      <li data-i18n="skill1">On-Set Coordination</li>
+      <li data-i18n="skill2">Multilingual Communication (EN/DE/NL)</li>
+      <li data-i18n="skill3">Actor Coaching</li>
+      <li data-i18n="skill4">Scene Analysis</li>
+      <li data-i18n="skill5">Set Etiquette</li>
+      <li data-i18n="skill6">Post-Production Organization</li>
     </ul>
 
-    <h3>Tech Arsenal</h3>
+    <h3 data-i18n="techTitle">Tech Arsenal</h3>
     <ul class="skill-list">
       <li>Photoshop</li>
       <li>Microsoft Office</li>
       <li>Google Workspace</li>
     </ul>
 
-    <h3>Language Proficiency</h3>
+    <h3 data-i18n="langTitle">Language Proficiency</h3>
     <ul class="skill-list">
-      <li>English (Native)</li>
-      <li>German (B2)</li>
-      <li>Dutch (B1)</li>
+      <li data-i18n="lang1">English (Native)</li>
+      <li data-i18n="lang2">German (B2)</li>
+      <li data-i18n="lang3">Dutch (B1)</li>
     </ul>
   </section>
 
   <!-- ========== CONTACT ========== -->
   <section id="contact">
     <div class="contact-card">
-      <p>Whether you have a question, a project idea, or just want to say hi — my inbox is open.</p>
+      <p data-i18n="contactText">Whether you have a question, a project idea, or just want to say hi — my inbox is open.</p>
       <div class="contact-links">
-        <a href="mailto:Alejandrowessels05@gmail.com">Email me</a>
+        <a href="mailto:Alejandrowessels05@gmail.com" data-i18n="emailMe">Email me</a>
         <a href="#">Instagram</a>
         <a href="#">LinkedIn</a>
       </div>
@@ -592,39 +638,170 @@
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">close ✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">←</button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">→</button>
     <div class="lightbox-content">
       <div class="lightbox-media" id="lightboxMedia"></div>
     </div>
   </div>
 
 <script>
+  /* ========== LANGUAGE HANDLING ========== */
+  const translations = {
+    en: {
+      heroSubtitle: "Journey of Gestures, Digital Archive",
+      navAbout: "About",
+      navPhotography: "Photography",
+      navFilm: "Film",
+      navArt: "Art",
+      navExperience: "Experience",
+      navContact: "Contact",
+      aboutQuote: '"I have legitemetly no fucking clue what i am doing..."',
+      aboutAuthor: "-Alejo",
+      sectionPhotography: "Photography",
+      sectionFilm: "Film",
+      sectionArt: "Art",
+      seeAll: "See All",
+      showLess: "Show Less",
+      experienceTitle: "Production Experience",
+      credit1Title: "Runner",
+      credit1Detail: "Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.",
+      credit2Title: "Actor",
+      credit2Detail: "Johannesburg, South Africa<br>Supporting role, on-set character development.",
+      skillsTitle: "Key Skills",
+      skill1: "On-Set Coordination",
+      skill2: "Multilingual Communication (EN/DE/NL)",
+      skill3: "Actor Coaching",
+      skill4: "Scene Analysis",
+      skill5: "Set Etiquette",
+      skill6: "Post-Production Organization",
+      techTitle: "Tech Arsenal",
+      langTitle: "Language Proficiency",
+      lang1: "English (Native)",
+      lang2: "German (B2)",
+      lang3: "Dutch (B1)",
+      contactText: "Whether you have a question, a project idea, or just want to say hi — my inbox is open.",
+      emailMe: "Email me",
+      close: "close ✕",
+      prev: "←",
+      next: "→",
+      // Folder names (for photography)
+      folderAlbum1: "Album 1",
+      folderAlbum2: "Album 2",
+      folderAlbum3: "Album 3",
+      folderAlbum4: "Album 4",
+      folderAlbum5: "Album 5",
+    },
+    de: {
+      heroSubtitle: "Reise der Gesten, Digitales Archiv",
+      navAbout: "Über mich",
+      navPhotography: "Fotografie",
+      navFilm: "Film",
+      navArt: "Kunst",
+      navExperience: "Erfahrung",
+      navContact: "Kontakt",
+      aboutQuote: '"Ich habe wirklich keine Ahnung, was ich tue..."',
+      aboutAuthor: "-Alejo",
+      sectionPhotography: "Fotografie",
+      sectionFilm: "Film",
+      sectionArt: "Kunst",
+      seeAll: "Alle anzeigen",
+      showLess: "Weniger anzeigen",
+      experienceTitle: "Produktionserfahrung",
+      credit1Title: "Runner",
+      credit1Detail: "Regie: Helen Hideko | Wien, Österreich<br>Film-Set-Koordination, Schauspielerbetreuung, Requisitenverwaltung.",
+      credit2Title: "Schauspieler",
+      credit2Detail: "Johannesburg, Südafrika<br>Nebenrolle, Charakterentwicklung am Set.",
+      skillsTitle: "Kernkompetenzen",
+      skill1: "Set-Koordination",
+      skill2: "Mehrsprachige Kommunikation (EN/DE/NL)",
+      skill3: "Schauspielcoaching",
+      skill4: "Szenenanalyse",
+      skill5: "Set-Etikette",
+      skill6: "Postproduktions-Organisation",
+      techTitle: "Technisches Arsenal",
+      langTitle: "Sprachkenntnisse",
+      lang1: "Englisch (Muttersprache)",
+      lang2: "Deutsch (B2)",
+      lang3: "Niederländisch (B1)",
+      contactText: "Ob du eine Frage hast, eine Projektidee oder einfach nur Hallo sagen möchtest – mein Postfach ist offen.",
+      emailMe: "E-Mail schreiben",
+      close: "schließen ✕",
+      prev: "←",
+      next: "→",
+      folderAlbum1: "Album 1",
+      folderAlbum2: "Album 2",
+      folderAlbum3: "Album 3",
+      folderAlbum4: "Album 4",
+      folderAlbum5: "Album 5",
+    }
+  };
+
+  let currentLang = 'en';
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    // Update see-all buttons text based on expanded state
+    document.querySelectorAll('.see-all-btn').forEach(btn => {
+      const outer = document.getElementById(btn.dataset.target);
+      if (outer && outer.classList.contains('expanded')) {
+        btn.textContent = translations[lang].showLess;
+      } else {
+        btn.textContent = translations[lang].seeAll;
+      }
+    });
+    // Update lightbox close text
+    document.getElementById('lightboxClose').textContent = translations[lang].close;
+    // Re-render gallery tracks to update folder names and item titles
+    renderTrack('photoTrack', false);
+    renderTrack('filmTrack', false);
+    renderTrack('artTrack', false);
+    // Restore expanded state if any
+    document.querySelectorAll('.marquee-outer.expanded').forEach(outer => {
+      const trackKey = outer.id.replace('Outer', 'Track');
+      renderTrack(trackKey, false);
+    });
+  }
+
+  document.getElementById('langToggle').addEventListener('click', () => {
+    const newLang = currentLang === 'en' ? 'de' : 'en';
+    applyLanguage(newLang);
+    document.getElementById('langToggle').textContent = newLang === 'en' ? 'DE' : 'EN';
+  });
+
   /* ========== GALLERY DATA ========== */
   const galleryItems = [
-    // Photography
-    { title: "Carelesness", category: "Photography", image: "assets/gallery/01.JPG", video: "", description: "A short description of the photo series and where it was shot." },
-    { title: "Constructed exhaustion", category: "Photography", image: "assets/gallery/02.JPG", video: "", description: "Another photo series description." },
-    { title: "Joy", category: "Photography", image: "assets/gallery/03.JPG", video: "", description: "Third photo series." },
-    { title: "Blissful ignorance", category: "Photography", image: "assets/gallery/04.JPG", video: "", description: "A short description of the photo series and where it was shot." },
-    { title: "times up", category: "Photography", image: "assets/gallery/05.JPG", video: "", description: "Another photo series description." },
-    { title: "ugh", category: "Photography", image: "assets/gallery/06.JPG", video: "", description: "Third photo series." },
-    { title: " hmm.. ", category: "Photography", image: "assets/gallery/07.JPG", video: "", description: "A short description of the photo series and where it was shot." },
-    { title: "ummm", category: "Photography", image: "assets/gallery/08.JPG", video: "", description: "Another photo series description." },
-    { title: "urghh...", category: "Photography", image: "assets/gallery/09.JPG", video: "", description: "Third photo series." },
-    { title: "woahh", category: "Photography", image: "assets/gallery/10.JPG", video: "", description: "A short description of the photo series and where it was shot." },
-    { title: "Yawns", category: "Photography", image: "assets/gallery/11.JPG", video: "", description: "Another photo series description." },
-    { title: "Existence", category: "Photography", image: "assets/gallery/12.JPG", video: "", description: "Third photo series." },
-    { title: "The dark angel", category: "Photography", image: "assets/gallery/13.JPG", video: "", description: "A short description of the photo series and where it was shot." },
-    { title: "Curiosity", category: "Photography", image: "assets/gallery/14.JPG", video: "", description: "Another photo series description." },
+    // Photography – grouped into folders
+    { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.JPG", video: "", description: "A short description of the photo series and where it was shot." },
+    { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.JPG", video: "", description: "Another photo series description." },
+    { title: "Joy", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/03.JPG", video: "", description: "Third photo series." },
+    { title: "Blissful ignorance", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/04.JPG", video: "", description: "A short description of the photo series and where it was shot." },
+    { title: "times up", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/05.JPG", video: "", description: "Another photo series description." },
+    { title: "ugh", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/06.JPG", video: "", description: "Third photo series." },
+    { title: " hmm.. ", category: "Photography", folder: "folderAlbum4", image: "assets/gallery/07.JPG", video: "", description: "A short description of the photo series and where it was shot." },
+    { title: "ummm", category: "Photography", folder: "folderAlbum4", image: "assets/gallery/08.JPG", video: "", description: "Another photo series description." },
+    { title: "urghh...", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/09.JPG", video: "", description: "Third photo series." },
+    { title: "woahh", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/10.JPG", video: "", description: "A short description of the photo series and where it was shot." },
+    { title: "Yawns", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/11.JPG", video: "", description: "Another photo series description." },
+    { title: "Existence", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/12.JPG", video: "", description: "Third photo series." },
+    { title: "The dark angel", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/13.JPG", video: "", description: "A short description of the photo series and where it was shot." },
+    { title: "Curiosity", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/14.JPG", video: "", description: "Another photo series description." },
     
-    // Film
-      {
+    // Film (unchanged)
+    {
       title: "Midnight Snack",
       category: "Film",
       image: "assets/gallery/film-1.jpg",
-      video: "https://www.youtube.com/embed/p0pZ9HH-_PM",  // ← add this
+      video: "https://www.youtube.com/embed/p0pZ9HH-_PM",
       description: "A short description of the film."
     },
-    // Art
+    // Art (unchanged)
     { title: "Land of art", category: "Art", image: "assets/gallery/A01.png", video: "", description: "A short description of the piece." },
     { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png", video: "", description: "Another art piece description." },
     { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png", video: "", description: "Third art piece." },
@@ -640,6 +817,54 @@
   const lightbox = document.getElementById('lightbox');
   const lightboxMedia = document.getElementById('lightboxMedia');
 
+  // Helper to group photography items by folder
+  function groupByFolder(items) {
+    const groups = {};
+    items.forEach(item => {
+      const folderKey = item.folder || 'folderAlbum1';
+      if (!groups[folderKey]) {
+        groups[folderKey] = [];
+      }
+      groups[folderKey].push(item);
+    });
+    return groups;
+  }
+
+  // Get translated folder display name
+  function getFolderDisplayName(folderKey) {
+    return translations[currentLang][folderKey] || folderKey;
+  }
+
+  // Create a folder card for photography
+  function createFolderCard(folderKey, items) {
+    const card = document.createElement('div');
+    card.className = 'marquee-item folder-card';
+
+    const coverItem = items[0];
+    const thumb = document.createElement('div');
+    thumb.className = 'marquee-thumb' + (coverItem.image ? '' : ' no-image');
+    if (coverItem.image) {
+      thumb.style.backgroundImage = `url('${coverItem.image}')`;
+    }
+
+    const countBadge = document.createElement('div');
+    countBadge.className = 'folder-count';
+    countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
+    thumb.appendChild(countBadge);
+
+    const info = document.createElement('div');
+    info.className = 'marquee-info';
+    const folderName = getFolderDisplayName(folderKey);
+    info.innerHTML = `<h3>${folderName}</h3>`;
+
+    card.appendChild(thumb);
+    card.appendChild(info);
+
+    card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
+    return card;
+  }
+
+  // Create a standard marquee item (for Film/Art)
   function createMarqueeItem(item) {
     const card = document.createElement('div');
     card.className = 'marquee-item';
@@ -672,18 +897,56 @@
     return card;
   }
 
+  // Render a track with optional duplication for marquee
   function renderTrack(trackKey, duplicate) {
     const track = tracks[trackKey];
+    if (!track) return;
     const items = galleryItems.filter(item => item.category === track.category);
     track.element.innerHTML = '';
-    const count = duplicate ? 2 : 1;
-    for (let i = 0; i < count; i++) {
-      items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+
+    if (track.category === 'Photography') {
+      // Render folder cards
+      const groups = groupByFolder(items);
+      const folderKeys = Object.keys(groups);
+      const count = duplicate ? 2 : 1; // duplicate for marquee if needed
+      for (let i = 0; i < count; i++) {
+        folderKeys.forEach(folderKey => {
+          track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
+        });
+      }
+    } else {
+      // Film and Art: individual items
+      const count = duplicate ? 2 : 1;
+      for (let i = 0; i < count; i++) {
+        items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+      }
     }
   }
 
+  /* ========== LIGHTBOX SLIDESHOW ========== */
+  let currentSlideshow = [];
+  let currentSlideIndex = 0;
+
   function openLightbox(item) {
+    openSlideshow([item], 0);
+  }
+
+  function openFolderSlideshow(folderKey, items) {
+    openSlideshow(items, 0);
+  }
+
+  function openSlideshow(items, startIndex) {
+    currentSlideshow = items;
+    currentSlideIndex = startIndex;
+    updateLightboxMedia();
+    lightbox.classList.add('open');
+    updateNavButtons();
+  }
+
+  function updateLightboxMedia() {
+    const item = currentSlideshow[currentSlideIndex];
     lightboxMedia.innerHTML = '';
+
     if (item.video) {
       const iframe = document.createElement('iframe');
       iframe.src = item.video;
@@ -696,39 +959,66 @@
       img.alt = item.title;
       lightboxMedia.appendChild(img);
     }
-    lightbox.classList.add('open');
+  }
+
+  function showPrevSlide() {
+    if (currentSlideshow.length === 0) return;
+    currentSlideIndex = (currentSlideIndex - 1 + currentSlideshow.length) % currentSlideshow.length;
+    updateLightboxMedia();
+    updateNavButtons();
+  }
+
+  function showNextSlide() {
+    if (currentSlideshow.length === 0) return;
+    currentSlideIndex = (currentSlideIndex + 1) % currentSlideshow.length;
+    updateLightboxMedia();
+    updateNavButtons();
+  }
+
+  function updateNavButtons() {
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    if (!prevBtn || !nextBtn) return;
+    const single = currentSlideshow.length <= 1;
+    prevBtn.style.display = single ? 'none' : 'block';
+    nextBtn.style.display = single ? 'none' : 'block';
   }
 
   function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxMedia.innerHTML = '';
+    currentSlideshow = [];
+    currentSlideIndex = 0;
   }
 
+  // Event listeners for lightbox
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
+  document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrevSlide();
+    if (e.key === 'ArrowRight') showNextSlide();
+  });
 
+  // See All buttons
   document.querySelectorAll('.see-all-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.target;
       const outer = document.getElementById(targetId);
       const trackKey = targetId.replace('Outer', 'Track');
-      const trackObj = tracks[trackKey];
-      if (!outer || !trackObj) return;
+      if (!outer || !tracks[trackKey]) return;
 
       outer.classList.toggle('expanded');
       btn.classList.toggle('active');
       const isExpanded = outer.classList.contains('expanded');
-      btn.textContent = isExpanded ? 'Show Less' : 'See All';
+      btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
 
+      // When expanded, we want to show all items without duplication; otherwise, duplicate for marquee
       renderTrack(trackKey, !isExpanded);
     });
   });
-
-  // Initial render
-  renderTrack('photoTrack', true);
-  renderTrack('filmTrack', true);
-  renderTrack('artTrack', true);
 
   /* ========== ROTATING IMAGES IN HERO ========== */
   const rotatorImages = document.querySelectorAll('#heroRotator img');
@@ -774,7 +1064,8 @@
   }, { threshold: 0.3 });
   statementParagraphs.forEach(p => observer.observe(p));
 
-  // Init
+  // Initial render and language
+  applyLanguage('en');
   handleBackgroundScroll();
 </script>
 
