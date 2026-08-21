@@ -5,23 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JOGDA.com</title>
 
-<!-- Font: Archivo Black for everything -->
+<!-- ================= FONT ================= -->
+<!-- Load Archivo Black font for all text -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
 
 <style>
+  /* ================= CSS VARIABLES ================= */
   :root {
-    --mustard: #EBD45C;
-    --sand:    #CFC2A9;
-    --espresso: #211E1C;
-    --comic-blue: #000000;
-    --grain:   0.05;
+    --mustard: #EBD45C;      /* Accent yellow */
+    --sand:    #CFC2A9;      /* Background sand color */
+    --espresso: #211E1C;     /* Dark text/background */
+    --comic-blue: #000000;   /* Black for shadows/hover */
+    --grain:   0.05;         /* Grain overlay opacity */
     --font-body: 'Archivo Black', sans-serif;
   }
 
+  /* ================= GLOBAL RESET ================= */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; } /* Smooth anchor scrolling */
 
   body {
     background-color: var(--sand);
@@ -31,7 +34,7 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
-    transition: background-color 0.4s ease;
+    transition: background-color 0.4s ease; /* For background darkening on scroll */
   }
 
   a { color: inherit; text-decoration: none; }
@@ -49,7 +52,8 @@
     line-height: 1.1;
   }
 
-  /* Grain overlay */
+  /* ================= GRAIN OVERLAY ================= */
+  /* Adds a subtle film grain over entire page */
   body::after {
     content: "";
     position: fixed;
@@ -64,7 +68,7 @@
     background-size: 200px 200px;
   }
 
-  /* Parallax background layers */
+  /* ================= PARALLAX BACKGROUND LAYERS ================= */
   .bg-layer {
     position: fixed;
     top: 0; left: 0;
@@ -72,22 +76,23 @@
     background-size: 100% auto;
     background-repeat: repeat-y;
     z-index: -2;
-    will-change: transform;
+    will-change: transform; /* Hint for GPU acceleration */
   }
   #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
   #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); z-index: -1; }
 
+  /* Mobile: keep same images (you can change later) */
   @media (max-width: 700px) {
     #layer-back { background-image: url('assets/bg-desktop-back.jpg'); }
     #layer-clouds { background-image: url('assets/bg-desktop-clouds.png'); }
   }
 
-  /* Language toggle button */
+  /* ================= LANGUAGE TOGGLE BUTTON ================= */
   .lang-toggle {
     position: fixed;
     top: 20px;
     right: 25px;
-    z-index: 1000;
+    z-index: 1000; /* Above everything except lightbox? */
     background: var(--espresso);
     color: var(--sand);
     border: none;
@@ -104,7 +109,7 @@
     color: var(--espresso);
   }
 
-  /* ========== HERO SECTION ========== */
+  /* ================= HERO SECTION ================= */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -170,32 +175,32 @@
     transform: translateX(5px);
   }
 
-  /* Rotating image box */
-  .hero-rotator { 
-    width: 300px; 
-    height: 300px; 
-    border-radius: 2px; 
-    overflow: hidden; 
-    position: relative; 
-    flex-shrink: 0; 
+  /* Rotating image box in hero */
+  .hero-rotator {
+    width: 300px;
+    height: 300px;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
   }
 
-  .hero-rotator img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    opacity: 0; 
-    transform: scale(1.6); 
-    transition: none; 
-  } 
-  .hero-rotator img.active { 
-    opacity: 1; 
+  .hero-rotator img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(1.6);
+    transition: none;
+  }
+  .hero-rotator img.active {
+    opacity: 1;
   }
 
-  /* ========== ABOUT ========== */
+  /* ================= ABOUT SECTION ================= */
   .about {
     max-width: 800px;
     margin: 0 auto;
@@ -218,7 +223,7 @@
     transform: translateY(0);
   }
 
-  /* ========== CREDITS ========== */
+  /* ================= CREDITS / EXPERIENCE ================= */
   .credits {
     max-width: 1200px;
     margin: 0 auto;
@@ -271,7 +276,7 @@
     color: var(--comic-blue);
   }
 
-  /* ========== GALLERY ========== */
+  /* ================= GALLERY (MARQUEE) ================= */
   .marquee-section { margin-bottom: 60px; }
   .marquee-header {
     display: flex;
@@ -310,7 +315,7 @@
     padding: 0 20px;
     width: max-content;
     animation: marqueeScroll 25s linear infinite;
-    will-change: transform;
+    will-change: transform; /* Performance */
   }
   .marquee-outer:hover .marquee-track { animation-play-state: paused; }
   @keyframes marqueeScroll {
@@ -326,7 +331,7 @@
     overflow: hidden;
     cursor: pointer;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    content-visibility: auto;  /* Optimisation: skip rendering off-screen items */
+    content-visibility: auto; /* Performance: skip rendering off-screen items */
     contain-intrinsic-size: 260px 325px;
   }
   .marquee-item:hover {
@@ -336,7 +341,7 @@
   .marquee-thumb {
     position: relative;
     aspect-ratio: 4 / 5;
-    background-color: #e0d5c0; /* placeholder */
+    background-color: #e0d5c0; /* Placeholder background */
     overflow: hidden;
   }
   .marquee-thumb img {
@@ -398,10 +403,10 @@
     animation: none;
   }
   .marquee-outer.expanded .marquee-item {
-    content-visibility: visible; /* ensure all items are rendered when expanded */
+    content-visibility: visible; /* Ensure all items rendered when expanded */
   }
 
-  /* ========== LIGHTBOX ========== */
+  /* ================= LIGHTBOX ================= */
   .lightbox {
     position: fixed;
     inset: 0;
@@ -420,28 +425,28 @@
     align-items: center;
     justify-content: center;
   }
-  .lightbox-media { 
+  .lightbox-media {
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .lightbox-media img { 
-    max-width: 95vw; 
-    max-height: 95vh; 
-    object-fit: contain; 
-    display: block; 
+  .lightbox-media img {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+    display: block;
     width: auto;
     height: auto;
   }
-  .lightbox-media iframe { 
-    width: 90vw; 
-    height: 90vh; 
-    border: 0; 
-    display: block; 
+  .lightbox-media iframe {
+    width: 90vw;
+    height: 90vh;
+    border: 0;
+    display: block;
   }
   .lightbox-close {
     position: fixed;
-    top: 80px;  /* moved lower to avoid overlap with language toggle */
+    top: 80px; /* Moved lower to avoid overlap with language toggle */
     right: 25px;
     font-size: 18px;
     color: #ffffff;
@@ -470,7 +475,7 @@
   .lightbox-next { right: 20px; }
   .lightbox-nav:hover { color: var(--mustard); }
 
-  /* ========== CONTACT ========== */
+  /* ================= CONTACT ================= */
   .contact-card {
     background: var(--sand);
     padding: 50px;
@@ -487,11 +492,18 @@
   .contact-links a {
     color: var(--espresso);
     font-size: 18px;
-    transition: color 0.2s;
+    padding: 8px 15px;          /* Added padding for hover shadow */
+    display: inline-block;
+    border-radius: 2px;
+    transition: color 0.2s, box-shadow 0.2s, transform 0.2s;
   }
-  .contact-links a:hover { color: var(--comic-blue); }
+  .contact-links a:hover {
+    color: var(--comic-blue);
+    box-shadow: 5px 5px 0 0 var(--comic-blue); /* Hard shadow like gallery */
+    transform: translateY(-2px);               /* Slight lift */
+  }
 
-  /* ========== FOOTER ========== */
+  /* ================= FOOTER ================= */
   footer {
     text-align: center;
     padding: 40px 24px 60px;
@@ -503,7 +515,7 @@
   }
   footer p { margin-bottom: 5px; }
 
-  /* ========== RESPONSIVE ========== */
+  /* ================= RESPONSIVE ================= */
   @media (max-width: 800px) {
     .hero-lower {
       flex-direction: column;
@@ -524,18 +536,26 @@
 </head>
 <body>
 
+  <!-- Language toggle button (fixed top-right) -->
   <button class="lang-toggle" id="langToggle">DE</button>
 
+  <!-- Parallax background layers -->
   <div id="layer-back" class="bg-layer"></div>
   <div id="layer-clouds" class="bg-layer"></div>
 
-  <!-- ========== HERO SECTION ========== -->
+  <!-- ================= HERO SECTION ================= -->
   <section class="hero" id="hero">
+    <!-- Your name / logo -->
     <h1 class="hero-title">Alejandro Fidel<br>Regueros-Wessels</h1>
+
+    <!-- Black bar with JOGDA -->
     <div class="hero-bar">JOGDA</div>
+
+    <!-- Lower area: left subtitle + nav, right rotating images -->
     <div class="hero-lower">
       <div class="hero-left">
         <div class="hero-subtitle" data-i18n="heroSubtitle">Journey of Gestures, Digital Archive</div>
+        <!-- Navigation links -->
         <ul class="hero-nav">
           <li><a href="#about" data-i18n="navAbout">About</a></li>
           <li><a href="#photography" data-i18n="navPhotography">Photography</a></li>
@@ -545,7 +565,10 @@
           <li><a href="#contact" data-i18n="navContact">Contact</a></li>
         </ul>
       </div>
+
+      <!-- Rotating image box (right side) with hero-1, hero-2, hero-3 -->
       <div class="hero-rotator" id="heroRotator">
+        <!-- Note: images are lazy loaded; swap src with your own images -->
         <img src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active" loading="lazy">
         <img src="assets/gallery/hero-2.png" alt="Rotating image 2" loading="lazy">
         <img src="assets/gallery/hero-3.png" alt="Rotating image 3" loading="lazy">
@@ -553,18 +576,21 @@
     </div>
   </section>
 
-  <!-- ========== ABOUT ========== -->
+  <!-- ================= ABOUT SECTION ================= -->
   <section class="about" id="about">
     <div class="statement">
+      <!-- These paragraphs fade in on scroll (IntersectionObserver) -->
       <p data-i18n="aboutQuote">"I have legitemetly no fucking clue what i am doing..."</p>
       <p data-i18n="aboutAuthor">-Alejo</p>
     </div>
   </section>
 
-  <!-- ========== GALLERY SECTIONS ========== -->
+  <!-- ================= GALLERY SECTIONS ================= -->
+  <!-- Photography section (folders) -->
   <section id="photography" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionPhotography">Photography</h2>
+      <!-- See All button toggles expanded grid -->
       <button class="see-all-btn" data-target="photoOuter" data-i18n="seeAll">See All</button>
     </div>
     <div class="marquee-outer" id="photoOuter">
@@ -572,6 +598,7 @@
     </div>
   </section>
 
+  <!-- Film section (individual items) -->
   <section id="film" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionFilm">Film</h2>
@@ -582,6 +609,7 @@
     </div>
   </section>
 
+  <!-- Art section (individual items) -->
   <section id="art" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionArt">Art</h2>
@@ -592,7 +620,7 @@
     </div>
   </section>
 
-  <!-- ========== EXPERIENCE / CREDITS ========== -->
+  <!-- ================= EXPERIENCE / CREDITS ================= -->
   <section class="credits" id="experience">
     <h3 data-i18n="experienceTitle">Production Experience</h3>
     <div class="credit-item">
@@ -608,6 +636,7 @@
       <div class="credit-detail" data-i18n="credit2Detail">Johannesburg, South Africa<br>Supporting role, on-set character development.</div>
     </div>
 
+    <!-- Key Skills -->
     <h3 style="margin-top:40px;" data-i18n="skillsTitle">Key Skills</h3>
     <ul class="skill-list">
       <li data-i18n="skill1">On-Set Coordination</li>
@@ -618,6 +647,7 @@
       <li data-i18n="skill6">Post-Production Organization</li>
     </ul>
 
+    <!-- Tech Arsenal -->
     <h3 data-i18n="techTitle">Tech Arsenal</h3>
     <ul class="skill-list">
       <li>Photoshop</li>
@@ -625,6 +655,7 @@
       <li>Google Workspace</li>
     </ul>
 
+    <!-- Language Proficiency -->
     <h3 data-i18n="langTitle">Language Proficiency</h3>
     <ul class="skill-list">
       <li data-i18n="lang1">English (Native)</li>
@@ -633,7 +664,7 @@
     </ul>
   </section>
 
-  <!-- ========== CONTACT ========== -->
+  <!-- ================= CONTACT ================= -->
   <section id="contact">
     <div class="contact-card">
       <p data-i18n="contactText">Whether you have a question, a project idea, or just want to say hi — my inbox is open.</p>
@@ -645,13 +676,14 @@
     </div>
   </section>
 
+  <!-- ================= FOOTER ================= -->
   <footer>
     <p>Sechshauserstrasse 9, Wien, Austria</p>
     <p>+43 681 84315549</p>
     <p>alejandrowessels05@gmail.com</p>
   </footer>
 
-  <!-- Lightbox -->
+  <!-- ================= LIGHTBOX ================= -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">close ✕</button>
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev">←</button>
@@ -662,7 +694,11 @@
   </div>
 
 <script>
-  /* ========== LANGUAGE HANDLING ========== */
+  /* =================================================================
+     LANGUAGE HANDLING
+     ================================================================= */
+  // Translation dictionary for English and German.
+  // To add a new language, duplicate one of these objects and translate all values.
   const translations = {
     en: {
       heroSubtitle: "Journey of Gestures, Digital Archive",
@@ -701,6 +737,7 @@
       close: "close ✕",
       prev: "←",
       next: "→",
+      // Folder names for photography. Add or rename these keys as you wish.
       folderAlbum1: "Album 1",
       folderAlbum2: "Album 2",
       folderAlbum3: "Album 3",
@@ -752,8 +789,9 @@
     }
   };
 
-  let currentLang = 'en';
+  let currentLang = 'en'; // Start language
 
+  // Applies the selected language to all elements with data-i18n attributes
   function applyLanguage(lang) {
     currentLang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -784,15 +822,27 @@
     });
   }
 
+  // Language toggle button event
   document.getElementById('langToggle').addEventListener('click', () => {
     const newLang = currentLang === 'en' ? 'de' : 'en';
     applyLanguage(newLang);
     document.getElementById('langToggle').textContent = newLang === 'en' ? 'DE' : 'EN';
   });
 
-  /* ========== GALLERY DATA ========== */
+  /* =================================================================
+     GALLERY DATA
+     ================================================================= */
+  // Array of all gallery items.
+  // Each item has:
+  //   title: displayed on card
+  //   category: "Photography", "Film", or "Art" (determines which section)
+  //   folder: (for Photography) groups photos into albums. Use any key,
+  //           but define the display name in translations above.
+  //   image: path to image file
+  //   video: optional YouTube embed URL (for film)
+  //   description: optional (not currently shown, but can be used later)
   const galleryItems = [
-    // Photography – grouped into folders
+    // Photography – grouped into folders. Change "folder" values to reorganize.
     { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.JPG", video: "", description: "A short description of the photo series and where it was shot." },
     { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.JPG", video: "", description: "Another photo series description." },
     { title: "Joy", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/03.JPG", video: "", description: "Third photo series." },
@@ -808,7 +858,7 @@
     { title: "The dark angel", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/13.JPG", video: "", description: "A short description of the photo series and where it was shot." },
     { title: "Curiosity", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/14.JPG", video: "", description: "Another photo series description." },
     
-    // Film
+    // Film (individual item)
     {
       title: "Midnight Snack",
       category: "Film",
@@ -816,27 +866,34 @@
       video: "https://www.youtube.com/embed/p0pZ9HH-_PM",
       description: "A short description of the film."
     },
-    // Art
+    // Art (individual items)
     { title: "Land of art", category: "Art", image: "assets/gallery/A01.png", video: "", description: "A short description of the piece." },
     { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png", video: "", description: "Another art piece description." },
     { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png", video: "", description: "Third art piece." },
     { title: "Jippy in catch me", category: "Art", image: "assets/gallery/A04.png", video: "", description: "Third art piece." },
   ];
 
+  // References to the three marquee tracks and their categories
   const tracks = {
     photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
     filmTrack:  { element: document.getElementById('filmTrack'),  category: 'Film' },
     artTrack:   { element: document.getElementById('artTrack'),   category: 'Art' }
   };
 
+  // Lightbox elements
   const lightbox = document.getElementById('lightbox');
   const lightboxMedia = document.getElementById('lightboxMedia');
 
-  // Helper to group photography items by folder
+  /* =================================================================
+     HELPER FUNCTIONS
+     ================================================================= */
+
+  // Group photography items by their "folder" property.
+  // Returns an object: { folderKey: [items], ... }
   function groupByFolder(items) {
     const groups = {};
     items.forEach(item => {
-      const folderKey = item.folder || 'folderAlbum1';
+      const folderKey = item.folder || 'folderAlbum1'; // fallback
       if (!groups[folderKey]) {
         groups[folderKey] = [];
       }
@@ -845,20 +902,26 @@
     return groups;
   }
 
-  // Get translated folder display name
+  // Returns the translated name for a folder key
   function getFolderDisplayName(folderKey) {
     return translations[currentLang][folderKey] || folderKey;
   }
 
-  // Create a folder card for photography
+  /* =================================================================
+     CREATE CARDS
+     ================================================================= */
+
+  // Create a folder card for photography (shows cover image + count)
   function createFolderCard(folderKey, items) {
     const card = document.createElement('div');
     card.className = 'marquee-item folder-card';
 
+    // Use first photo as cover
     const coverItem = items[0];
     const thumb = document.createElement('div');
     thumb.className = 'marquee-thumb' + (coverItem.image ? '' : ' no-image');
 
+    // If image exists, add an <img> element (lazy loaded)
     if (coverItem.image) {
       const img = document.createElement('img');
       img.src = coverItem.image;
@@ -868,11 +931,13 @@
       thumb.appendChild(img);
     }
 
+    // Add photo count badge
     const countBadge = document.createElement('div');
     countBadge.className = 'folder-count';
     countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
     thumb.appendChild(countBadge);
 
+    // Folder name
     const info = document.createElement('div');
     info.className = 'marquee-info';
     const folderName = getFolderDisplayName(folderKey);
@@ -881,11 +946,12 @@
     card.appendChild(thumb);
     card.appendChild(info);
 
+    // Clicking opens slideshow of all photos in folder
     card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
     return card;
   }
 
-  // Create a standard marquee item (for Film/Art)
+  // Create a standard card for individual items (Film/Art)
   function createMarqueeItem(item) {
     const card = document.createElement('div');
     card.className = 'marquee-item';
@@ -893,6 +959,7 @@
     const thumb = document.createElement('div');
     thumb.className = 'marquee-thumb' + (item.image ? '' : ' no-image');
 
+    // Add image if exists
     if (item.image) {
       const img = document.createElement('img');
       img.src = item.image;
@@ -902,6 +969,7 @@
       thumb.appendChild(img);
     }
 
+    // Play badge if video
     if (item.video) {
       const badge = document.createElement('div');
       badge.className = 'play-badge';
@@ -919,23 +987,32 @@
     return card;
   }
 
-  // Render a track with optional duplication for marquee
+  /* =================================================================
+     RENDER TRACKS
+     ================================================================= */
+
+  // Render a marquee track with optional duplication for seamless scroll.
+  // For photography: folder cards are rendered.
+  // For film/art: individual cards are rendered.
   function renderTrack(trackKey, duplicate) {
     const track = tracks[trackKey];
     if (!track) return;
+
     const items = galleryItems.filter(item => item.category === track.category);
-    track.element.innerHTML = '';
+    track.element.innerHTML = ''; // Clear existing
 
     if (track.category === 'Photography') {
+      // Render folder cards
       const groups = groupByFolder(items);
       const folderKeys = Object.keys(groups);
-      const count = duplicate ? 2 : 1;
+      const count = duplicate ? 2 : 1; // Duplicate if needed for marquee animation
       for (let i = 0; i < count; i++) {
         folderKeys.forEach(folderKey => {
           track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
         });
       }
     } else {
+      // Film and Art: individual items
       const count = duplicate ? 2 : 1;
       for (let i = 0; i < count; i++) {
         items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
@@ -943,18 +1020,25 @@
     }
   }
 
-  /* ========== LIGHTBOX SLIDESHOW ========== */
+  /* =================================================================
+     LIGHTBOX SLIDESHOW
+     ================================================================= */
+
+  // Holds currently displayed slideshow items (array) and current index
   let currentSlideshow = [];
   let currentSlideIndex = 0;
 
+  // Opens lightbox with a single item (Film/Art)
   function openLightbox(item) {
     openSlideshow([item], 0);
   }
 
+  // Opens lightbox with all photos from a folder
   function openFolderSlideshow(folderKey, items) {
     openSlideshow(items, 0);
   }
 
+  // Opens the lightbox with an array of items, starting at startIndex
   function openSlideshow(items, startIndex) {
     currentSlideshow = items;
     currentSlideIndex = startIndex;
@@ -963,6 +1047,7 @@
     updateNavButtons();
   }
 
+  // Displays the current slide (image or video) in the lightbox
   function updateLightboxMedia() {
     const item = currentSlideshow[currentSlideIndex];
     lightboxMedia.innerHTML = '';
@@ -981,6 +1066,7 @@
     }
   }
 
+  // Previous slide
   function showPrevSlide() {
     if (currentSlideshow.length === 0) return;
     currentSlideIndex = (currentSlideIndex - 1 + currentSlideshow.length) % currentSlideshow.length;
@@ -988,6 +1074,7 @@
     updateNavButtons();
   }
 
+  // Next slide
   function showNextSlide() {
     if (currentSlideshow.length === 0) return;
     currentSlideIndex = (currentSlideIndex + 1) % currentSlideshow.length;
@@ -995,6 +1082,7 @@
     updateNavButtons();
   }
 
+  // Show/hide navigation arrows based on number of slides
   function updateNavButtons() {
     const prevBtn = document.getElementById('lightboxPrev');
     const nextBtn = document.getElementById('lightboxNext');
@@ -1004,6 +1092,7 @@
     nextBtn.style.display = single ? 'none' : 'block';
   }
 
+  // Close lightbox and clear state
   function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxMedia.innerHTML = '';
@@ -1011,18 +1100,26 @@
     currentSlideIndex = 0;
   }
 
-  // Event listeners for lightbox
+  // Event listeners for lightbox controls
   document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
   document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
   document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
+
+  // Close when clicking outside content
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+  // Keyboard shortcuts
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') showPrevSlide();
     if (e.key === 'ArrowRight') showNextSlide();
   });
 
-  // See All buttons
+  /* =================================================================
+     SEE ALL BUTTONS
+     ================================================================= */
+
+  // Toggle between marquee and expanded grid view
   document.querySelectorAll('.see-all-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const targetId = btn.dataset.target;
@@ -1035,32 +1132,44 @@
       const isExpanded = outer.classList.contains('expanded');
       btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
 
+      // When expanded, show all items without duplication; otherwise duplicate for marquee
       renderTrack(trackKey, !isExpanded);
     });
   });
 
-  /* ========== ROTATING IMAGES IN HERO ========== */
+  /* =================================================================
+     HERO ROTATING IMAGES
+     ================================================================= */
+
   const rotatorImages = document.querySelectorAll('#heroRotator img');
   let currentImageIndex = 0;
 
+  // Rotate hero images every 800ms
   function rotateImages() {
     rotatorImages.forEach(img => img.classList.remove('active'));
     currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
     rotatorImages[currentImageIndex].classList.add('active');
   }
-
   setInterval(rotateImages, 800);
 
-  // Parallax
+  /* =================================================================
+     PARALLAX BACKGROUND
+     ================================================================= */
+
   window.addEventListener('scroll', function() {
     const scrolled = window.scrollY;
+    // Different speeds for back and clouds layers
     document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
     document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
   });
 
-  // Background darkening
-  const baseBg = { r: 207, g: 194, b: 169 };
-  const darkBg = { r: 185, g: 170, b: 145 };
+  /* =================================================================
+     BACKGROUND DARKENING ON SCROLL
+     ================================================================= */
+
+  // Slightly darkens the background as you scroll down
+  const baseBg = { r: 207, g: 194, b: 169 };   // Sand at top
+  const darkBg = { r: 185, g: 170, b: 145 };   // Darker at bottom
   function handleBackgroundScroll() {
     const scrollY = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1072,7 +1181,10 @@
   }
   window.addEventListener('scroll', handleBackgroundScroll);
 
-  // Fade in statement
+  /* =================================================================
+     FADE IN ABOUT STATEMENT
+     ================================================================= */
+
   const statementParagraphs = document.querySelectorAll('.statement p');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1083,8 +1195,13 @@
   }, { threshold: 0.3 });
   statementParagraphs.forEach(p => observer.observe(p));
 
-  // Initial render and language
+  /* =================================================================
+     INITIAL SETUP
+     ================================================================= */
+
+  // Apply English by default
   applyLanguage('en');
+  // Initial background color
   handleBackgroundScroll();
 </script>
 
