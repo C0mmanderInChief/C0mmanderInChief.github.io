@@ -16,18 +16,18 @@
     /* ================= CSS VARIABLES ================= */
     /* Define global color and style variables for easy theming */
     :root {
-      --mustard: #EBD45C;        /* Accent yellow */
-      --sand:    #CFC2A9;        /* Light brown / sand background */
-      --espresso: #211E1C;       /* Dark brown / almost black */
-      --comic-blue: #000000;     /* Actually black (used for hover effects) */
-      --grain:   0.04;           /* Opacity of the grain overlay */
+      --mustard: #EBD45C;        /* Accent yellow – used in hero bar and hover states */
+      --sand:    #CFC2A9;        /* Light brown / sand – main background color */
+      --espresso: #211E1C;       /* Dark brown / almost black – main text color */
+      --comic-blue: #000000;     /* Actually black – used for hover effects (shadow/box) */
+      --grain:   0.04;           /* Opacity of the grain overlay (0 = off, 1 = fully visible) */
       --font-body: 'Archivo Black', sans-serif;
     }
 
     /* ================= GLOBAL RESET ================= */
-    /* Remove default margins/paddings and set box-sizing */
+    /* Remove default margins/paddings and set box-sizing to border-box */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    /* Smooth scrolling for anchor links */
+    /* Smooth scrolling for anchor links (e.g., #about, #contact) */
     html { scroll-behavior: smooth; }
 
     body {
@@ -36,7 +36,7 @@
       font-family: var(--font-body);
       font-size: 18px;
       line-height: 1.5;
-      -webkit-font-smoothing: antialiased;  /* Better font rendering on WebKit */
+      -webkit-font-smoothing: antialiased;  /* Better font rendering on Safari/Chrome */
       min-height: 100vh;
       transition: background-color 0.4s ease;  /* Smooth background color change on scroll */
     }
@@ -57,7 +57,7 @@
       line-height: 1.1;
     }
 
-    /* ================= GRAIN OVERLAY (simplified) ================= */
+    /* ================= GRAIN OVERLAY ================= */
     /* Uses a static noise pattern instead of heavy SVG filter for better performance */
     /* The overlay is a fixed pseudo-element covering the whole viewport */
     body::after {
@@ -122,7 +122,7 @@
     }
 
     .hero-title {
-      font-size: clamp(50px, 8vw, 100px);   /* Responsive font size */
+      font-size: clamp(50px, 8vw, 100px);   /* Responsive: min 50px, ideal 8vw, max 100px */
       letter-spacing: -0.02em;
       color: var(--espresso);
       line-height: 0.95;
@@ -220,7 +220,7 @@
       transform: translateY(20px);  /* Slightly shifted down */
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .statement p.visible {          /* Added by IntersectionObserver */
+    .statement p.visible {          /* Added by IntersectionObserver when scrolled into view */
       opacity: 1;
       transform: translateY(0);
     }
@@ -551,23 +551,29 @@
 </head>
 <body>
 
-  <!-- Language toggle button: switches between English and German -->
+  <!-- ================= LANGUAGE TOGGLE BUTTON ================= -->
+  <!-- Clicking this switches between English (EN) and German (DE) -->
   <button class="lang-toggle" id="langToggle">DE</button>
 
-  <!-- Parallax background layers.
-       The actual background images are set via JavaScript after page load (see script). -->
+  <!-- ================= PARALLAX BACKGROUND LAYERS ================= -->
+  <!-- These two divs create the scrolling background effect.
+       The actual background images are set via JavaScript after page load.
+       To change the images, update the data-bg attributes below. -->
   <div id="layer-back" class="bg-layer" data-bg="assets/bg-desktop-back.jpg"></div>
   <div id="layer-clouds" class="bg-layer" data-bg="assets/bg-desktop-clouds.png"></div>
 
   <!-- ================= HERO SECTION ================= -->
   <!-- Top introductory section with name, JOGDA bar, navigation, and rotating images -->
   <section class="hero" id="hero">
+    <!-- The main name – change this to your own name -->
     <h1 class="hero-title">Alejandro Fidel<br>Regueros-Wessels</h1>
+    <!-- The JOGDA bar – change "JOGDA" to your own brand/name -->
     <div class="hero-bar">JOGDA</div>
     <div class="hero-lower">
       <div class="hero-left">
-        <!-- Subtitle text – translated via JavaScript -->
+        <!-- Subtitle – translated via JavaScript (data-i18n) -->
         <div class="hero-subtitle" data-i18n="heroSubtitle">Journey of Gestures, Digital Archive</div>
+        <!-- Navigation links – the href attributes point to section IDs -->
         <ul class="hero-nav">
           <li><a href="#about" data-i18n="navAbout">About</a></li>
           <li><a href="#photography" data-i18n="navPhotography">Photography</a></li>
@@ -577,8 +583,12 @@
           <li><a href="#contact" data-i18n="navContact">Contact</a></li>
         </ul>
       </div>
+      <!-- Rotating image box – images change every 800ms -->
       <div class="hero-rotator" id="heroRotator">
-        <!-- Rotating images. The src is empty; actual image paths are in data-src -->
+        <!-- To change hero images:
+             1. Replace the data-src paths with your own image URLs
+             2. Add or remove <img> tags as needed (the JavaScript will handle them)
+             3. The first image has class="active" – it's the one shown first -->
         <img src="" data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active">
         <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2">
         <img src="" data-src="assets/gallery/hero-3.png" alt="Rotating image 3">
@@ -590,6 +600,7 @@
   <!-- Quote section that fades in when scrolled into view -->
   <section class="about" id="about">
     <div class="statement">
+      <!-- Change the quote and author here -->
       <p data-i18n="aboutQuote">"I have legitemetly no fucking clue what i am doing..."</p>
       <p data-i18n="aboutAuthor">-Alejo</p>
     </div>
@@ -598,7 +609,7 @@
   <!-- ================= GALLERY SECTIONS ================= -->
   <!-- Three gallery sections: Photography, Film, Art.
        Each has a header with "See All" button and a marquee container.
-       The actual cards are injected by JavaScript. -->
+       The actual cards are injected by JavaScript from the galleryItems array. -->
   <section id="photography" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionPhotography">Photography</h2>
@@ -676,7 +687,9 @@
     <div class="contact-card">
       <p data-i18n="contactText">Whether you have a question, a project idea, or just want to say hi — my inbox is open.</p>
       <div class="contact-links">
+        <!-- Change the href to your own email address -->
         <a href="mailto:Alejandrowessels05@gmail.com" data-i18n="emailMe">Email me</a>
+        <!-- Add your social media links here -->
         <a href="#">Instagram</a>
         <a href="#">LinkedIn</a>
       </div>
@@ -685,6 +698,7 @@
 
   <!-- ================= FOOTER ================= -->
   <footer>
+    <!-- Update with your own address and contact details -->
     <p>Sechshauserstrasse 9, Wien, Austria</p>
     <p>+43 681 84315549</p>
     <p>alejandrowessels05@gmail.com</p>
@@ -706,6 +720,9 @@
        LANGUAGE HANDLING
        ================================================================= */
     // Object containing all translations for English (en) and German (de)
+    // To add a new language, copy the 'de' object and translate the values.
+    // To add new translatable text, add a key-value pair to both language objects,
+    // then add data-i18n="yourKey" to the HTML element.
     const translations = {
       en: {
         heroSubtitle: "Journey of Gestures, Digital Archive",
@@ -839,9 +856,29 @@
     /* =================================================================
        GALLERY DATA
        ================================================================= */
-    // Array of all gallery items. Each item has a category, title, optional image path, optional video URL, etc.
-    // For photography items, they are grouped into "folders" (albums) via the 'folder' property.
+    // Array of all gallery items. Each item has:
+    //   - title: display name
+    //   - category: "Photography", "Film", or "Art" – determines which section it appears in
+    //   - folder: (only for Photography) groups images into albums – must match a key in translations
+    //   - image: path to the image file (supports .jpg, .png, .gif, etc.)
+    //   - video: optional YouTube embed URL (e.g., "https://www.youtube.com/embed/VIDEO_ID")
+    //   - description: optional – currently not displayed but can be used for future features
+    //
+    // TO ADD A NEW PHOTO:
+    //   1. Add a new object to the galleryItems array below
+    //   2. Set category to "Photography", "Film", or "Art"
+    //   3. For Photography, set folder to one of the folderAlbum keys (e.g., "folderAlbum1")
+    //   4. Set image to the path of your image file
+    //   5. For Film, you can set video to a YouTube embed URL
+    //   6. For Art, set image to the path of your artwork image
+    //
+    // TO REMOVE AN ITEM: delete its object from the array.
+    // TO REORDER: simply move the objects around in the array.
     const galleryItems = [
+      // ---- PHOTOGRAPHY ----
+      // All items with category "Photography" are grouped by their 'folder' property.
+      // Each folder becomes a single card in the Photography section.
+      // Clicking a folder card opens a slideshow of all photos in that folder.
       { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.JPG", video: "", description: "A short description of the photo series and where it was shot." },
       { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.JPG", video: "", description: "Another photo series description." },
       { title: "Joy", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/03.JPG", video: "", description: "Third photo series." },
@@ -856,7 +893,13 @@
       { title: "Existence", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/12.JPG", video: "", description: "Third photo series." },
       { title: "The dark angel", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/13.JPG", video: "", description: "A short description of the photo series and where it was shot." },
       { title: "Curiosity", category: "Photography", folder: "folderAlbum5", image: "assets/gallery/14.JPG", video: "", description: "Another photo series description." },
+
+      // ---- FILM ----
+      // Each Film item is a single card. If it has a video URL, clicking it will open the video in the lightbox.
       { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM", description: "A short description of the film." },
+
+      // ---- ART ----
+      // Each Art item is a single card. Clicking opens the image in the lightbox.
       { title: "Land of art", category: "Art", image: "assets/gallery/A01.png", video: "", description: "A short description of the piece." },
       { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png", video: "", description: "Another art piece description." },
       { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png", video: "", description: "Third art piece." },
