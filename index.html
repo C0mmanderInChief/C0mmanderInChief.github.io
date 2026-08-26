@@ -5,25 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JOGDA.com</title>
 
-  <!-- Font -->
+  <!-- ================= FONT ================= -->
+  <!-- We use Google Fonts: Archivo Black – bold, clean, all caps friendly -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
 
   <style>
-    /* ================= CSS VARIABLES ================= */
+    /* ============================================================
+       CSS STYLES – explains the visual design
+       ============================================================ */
+
+    /* ---------- CSS VARIABLES (easy theming) ---------- */
     :root {
-      --mustard: #EBD45C;
-      --sand:    #CFC2A9;
-      --espresso: #211E1C;
-      --comic-blue: #000000;
-      --grain:   0.04;
+      --mustard: #EBD45C;        /* Accent yellow – used in hero bar & hover */
+      --sand:    #CFC2A9;        /* Main background – light brown */
+      --espresso: #211E1C;       /* Main text colour – dark brown */
+      --comic-blue: #000000;     /* Used for shadows & hover effects */
+      --grain:   0.04;           /* Opacity of the texture overlay (0 = off) */
       --font-body: 'Archivo Black', sans-serif;
     }
 
-    /* ================= GLOBAL RESET ================= */
+    /* ---------- Reset & Base ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; }  /* Smooth scrolling for anchor links */
 
     body {
       background-color: var(--sand);
@@ -33,12 +38,13 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      transition: background-color 0.4s ease;
+      transition: background-color 0.4s ease; /* Darkens on scroll */
     }
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
+    /* Every <section> gets consistent spacing */
     section {
       max-width: 1200px;
       margin: 0 auto;
@@ -47,18 +53,19 @@
 
     h1, h2, h3 {
       font-family: var(--font-body);
-      font-weight: 400;
+      font-weight: 400;   /* Archivo Black is already bold */
       line-height: 1.1;
     }
 
-    /* ================= GRAIN OVERLAY ================= */
+    /* ---------- GRAIN OVERLAY (texture) ---------- */
+    /* A fixed pseudo‑element that adds a subtle noisy texture over everything */
     body::after {
       content: "";
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none;
+      pointer-events: none;    /* lets clicks pass through */
       z-index: 999;
       opacity: var(--grain);
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23fff' fill-opacity='0.03'/%3E%3C/svg%3E");
@@ -66,19 +73,20 @@
       background-size: 100px 100px;
     }
 
-    /* ================= PARALLAX BACKGROUND ================= */
+    /* ---------- PARALLAX BACKGROUND LAYERS ---------- */
+    /* Two fixed layers that move at different speeds on scroll */
     .bg-layer {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-size: 100% auto;
+      background-size: 100% auto;   /* stretch horizontally, repeat vertically */
       background-repeat: repeat-y;
-      z-index: -2;
-      will-change: transform;
+      z-index: -2;                  /* behind everything */
+      will-change: transform;       /* hint for smoother animation */
     }
-    #layer-clouds { z-index: -1; }
+    #layer-clouds { z-index: -1; }  /* clouds sit above the back layer */
 
-    /* ================= LANGUAGE TOGGLE ================= */
+    /* ---------- LANGUAGE TOGGLE ---------- */
     .lang-toggle {
       position: fixed;
       top: 20px;
@@ -100,18 +108,18 @@
       color: var(--espresso);
     }
 
-    /* ================= HERO ================= */
+    /* ---------- HERO SECTION ---------- */
     .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: center;    /* vertically centre content */
       position: relative;
       padding-top: 40px;
       padding-bottom: 60px;
     }
     .hero-title {
-      font-size: clamp(50px, 8vw, 100px);
+      font-size: clamp(50px, 8vw, 100px); /* responsive: min 50px, ideal 8vw, max 100px */
       letter-spacing: -0.02em;
       color: var(--espresso);
       line-height: 0.95;
@@ -157,6 +165,7 @@
       color: var(--comic-blue);
       transform: translateX(5px);
     }
+    /* Rotating image box */
     .hero-rotator {
       width: 300px;
       height: 300px;
@@ -170,15 +179,14 @@
       height: 100%;
       object-fit: cover;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       opacity: 0;
-      transform: scale(1.6);
+      transform: scale(1.6);   /* slight zoom for a nice fade‑in */
       transition: none;
     }
     .hero-rotator img.active { opacity: 1; }
 
-    /* ================= ABOUT ================= */
+    /* ---------- ABOUT ---------- */
     .about {
       max-width: 800px;
       margin: 0 auto;
@@ -192,16 +200,16 @@
     }
     .statement p {
       margin-bottom: 30px;
-      opacity: 0;
+      opacity: 0;                 /* hidden initially */
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .statement p.visible {
+    .statement p.visible {       /* added by IntersectionObserver when scrolled into view */
       opacity: 1;
       transform: translateY(0);
     }
 
-    /* ================= CREDITS ================= */
+    /* ---------- EXPERIENCE / CREDITS ---------- */
     .credits {
       max-width: 1200px;
       margin: 0 auto;
@@ -233,6 +241,7 @@
       font-size: 15px;
       color: var(--espresso);
     }
+    /* Skill tags */
     .skill-list {
       list-style: none;
       display: flex;
@@ -253,7 +262,7 @@
       color: var(--comic-blue);
     }
 
-    /* ================= GALLERY (MARQUEE) ================= */
+    /* ---------- GALLERY (MARQUEE) ---------- */
     .marquee-section { margin-bottom: 60px; }
     .marquee-header {
       display: flex;
@@ -274,6 +283,7 @@
     }
     .see-all-btn:hover { color: var(--comic-blue); }
     .see-all-btn.active { color: var(--comic-blue); }
+
     .marquee-outer {
       overflow-x: auto;
       overflow-y: hidden;
@@ -286,21 +296,23 @@
     .marquee-outer::-webkit-scrollbar { height: 6px; }
     .marquee-outer::-webkit-scrollbar-track { background: transparent; }
     .marquee-outer::-webkit-scrollbar-thumb { background: var(--espresso); border-radius: 3px; }
+
     .marquee-track {
       display: flex;
       gap: 25px;
       padding: 0 20px;
-      width: max-content;
-      /* Default animation – will be overridden by inline style if needed */
-      animation: marqueeScroll 25s linear infinite;
+      width: max-content;            /* important for seamless looping */
       will-change: transform;
       transform: translateZ(0);
+      /* Default animation – JavaScript may override this if fewer than 4 items */
+      animation: marqueeScroll 25s linear infinite;
     }
     .marquee-outer:hover .marquee-track { animation-play-state: paused; }
     @keyframes marqueeScroll {
       from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
+      to   { transform: translateX(-50%); }   /* moves left by half the total width */
     }
+
     .marquee-item {
       flex: 0 0 auto;
       width: 260px;
@@ -310,7 +322,7 @@
       overflow: hidden;
       cursor: pointer;
       transition: box-shadow 0.3s ease, transform 0.3s ease;
-      content-visibility: auto;
+      content-visibility: auto;       /* performance: skip off‑screen rendering */
       contain-intrinsic-size: 260px 325px;
     }
     .marquee-item:hover {
@@ -319,7 +331,7 @@
     }
     .marquee-thumb {
       position: relative;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 4 / 5;            /* width:height = 4:5 */
       background-color: #e0d5c0;
       overflow: hidden;
     }
@@ -330,7 +342,7 @@
       height: 100%;
       object-fit: cover;
     }
-    .marquee-thumb.no-image::after {
+    .marquee-thumb.no-image::after {   /* placeholder if image missing */
       content: "add image →";
       position: absolute;
       inset: 0;
@@ -343,7 +355,7 @@
       opacity: 0.5;
       z-index: 2;
     }
-    .marquee-thumb .play-badge {
+    .marquee-thumb .play-badge {       /* video indicator */
       position: absolute;
       top: 10px;
       right: 10px;
@@ -357,7 +369,7 @@
       font-size: 12px;
       z-index: 3;
     }
-    .folder-count {
+    .folder-count {                    /* number badge on folder cards */
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -371,6 +383,7 @@
     .marquee-info { padding: 15px 18px; }
     .marquee-info h3 { font-size: 20px; font-weight: 400; }
 
+    /* Expanded (grid) view when "See All" is clicked */
     .marquee-outer.expanded {
       overflow-x: visible;
       overflow-y: visible;
@@ -380,19 +393,19 @@
       width: 100%;
       padding: 20px;
       justify-content: center;
-      animation: none !important; /* force override */
+      animation: none !important;   /* stop scrolling */
     }
     .marquee-outer.expanded .marquee-item {
       content-visibility: visible;
     }
 
-    /* ================= LIGHTBOX ================= */
+    /* ---------- LIGHTBOX ---------- */
     .lightbox {
       position: fixed;
       inset: 0;
       background: rgba(33, 30, 28, 0.95);
       z-index: 100;
-      display: none;
+      display: none;                /* hidden by default */
       align-items: center;
       justify-content: center;
       padding: 20px;
@@ -429,7 +442,7 @@
       top: 80px;
       right: 25px;
       font-size: 18px;
-      color: #ffffff;
+      color: #fff;
       background: none;
       border: none;
       cursor: pointer;
@@ -453,7 +466,7 @@
     .lightbox-next { right: 20px; }
     .lightbox-nav:hover { color: var(--mustard); }
 
-    /* ================= CONTACT ================= */
+    /* ---------- CONTACT ---------- */
     .contact-card {
       background: var(--sand);
       padding: 50px;
@@ -481,7 +494,7 @@
       transform: translateY(-2px);
     }
 
-    /* ================= FOOTER ================= */
+    /* ---------- FOOTER ---------- */
     footer {
       text-align: center;
       padding: 40px 24px 60px;
@@ -493,7 +506,8 @@
     }
     footer p { margin-bottom: 5px; }
 
-    /* ================= PERFORMANCE ================= */
+    /* ---------- PERFORMANCE ---------- */
+    /* Off‑screen sections are skipped for rendering until needed */
     .about,
     .credits,
     .marquee-section,
@@ -502,7 +516,7 @@
       contain-intrinsic-size: 1000px;
     }
 
-    /* ================= RESPONSIVE ================= */
+    /* ---------- RESPONSIVE ---------- */
     @media (max-width: 800px) {
       .hero-lower {
         flex-direction: column;
@@ -523,15 +537,20 @@
 </head>
 <body>
 
-  <!-- Language Toggle -->
+  <!-- ============================================================
+       HTML STRUCTURE – all text is loaded from JavaScript
+       ============================================================ -->
+
+  <!-- Language toggle button – shows "DE" when English is active, and vice versa -->
   <button class="lang-toggle" id="langToggle">DE</button>
 
-  <!-- Parallax Backgrounds -->
+  <!-- Parallax background layers – images are set by JavaScript -->
   <div id="layer-back" class="bg-layer" data-bg="assets/bg-desktop-back.jpg"></div>
   <div id="layer-clouds" class="bg-layer" data-bg="assets/bg-desktop-clouds.png"></div>
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
+    <!-- data-i18n tells JavaScript which translation key to use -->
     <h1 class="hero-title" data-i18n="heroTitle"></h1>
     <div class="hero-bar" data-i18n="heroBar"></div>
     <div class="hero-lower">
@@ -546,6 +565,7 @@
           <li><a href="#contact" data-i18n="navContact"></a></li>
         </ul>
       </div>
+      <!-- Rotating images – loaded from data-src -->
       <div class="hero-rotator" id="heroRotator">
         <img src="" data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active">
         <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2">
@@ -563,6 +583,7 @@
   </section>
 
   <!-- ================= GALLERY SECTIONS ================= -->
+  <!-- Each gallery section has a track element where cards will be injected -->
   <section id="photography" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionPhotography"></h2>
@@ -639,9 +660,11 @@
     <div class="contact-card">
       <p data-i18n="contactText"></p>
       <div class="contact-links">
+        <!-- Email link gets its href from translations -->
         <a href="#" id="emailLink" data-i18n="emailMe"></a>
-        <a href="#" data-i18n="socialInstagram">Instagram</a>
-        <a href="#" data-i18n="socialLinkedIn">LinkedIn</a>
+        <!-- Social links – the href will be set by JavaScript from translations -->
+        <a href="#" data-i18n="socialInstagram"></a>
+        <a href="#" data-i18n="socialLinkedIn"></a>
       </div>
     </div>
   </section>
@@ -664,11 +687,19 @@
   </div>
 
   <script>
-    /* =================================================================
-       ALL TEXT CONTENT – EDIT EVERYTHING HERE
-       ================================================================= */
+    /* ============================================================
+       JAVASCRIPT – the brain of the website
+       ============================================================ */
+
+    /* ============================================================
+       STEP 1: ALL TEXT CONTENT (translations)
+       ============================================================ */
+    // This object stores every piece of text on the site in two languages.
+    // To change any text, simply edit the value inside the appropriate language block.
+    // To add a new language, copy the 'de' block, rename it (e.g., 'fr'), and translate the values.
     const translations = {
       en: {
+        // ----- Hero -----
         heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
         heroBar: 'JOGDA',
         heroSubtitle: 'Journey of Gestures, Digital Archive',
@@ -679,15 +710,18 @@
         navExperience: 'Experience',
         navContact: 'Contact',
 
-        aboutQuote: '"I am a 20-year-old South African with a Spanish name, and I currently live in Austria. I’m involved in a wide variety of things, such as design, photography and short films. I have traveled far alone but with that experience I understand others in a way that I want to be understood."',
+        // ----- About -----
+        aboutQuote: '"I am a 20-year-old South African with a Spanish name, and I currently live in Austria. I\'m involved in a wide variety of things, such as design, photography and short films. I have traveled far alone but with that experience I understand others in a way that I want to be understood."',
         aboutAuthor: '-Alejo',
 
+        // ----- Gallery section titles -----
         sectionPhotography: 'Photography',
         sectionFilm: 'Film',
         sectionArt: 'Art',
         seeAll: 'See All',
         showLess: 'Show Less',
 
+        // ----- Experience -----
         experienceTitle: 'Production Experience',
         credit1Title: 'Runner',
         credit1Detail: 'Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.',
@@ -706,20 +740,27 @@
         lang2: 'German (B2)',
         lang3: 'Dutch (B1)',
 
+        // ----- Contact -----
         contactText: 'Whether you have a question, a project idea, or just want to say hi — my inbox is open.',
         emailMe: 'Email me',
-        emailAddress: 'Alejandrowessels05@gmail.com',
+        emailAddress: 'Alejandrowessels05@gmail.com',  // used for mailto: link and display
         socialInstagram: 'Instagram',
         socialLinkedIn: 'LinkedIn',
+        // Social media URLs – paste your links here
+        socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
+        socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
 
+        // ----- Footer -----
         footerAddress: 'Sechshauserstrasse 9, Wien, Austria',
         footerPhone: '+43 681 84315549',
         footerEmail: 'alejandrowessels05@gmail.com',
 
+        // ----- Lightbox -----
         close: 'close ✕',
         prev: '←',
         next: '→',
 
+        // ----- Gallery folder names (for Photography albums) -----
         folderAlbum1: 'Album 1',
         folderAlbum2: 'Album 2',
         folderAlbum3: 'Album 3',
@@ -727,6 +768,7 @@
         folderAlbum5: 'Album 5',
       },
       de: {
+        // ----- Hero -----
         heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
         heroBar: 'JOGDA',
         heroSubtitle: 'Reise der Gesten, Digitales Archiv',
@@ -737,15 +779,18 @@
         navExperience: 'Erfahrung',
         navContact: 'Kontakt',
 
+        // ----- About -----
         aboutQuote: '"Ich bin ein 20-jähriger Südafrikaner mit einem spanischen Namen und lebe derzeit in Österreich. Ich beschäftige mich mit den unterschiedlichsten Dingen, wie zum Beispiel Design, Fotografie und Kurzfilmen. Ich bin allein weit gereist, und durch diese Erfahrung verstehe ich andere so, wie ich selbst verstanden werden möchte."',
         aboutAuthor: '-Alejo',
 
+        // ----- Gallery section titles -----
         sectionPhotography: 'Fotografie',
         sectionFilm: 'Film',
         sectionArt: 'Kunst',
         seeAll: 'Alle anzeigen',
         showLess: 'Weniger anzeigen',
 
+        // ----- Experience -----
         experienceTitle: 'Produktionserfahrung',
         credit1Title: 'Runner',
         credit1Detail: 'Regie: Helen Hideko | Wien, Österreich<br>Film-Set-Koordination, Schauspielerbetreuung, Requisitenverwaltung.',
@@ -764,20 +809,26 @@
         lang2: 'Deutsch (B2)',
         lang3: 'Niederländisch (B1)',
 
+        // ----- Contact -----
         contactText: 'Ob du eine Frage hast, eine Projektidee oder einfach nur Hallo sagen möchtest – mein Postfach ist offen.',
         emailMe: 'E-Mail schreiben',
         emailAddress: 'Alejandrowessels05@gmail.com',
         socialInstagram: 'Instagram',
         socialLinkedIn: 'LinkedIn',
+        socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
+        socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
 
+        // ----- Footer -----
         footerAddress: 'Sechshauserstrasse 9, Wien, Österreich',
         footerPhone: '+43 681 84315549',
         footerEmail: 'alejandrowessels05@gmail.com',
 
+        // ----- Lightbox -----
         close: 'schließen ✕',
         prev: '←',
         next: '→',
 
+        // ----- Gallery folder names -----
         folderAlbum1: 'Album 1',
         folderAlbum2: 'Album 2',
         folderAlbum3: 'Album 3',
@@ -786,11 +837,24 @@
       }
     };
 
-    /* =================================================================
-       GALLERY DATA – EDIT YOUR PHOTOS, FILMS, AND ART HERE
-       ================================================================= */
+    /* ============================================================
+       STEP 2: GALLERY DATA – your photos, films, and art
+       ============================================================ */
+    // This array holds all items shown in the three gallery sections.
+    // Each item must have:
+    //   - title: (string) displayed under the thumbnail
+    //   - category: "Photography", "Film", or "Art"
+    //   - folder: (only for Photography) groups images into albums – must match a folderAlbum key above
+    //   - image: (string) path to the image file
+    //   - video: (string, optional) YouTube embed URL – if present, a play badge appears and the lightbox will show the video
+    //   - description: (string, optional) not currently used, but you can add extra info for future features
+    //
+    // To ADD a new item: add a new object to the array.
+    // To REMOVE: delete the object.
+    // To REORDER: move the objects around – they will appear in that order.
     const galleryItems = [
       // ---- PHOTOGRAPHY ----
+      // Items with the same 'folder' value will be grouped into one album card.
       { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.JPG", video: "", description: "" },
       { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.JPG", video: "", description: "" },
       { title: "Joy", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/03.JPG", video: "", description: "" },
@@ -808,6 +872,7 @@
       { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG", video: "", description: "" },
 
       // ---- FILM ----
+      // If you provide a 'video' URL, the card will show a play badge and clicking opens the video in the lightbox.
       { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM", description: "" },
 
       // ---- ART ----
@@ -817,15 +882,17 @@
       { title: "Jippy in catch me", category: "Art", image: "assets/gallery/A04.png", video: "", description: "" },
     ];
 
-    /* =================================================================
-       DO NOT EDIT BELOW THIS LINE – THE REST IS THE ENGINE
-       ================================================================= */
+    /* ============================================================
+       STEP 3: THE ENGINE – DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING
+       ============================================================ */
 
-    // ---- Language Handling ----
-    let currentLang = 'en';
+    // ---- Language handling ----
+    let currentLang = 'en';   // start with English
 
     function applyLanguage(lang) {
       currentLang = lang;
+
+      // 1. Update all elements with data-i18n attributes
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key] !== undefined) {
@@ -833,6 +900,7 @@
         }
       });
 
+      // 2. Set email link href and text
       const emailLink = document.getElementById('emailLink');
       if (emailLink) {
         const email = translations[lang].emailAddress;
@@ -840,6 +908,13 @@
         emailLink.textContent = translations[lang].emailMe;
       }
 
+      // 3. Set social media links
+      const instaLink = document.querySelector('[data-i18n="socialInstagram"]');
+      const linkedinLink = document.querySelector('[data-i18n="socialLinkedIn"]');
+      if (instaLink) instaLink.href = translations[lang].socialInstagramUrl;
+      if (linkedinLink) linkedinLink.href = translations[lang].socialLinkedInUrl;
+
+      // 4. Update "See All" buttons text (they change between "See All" and "Show Less")
       document.querySelectorAll('.see-all-btn').forEach(btn => {
         const outer = document.getElementById(btn.dataset.target);
         if (outer && outer.classList.contains('expanded')) {
@@ -849,33 +924,37 @@
         }
       });
 
+      // 5. Update lightbox close button
       const closeBtn = document.getElementById('lightboxClose');
       if (closeBtn) closeBtn.textContent = translations[lang].close;
 
-      // Render tracks with duplication ON by default (marquee mode)
+      // 6. Re‑render the gallery tracks (so folder names update)
       renderTrack('photoTrack', true);
       renderTrack('filmTrack', true);
       renderTrack('artTrack', true);
-      // If any track is expanded, re-render without duplication
+      // If any track is in expanded mode, re‑render without duplication
       document.querySelectorAll('.marquee-outer.expanded').forEach(outer => {
         const trackKey = outer.id.replace('Outer', 'Track');
         renderTrack(trackKey, false);
       });
     }
 
+    // Language toggle button
     document.getElementById('langToggle').addEventListener('click', () => {
       const newLang = currentLang === 'en' ? 'de' : 'en';
       applyLanguage(newLang);
       document.getElementById('langToggle').textContent = newLang === 'en' ? 'DE' : 'EN';
     });
 
-    // ---- Gallery Rendering ----
+    // ---- Gallery rendering ----
+    // These are the three track containers
     const tracks = {
       photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
       filmTrack:  { element: document.getElementById('filmTrack'),  category: 'Film' },
       artTrack:   { element: document.getElementById('artTrack'),   category: 'Art' }
     };
 
+    // Lazy load images – they only load when they come into view
     function lazyLoadImage(img) {
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
@@ -888,20 +967,24 @@
         }, { rootMargin: '200px' });
         observer.observe(img);
       } else {
-        img.src = img.dataset.src;
+        img.src = img.dataset.src;   // fallback for older browsers
       }
     }
 
+    // Get the translated folder name
     function getFolderDisplayName(folderKey) {
       return translations[currentLang][folderKey] || folderKey;
     }
 
+    // Create a folder card (for Photography)
     function createFolderCard(folderKey, items) {
       const card = document.createElement('div');
       card.className = 'marquee-item folder-card';
+
       const coverItem = items[0];
       const thumb = document.createElement('div');
       thumb.className = 'marquee-thumb' + (coverItem.image ? '' : ' no-image');
+
       if (coverItem.image) {
         const img = document.createElement('img');
         img.dataset.src = coverItem.image;
@@ -910,24 +993,33 @@
         thumb.appendChild(img);
         lazyLoadImage(img);
       }
+
+      // Show number of photos in folder
       const countBadge = document.createElement('div');
       countBadge.className = 'folder-count';
       countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
       thumb.appendChild(countBadge);
+
       const info = document.createElement('div');
       info.className = 'marquee-info';
       info.innerHTML = `<h3>${getFolderDisplayName(folderKey)}</h3>`;
+
       card.appendChild(thumb);
       card.appendChild(info);
+
+      // Clicking a folder opens a slideshow of all photos in it
       card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
       return card;
     }
 
+    // Create a single item card (for Film and Art)
     function createMarqueeItem(item) {
       const card = document.createElement('div');
       card.className = 'marquee-item';
+
       const thumb = document.createElement('div');
       thumb.className = 'marquee-thumb' + (item.image ? '' : ' no-image');
+
       if (item.image) {
         const img = document.createElement('img');
         img.dataset.src = item.image;
@@ -936,21 +1028,28 @@
         thumb.appendChild(img);
         lazyLoadImage(img);
       }
+
+      // If video exists, show a play badge
       if (item.video) {
         const badge = document.createElement('div');
         badge.className = 'play-badge';
         badge.textContent = '▶';
         thumb.appendChild(badge);
       }
+
       const info = document.createElement('div');
       info.className = 'marquee-info';
       info.innerHTML = `<h3>${item.title}</h3>`;
+
       card.appendChild(thumb);
       card.appendChild(info);
+
+      // Click opens the item in the lightbox
       card.addEventListener('click', () => openLightbox(item));
       return card;
     }
 
+    // Group photography items by folder
     function groupByFolder(items) {
       const groups = {};
       items.forEach(item => {
@@ -961,9 +1060,13 @@
       return groups;
     }
 
+    // Main render function
+    // duplicate = true means we double the items for a seamless marquee loop
+    // The animation is only applied if the number of cards >= 4
     function renderTrack(trackKey, duplicate) {
       const track = tracks[trackKey];
       if (!track) return;
+
       const items = galleryItems.filter(item => item.category === track.category);
       track.element.innerHTML = '';
 
@@ -973,9 +1076,8 @@
         const groups = groupByFolder(items);
         const folderKeys = Object.keys(groups);
         cardCount = folderKeys.length;
-        // Animate only if we have at least 4 folders and we want duplication
         const animate = duplicate && cardCount >= 4;
-        const count = animate ? 2 : 1;
+        const count = animate ? 2 : 1;   // only duplicate if we want animation
         for (let i = 0; i < count; i++) {
           folderKeys.forEach(folderKey => {
             track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
@@ -1056,6 +1158,7 @@
       currentSlideIndex = 0;
     }
 
+    // Event listeners for lightbox
     document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
     document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
     document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
@@ -1066,26 +1169,30 @@
       if (e.key === 'ArrowRight') showNextSlide();
     });
 
-    // ---- See All Buttons ----
+    // ---- "See All" buttons ----
     document.querySelectorAll('.see-all-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const targetId = btn.dataset.target;
         const outer = document.getElementById(targetId);
         const trackKey = targetId.replace('Outer', 'Track');
         if (!outer || !tracks[trackKey]) return;
+
         outer.classList.toggle('expanded');
         btn.classList.toggle('active');
         const isExpanded = outer.classList.contains('expanded');
         btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
-        // When expanded, we don't duplicate; when not, we duplicate (if enough items, animation will be set)
+
+        // When expanded, we don't duplicate; otherwise we duplicate if we have enough items
         renderTrack(trackKey, !isExpanded);
       });
     });
 
-    // ---- Hero Rotator ----
+    // ---- Hero rotator ----
     const rotatorImages = document.querySelectorAll('#heroRotator img');
     let currentImageIndex = 0;
+    // Load hero images immediately (they are above the fold)
     rotatorImages.forEach(img => { img.src = img.dataset.src; });
+
     function rotateImages() {
       rotatorImages.forEach(img => img.classList.remove('active'));
       currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
@@ -1093,7 +1200,7 @@
     }
     setInterval(rotateImages, 800);
 
-    // ---- Parallax & Background ----
+    // ---- Parallax & background darkening ----
     window.addEventListener('load', () => {
       document.querySelectorAll('.bg-layer').forEach(layer => {
         const bg = layer.getAttribute('data-bg');
@@ -1107,8 +1214,9 @@
       document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
     });
 
-    const baseBg = { r: 207, g: 194, b: 169 };
-    const darkBg = { r: 185, g: 170, b: 145 };
+    // Darken background gradually on scroll
+    const baseBg = { r: 207, g: 194, b: 169 };   // original sand
+    const darkBg = { r: 185, g: 170, b: 145 };   // darker sand
     function handleBackgroundScroll() {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1120,7 +1228,7 @@
     }
     window.addEventListener('scroll', handleBackgroundScroll);
 
-    // ---- Fade in About ----
+    // ---- Fade in About section ----
     const statementParagraphs = document.querySelectorAll('.statement p');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1132,10 +1240,11 @@
     // ---- Initialisation ----
     applyLanguage('en');
     handleBackgroundScroll();
+
+    // Safety fallback for hero images
     setTimeout(() => {
       rotatorImages.forEach(img => { if (!img.src) img.src = img.dataset.src; });
     }, 100);
   </script>
-
 </body>
 </html>
