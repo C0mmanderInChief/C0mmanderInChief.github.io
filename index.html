@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JOGDA.com</title>
 
-  <!-- ================= FONT ================= -->
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
@@ -291,6 +291,7 @@
       gap: 25px;
       padding: 0 20px;
       width: max-content;
+      /* Default animation – will be overridden by inline style if needed */
       animation: marqueeScroll 25s linear infinite;
       will-change: transform;
       transform: translateZ(0);
@@ -379,7 +380,7 @@
       width: 100%;
       padding: 20px;
       justify-content: center;
-      animation: none;
+      animation: none !important; /* force override */
     }
     .marquee-outer.expanded .marquee-item {
       content-visibility: visible;
@@ -668,7 +669,6 @@
        ================================================================= */
     const translations = {
       en: {
-        // Hero
         heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
         heroBar: 'JOGDA',
         heroSubtitle: 'Journey of Gestures, Digital Archive',
@@ -679,18 +679,15 @@
         navExperience: 'Experience',
         navContact: 'Contact',
 
-        // About
         aboutQuote: '"I am a 20-year-old South African with a Spanish name, and I currently live in Austria. I’m involved in a wide variety of things, such as design, photography and short films. I have traveled far alone but with that experience I understand others in a way that I want to be understood."',
         aboutAuthor: '-Alejo',
 
-        // Gallery section titles
         sectionPhotography: 'Photography',
         sectionFilm: 'Film',
         sectionArt: 'Art',
         seeAll: 'See All',
         showLess: 'Show Less',
 
-        // Experience
         experienceTitle: 'Production Experience',
         credit1Title: 'Runner',
         credit1Detail: 'Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.',
@@ -709,24 +706,20 @@
         lang2: 'German (B2)',
         lang3: 'Dutch (B1)',
 
-        // Contact
         contactText: 'Whether you have a question, a project idea, or just want to say hi — my inbox is open.',
         emailMe: 'Email me',
-        emailAddress: 'Alejandrowessels05@gmail.com',   // used for mailto and display
+        emailAddress: 'Alejandrowessels05@gmail.com',
         socialInstagram: 'Instagram',
         socialLinkedIn: 'LinkedIn',
 
-        // Footer
         footerAddress: 'Sechshauserstrasse 9, Wien, Austria',
         footerPhone: '+43 681 84315549',
         footerEmail: 'alejandrowessels05@gmail.com',
 
-        // Lightbox
         close: 'close ✕',
         prev: '←',
         next: '→',
 
-        // Gallery folder names (for Photography albums)
         folderAlbum1: 'Album 1',
         folderAlbum2: 'Album 2',
         folderAlbum3: 'Album 3',
@@ -734,8 +727,7 @@
         folderAlbum5: 'Album 5',
       },
       de: {
-        // Hero
-        heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',   // name stays same
+        heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
         heroBar: 'JOGDA',
         heroSubtitle: 'Reise der Gesten, Digitales Archiv',
         navAbout: 'Über mich',
@@ -745,18 +737,15 @@
         navExperience: 'Erfahrung',
         navContact: 'Kontakt',
 
-        // About
         aboutQuote: '"Ich bin ein 20-jähriger Südafrikaner mit einem spanischen Namen und lebe derzeit in Österreich. Ich beschäftige mich mit den unterschiedlichsten Dingen, wie zum Beispiel Design, Fotografie und Kurzfilmen. Ich bin allein weit gereist, und durch diese Erfahrung verstehe ich andere so, wie ich selbst verstanden werden möchte."',
         aboutAuthor: '-Alejo',
 
-        // Gallery section titles
         sectionPhotography: 'Fotografie',
         sectionFilm: 'Film',
         sectionArt: 'Kunst',
         seeAll: 'Alle anzeigen',
         showLess: 'Weniger anzeigen',
 
-        // Experience
         experienceTitle: 'Produktionserfahrung',
         credit1Title: 'Runner',
         credit1Detail: 'Regie: Helen Hideko | Wien, Österreich<br>Film-Set-Koordination, Schauspielerbetreuung, Requisitenverwaltung.',
@@ -775,24 +764,20 @@
         lang2: 'Deutsch (B2)',
         lang3: 'Niederländisch (B1)',
 
-        // Contact
         contactText: 'Ob du eine Frage hast, eine Projektidee oder einfach nur Hallo sagen möchtest – mein Postfach ist offen.',
         emailMe: 'E-Mail schreiben',
         emailAddress: 'Alejandrowessels05@gmail.com',
         socialInstagram: 'Instagram',
         socialLinkedIn: 'LinkedIn',
 
-        // Footer
         footerAddress: 'Sechshauserstrasse 9, Wien, Österreich',
         footerPhone: '+43 681 84315549',
         footerEmail: 'alejandrowessels05@gmail.com',
 
-        // Lightbox
         close: 'schließen ✕',
         prev: '←',
         next: '→',
 
-        // Gallery folder names
         folderAlbum1: 'Album 1',
         folderAlbum2: 'Album 2',
         folderAlbum3: 'Album 3',
@@ -806,7 +791,6 @@
        ================================================================= */
     const galleryItems = [
       // ---- PHOTOGRAPHY ----
-      // Each item belongs to a folder (album). Folder names are defined above.
       { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.JPG", video: "", description: "" },
       { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.JPG", video: "", description: "" },
       { title: "Joy", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/03.JPG", video: "", description: "" },
@@ -849,16 +833,13 @@
         }
       });
 
-      // Set email link href and text
       const emailLink = document.getElementById('emailLink');
       if (emailLink) {
         const email = translations[lang].emailAddress;
         emailLink.href = `mailto:${email}`;
-        // The text is already set by data-i18n="emailMe", but we also set it here just in case
         emailLink.textContent = translations[lang].emailMe;
       }
 
-      // Update "See All" buttons
       document.querySelectorAll('.see-all-btn').forEach(btn => {
         const outer = document.getElementById(btn.dataset.target);
         if (outer && outer.classList.contains('expanded')) {
@@ -868,14 +849,14 @@
         }
       });
 
-      // Update lightbox close button
       const closeBtn = document.getElementById('lightboxClose');
       if (closeBtn) closeBtn.textContent = translations[lang].close;
 
-      // Re-render gallery tracks
-      renderTrack('photoTrack', false);
-      renderTrack('filmTrack', false);
-      renderTrack('artTrack', false);
+      // Render tracks with duplication ON by default (marquee mode)
+      renderTrack('photoTrack', true);
+      renderTrack('filmTrack', true);
+      renderTrack('artTrack', true);
+      // If any track is expanded, re-render without duplication
       document.querySelectorAll('.marquee-outer.expanded').forEach(outer => {
         const trackKey = outer.id.replace('Outer', 'Track');
         renderTrack(trackKey, false);
@@ -985,20 +966,30 @@
       if (!track) return;
       const items = galleryItems.filter(item => item.category === track.category);
       track.element.innerHTML = '';
+
+      let cardCount = 0;
+
       if (track.category === 'Photography') {
         const groups = groupByFolder(items);
         const folderKeys = Object.keys(groups);
-        const count = duplicate ? 2 : 1;
+        cardCount = folderKeys.length;
+        // Animate only if we have at least 4 folders and we want duplication
+        const animate = duplicate && cardCount >= 4;
+        const count = animate ? 2 : 1;
         for (let i = 0; i < count; i++) {
           folderKeys.forEach(folderKey => {
             track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
           });
         }
+        track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
       } else {
-        const count = duplicate ? 2 : 1;
+        cardCount = items.length;
+        const animate = duplicate && cardCount >= 4;
+        const count = animate ? 2 : 1;
         for (let i = 0; i < count; i++) {
           items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
         }
+        track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
       }
     }
 
@@ -1086,6 +1077,7 @@
         btn.classList.toggle('active');
         const isExpanded = outer.classList.contains('expanded');
         btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
+        // When expanded, we don't duplicate; when not, we duplicate (if enough items, animation will be set)
         renderTrack(trackKey, !isExpanded);
       });
     });
