@@ -1,0 +1,6 @@
+# robots.txt for JOGDA.com
+User-agent: *
+Allow: /
+
+# Tell Google where to find the sitemap
+Sitemap: https://jogda.com/sitemap.xml
