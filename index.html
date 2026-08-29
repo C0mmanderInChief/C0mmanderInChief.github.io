@@ -245,7 +245,7 @@
         }
         .impressions-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(7, 1fr);
             grid-auto-rows: 130px;
             gap: 18px;
         }
@@ -295,13 +295,14 @@
         /* Featured / Work title - a real grid cell, sits directly left of
            the image beside it, sharing the same row and height. */
         .imp-title {
-            grid-column: 1 / 3;
-            grid-row: span 2;
+            order: 99;
+            grid-column: 7 / 8;
+            grid-row: 1 / -1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            padding: 4px 6px;
+            padding: 4px 10px;
         }
         .imp-title span {
             display: block;
@@ -311,7 +312,7 @@
             color: var(--espresso);
             line-height: 0.92;
             letter-spacing: 0.01em;
-            font-size: clamp(26px, 2.6vw, 42px);
+            font-size: clamp(24px, 2vw, 34px);
         }
 
         /* Asymmetric placement */
@@ -329,6 +330,10 @@
         }
         .imp-4 {
             grid-column: 5 / 7;
+            grid-row: span 2;
+        }
+        .imp-5 {
+            grid-column: 1 / 3;
             grid-row: span 2;
         }
         .imp-6 {
@@ -361,16 +366,23 @@
                 grid-column: 2 / 3;
                 grid-row: span 2;
             }
-            .imp-title {
+            .imp-5 {
                 grid-column: 1 / 2;
                 grid-row: span 2;
-            }
-            .imp-title span {
-                font-size: clamp(22px, 6vw, 30px);
             }
             .imp-6 {
                 grid-column: 2 / 3;
                 grid-row: span 2;
+            }
+            .imp-title {
+                grid-column: 1 / 3;
+                grid-row: auto;
+                align-items: center;
+                text-align: center;
+                padding: 20px 10px 4px;
+            }
+            .imp-title span {
+                font-size: clamp(28px, 8vw, 40px);
             }
         }
 
@@ -1166,14 +1178,15 @@
             { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg" },
         ];
 
-        // Exactly 5 images: the first four fill imp-1..imp-4, the fifth sits
-        // beside the "Featured / Work" title (which is inserted between them
-        // in buildImpressions below).
+        // 6 images fill imp-1..imp-6. "Featured / Work" gets its own
+        // reserved 7th column in the grid (see buildImpressions below),
+        // so it never has to replace one of these.
         const impressionItems = [
             { title: "Carelesness", image: "assets/gallery/01.jpg" },
             { title: "Joy", image: "assets/gallery/03.jpg" },
             { title: "The dark angel", image: "assets/gallery/13.JPG" },
             { title: "ugh", image: "assets/gallery/06.JPG" },
+            { title: "Land of art", image: "assets/gallery/A01.png" },
             { title: "The Bullies of Belgrade", image: "assets/gallery/A03.png" },
         ];
 
@@ -1391,22 +1404,9 @@
             if (!grid) return;
             grid.innerHTML = '';
 
-            const images = impressionItems.slice(0, 5);
-
-            images.forEach((item, idx) => {
-                // The first 4 images fill imp-1..imp-4. Right before the 5th
-                // (last) image, insert the "Featured / Work" title block so
-                // it lands in its own grid cell, directly left of that image.
-                if (idx === 4) {
-                    const titleTile = document.createElement('div');
-                    titleTile.className = 'imp-title';
-                    titleTile.innerHTML = '<span>Featured</span><span>Work</span>';
-                    grid.appendChild(titleTile);
-                }
-
-                const slotClass = idx < 4 ? `imp-${idx + 1}` : 'imp-6';
+            impressionItems.slice(0, 6).forEach((item, idx) => {
                 const tile = document.createElement('div');
-                tile.className = `imp-item ${slotClass}`;
+                tile.className = `imp-item imp-${idx + 1}`;
 
                 const img = document.createElement('img');
                 img.dataset.src = item.image;
@@ -1427,6 +1427,13 @@
 
                 grid.appendChild(tile);
             });
+
+            // Title sits in its own reserved column (see .imp-title CSS),
+            // so it never displaces one of the 6 images above.
+            const titleTile = document.createElement('div');
+            titleTile.className = 'imp-title';
+            titleTile.innerHTML = '<span>Featured</span><span>Work</span>';
+            grid.appendChild(titleTile);
         }
 
         // ---- Lightbox ----
