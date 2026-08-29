@@ -26,7 +26,6 @@
   <meta name="twitter:description" content="Journey of Gestures, Digital Archive - Photography, Film & Art portfolio.">
 
   <!-- ===== FAVICON ===== -->
-  <!-- Your favicon.png should be in the /assets/ folder (not /assets/gallery/) -->
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <link rel="shortcut icon" href="/assets/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png">
@@ -206,6 +205,83 @@
       transition: none;
     }
     .hero-rotator img.active { opacity: 1; }
+
+    /* ============================================================
+       NEW: FEATURED SLIDER (between hero and about)
+       ============================================================ */
+    .featured-slider {
+      padding: 40px 0 60px 0;
+      max-width: 100%;
+      background: var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.6s ease;
+      will-change: transform;
+    }
+    .slider-slide {
+      min-width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--espresso);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .slider-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .slider-slide .slide-caption {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+      background: rgba(33,30,28,0.8);
+      color: var(--sand);
+      padding: 10px 20px;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .slider-dots button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--espresso);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      padding: 0;
+    }
+    .slider-dots button.active {
+      background: var(--espresso);
+      transform: scale(1.2);
+    }
+    .slider-dots button:hover {
+      transform: scale(1.2);
+    }
+    @media (max-width: 800px) {
+      .slider-slide { aspect-ratio: 4 / 3; }
+      .slider-slide .slide-caption { bottom: 15px; left: 15px; font-size: 14px; padding: 6px 14px; }
+    }
 
     /* ---------- ABOUT ---------- */
     .about {
@@ -591,6 +667,16 @@
         <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2">
         <img src="" data-src="assets/gallery/hero-3.png" alt="Rotating image 3">
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEW: FEATURED WORK SLIDER (between hero and about)
+       ============================================================ -->
+  <section class="featured-slider" id="featuredSlider">
+    <div class="slider-container">
+      <div class="slider-track" id="sliderTrack"></div>
+      <div class="slider-dots" id="sliderDots"></div>
     </div>
   </section>
 
@@ -1076,6 +1162,86 @@
       }
     }
 
+    // ============================================================
+    // NEW: FEATURED SLIDER LOGIC
+    // ============================================================
+    let sliderIndex = 0;
+    let sliderInterval = null;
+    const sliderTrack = document.getElementById('sliderTrack');
+    const sliderDots = document.getElementById('sliderDots');
+
+    function buildSlider() {
+      // Use all gallery items that have an image (ignore those without)
+      const slides = galleryItems.filter(item => item.image);
+
+      // Clear previous
+      sliderTrack.innerHTML = '';
+      sliderDots.innerHTML = '';
+
+      // Build slides
+      slides.forEach((item, idx) => {
+        const slide = document.createElement('div');
+        slide.className = 'slider-slide';
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.title || 'Work';
+        slide.appendChild(img);
+        if (item.title) {
+          const caption = document.createElement('div');
+          caption.className = 'slide-caption';
+          caption.textContent = item.title;
+          slide.appendChild(caption);
+        }
+        sliderTrack.appendChild(slide);
+
+        // Dot
+        const dot = document.createElement('button');
+        dot.setAttribute('data-index', idx);
+        dot.addEventListener('click', () => goToSlide(idx));
+        sliderDots.appendChild(dot);
+      });
+
+      // Show first slide
+      goToSlide(0);
+      startAutoPlay();
+    }
+
+    function goToSlide(index) {
+      const slides = sliderTrack.children;
+      const dots = sliderDots.children;
+      if (slides.length === 0) return;
+      if (index < 0) index = slides.length - 1;
+      if (index >= slides.length) index = 0;
+      sliderIndex = index;
+
+      // Move track
+      sliderTrack.style.transform = `translateX(-${index * 100}%)`;
+
+      // Update dots
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.toggle('active', i === index);
+      }
+    }
+
+    function startAutoPlay() {
+      if (sliderInterval) clearInterval(sliderInterval);
+      sliderInterval = setInterval(() => {
+        goToSlide(sliderIndex + 1);
+      }, 4000);
+    }
+
+    function stopAutoPlay() {
+      if (sliderInterval) {
+        clearInterval(sliderInterval);
+        sliderInterval = null;
+      }
+    }
+
+    // Pause autoplay on hover (optional)
+    const sliderContainer = document.querySelector('.slider-container');
+    sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+    sliderContainer.addEventListener('mouseleave', startAutoPlay);
+
     // ---- Lightbox ----
     const lightbox = document.getElementById('lightbox');
     const lightboxMedia = document.getElementById('lightboxMedia');
@@ -1217,6 +1383,7 @@
     // ---- Initialisation ----
     applyLanguage('en');
     handleBackgroundScroll();
+    buildSlider();  // initialise the new slider
 
     setTimeout(() => {
       rotatorImages.forEach(img => { if (!img.src) img.src = img.dataset.src; });
