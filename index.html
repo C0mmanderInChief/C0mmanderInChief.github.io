@@ -1,1360 +1,1698 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ===== PRIMARY META TAGS ===== -->
-  <title>JOGDA.com | Alejandro Fidel Regueros-Wessels - Photography, Film & Art</title>
-  <meta name="description" content="Journey of Gestures, Digital Archive - Portfolio of Alejandro Fidel Regueros-Wessels featuring photography, film, art, and creative projects.">
-  <meta name="keywords" content="Alejandro Fidel Regueros-Wessels, JOGDA, photography, film, art, portfolio, digital archive, gestures">
-  <meta name="author" content="Alejandro Fidel Regueros-Wessels">
+    <!-- ===== PRIMARY META TAGS ===== -->
+    <title>JOGDA.com | Alejandro Fidel Regueros-Wessels - Photography, Film & Art</title>
+    <meta name="description" content="Journey of Gestures, Digital Archive - Portfolio of Alejandro Fidel Regueros-Wessels featuring photography, film, art, and creative projects." />
+    <meta name="keywords" content="Alejandro Fidel Regueros-Wessels, JOGDA, photography, film, art, portfolio, digital archive, gestures" />
+    <meta name="author" content="Alejandro Fidel Regueros-Wessels" />
 
-  <!-- ===== CANONICAL URL ===== -->
-  <link rel="canonical" href="https://jogda.com">
+    <!-- ===== CANONICAL URL ===== -->
+    <link rel="canonical" href="https://jogda.com" />
 
-  <!-- ===== OPEN GRAPH (for social sharing) ===== -->
-  <meta property="og:title" content="JOGDA.com | Alejandro Fidel Regueros-Wessels">
-  <meta property="og:description" content="Journey of Gestures, Digital Archive - Photography, Film & Art portfolio.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jogda.com">
-  <meta property="og:image" content="https://jogda.com/assets/og-image.jpg">
+    <!-- ===== OPEN GRAPH ===== -->
+    <meta property="og:title" content="JOGDA.com | Alejandro Fidel Regueros-Wessels" />
+    <meta property="og:description" content="Journey of Gestures, Digital Archive - Photography, Film & Art portfolio." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jogda.com" />
+    <meta property="og:image" content="https://jogda.com/assets/og-image.jpg" />
 
-  <!-- ===== TWITTER CARD ===== -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="JOGDA.com | Alejandro Fidel Regueros-Wessels">
-  <meta name="twitter:description" content="Journey of Gestures, Digital Archive - Photography, Film & Art portfolio.">
+    <!-- ===== TWITTER CARD ===== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JOGDA.com | Alejandro Fidel Regueros-Wessels" />
+    <meta name="twitter:description" content="Journey of Gestures, Digital Archive - Photography, Film & Art portfolio." />
 
-  <!-- ===== FAVICON ===== -->
-  <link rel="icon" type="image/png" href="/assets/favicon.png">
-  <link rel="shortcut icon" href="/assets/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png">
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+    <link rel="shortcut icon" href="/assets/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png" />
 
-  <!-- ================= FONT ================= -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <!-- ===== FONT ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
 
-  <style>
-    /* ============================================================
-       CSS STYLES – explains the visual design
-       ============================================================ */
+    <style>
+        /* ============================================================
+           CSS STYLES
+           ============================================================ */
 
-    /* ---------- CSS VARIABLES (easy theming) ---------- */
-    :root {
-      --mustard: #EBD45C;
-      --sand:    #CFC2A9;
-      --espresso: #211E1C;
-      --comic-blue: #000000;
-      --grain:   0.04;
-      --font-body: 'Archivo Black', sans-serif;
-    }
+        /* ---------- CSS VARIABLES ---------- */
+        :root {
+            --mustard: #EBD45C;
+            --sand: #CFC2A9;
+            --espresso: #211E1C;
+            --comic-blue: #000000;
+            --grain: 0.04;
+            --font-body: 'Archivo Black', sans-serif;
+        }
 
-    /* ---------- Reset & Base ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+        /* ---------- Reset & Base ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body {
-      background-color: var(--sand);
-      color: var(--espresso);
-      font-family: var(--font-body);
-      font-size: 18px;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      transition: background-color 0.4s ease;
-    }
+        body {
+            background-color: var(--sand);
+            color: var(--espresso);
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            transition: background-color 0.4s ease;
+        }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-    section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 90px 24px;
-    }
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 24px;
+        }
 
-    h1, h2, h3 {
-      font-family: var(--font-body);
-      font-weight: 400;
-      line-height: 1.1;
-    }
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.1;
+        }
 
-    /* ---------- GRAIN OVERLAY ---------- */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 999;
-      opacity: var(--grain);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23fff' fill-opacity='0.03'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 100px 100px;
-    }
+        /* ---------- GRAIN OVERLAY ---------- */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+            opacity: var(--grain);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23fff' fill-opacity='0.03'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 100px 100px;
+        }
 
-    /* ---------- PARALLAX BACKGROUND LAYERS ---------- */
-    .bg-layer {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-size: 100% auto;
-      background-repeat: repeat-y;
-      z-index: -2;
-      will-change: transform;
-    }
-    #layer-clouds { z-index: -1; }
+        /* ---------- PARALLAX BACKGROUND LAYERS ---------- */
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 100% auto;
+            background-repeat: repeat-y;
+            z-index: -2;
+            will-change: transform;
+        }
+        #layer-clouds {
+            z-index: -1;
+        }
 
-    /* ---------- LANGUAGE TOGGLE ---------- */
-    .lang-toggle {
-      position: fixed;
-      top: 20px;
-      right: 25px;
-      z-index: 1000;
-      background: var(--espresso);
-      color: var(--sand);
-      border: none;
-      padding: 10px 18px;
-      font-family: var(--font-body);
-      font-size: 14px;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    .lang-toggle:hover {
-      background: var(--mustard);
-      color: var(--espresso);
-    }
+        /* ---------- LANGUAGE TOGGLE ---------- */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1000;
+            background: var(--espresso);
+            color: var(--sand);
+            border: none;
+            padding: 10px 18px;
+            font-family: var(--font-body);
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            border-radius: 2px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .lang-toggle:hover {
+            background: var(--mustard);
+            color: var(--espresso);
+        }
 
-    /* ---------- HERO SECTION ---------- */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-      padding-top: 40px;
-      padding-bottom: 60px;
-    }
-    .hero-title {
-      font-size: clamp(50px, 8vw, 100px);
-      letter-spacing: -0.02em;
-      color: var(--espresso);
-      line-height: 0.95;
-      margin-bottom: 20px;
-    }
-    .hero-bar {
-      width: 100%;
-      background-color: var(--espresso);
-      color: var(--mustard);
-      text-align: center;
-      padding: 15px 20px;
-      font-size: clamp(24px, 4vw, 40px);
-      letter-spacing: 0.1em;
-      margin-bottom: 25px;
-      border: none;
-    }
-    .hero-lower {
-      display: flex;
-      gap: 30px;
-      align-items: flex-start;
-    }
-    .hero-left { flex: 1; }
-    .hero-subtitle {
-      font-size: 20px;
-      letter-spacing: 0.02em;
-      color: var(--espresso);
-      margin-bottom: 40px;
-    }
-    .hero-nav {
-      list-style: none;
-      margin-top: 10px;
-    }
-    .hero-nav li { margin-bottom: 10px; }
-    .hero-nav a {
-      display: inline-block;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--espresso);
-      transition: color 0.2s, transform 0.2s;
-    }
-    .hero-nav a:hover {
-      color: var(--comic-blue);
-      transform: translateX(5px);
-    }
-    .hero-rotator {
-      width: 300px;
-      height: 300px;
-      border-radius: 2px;
-      overflow: hidden;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .hero-rotator img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0; left: 0;
-      opacity: 0;
-      transform: scale(1.6);
-      transition: none;
-    }
-    .hero-rotator img.active { opacity: 1; }
+        /* ---------- HERO SECTION ---------- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding-top: 40px;
+            padding-bottom: 60px;
+        }
+        .hero-title {
+            font-size: clamp(50px, 8vw, 100px);
+            letter-spacing: -0.02em;
+            color: var(--espresso);
+            line-height: 0.95;
+            margin-bottom: 20px;
+        }
+        .hero-bar {
+            width: 100%;
+            background-color: var(--espresso);
+            color: var(--mustard);
+            text-align: center;
+            padding: 15px 20px;
+            font-size: clamp(24px, 4vw, 40px);
+            letter-spacing: 0.1em;
+            margin-bottom: 25px;
+            border: none;
+        }
+        .hero-lower {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+        .hero-left {
+            flex: 1;
+        }
+        .hero-subtitle {
+            font-size: 20px;
+            letter-spacing: 0.02em;
+            color: var(--espresso);
+            margin-bottom: 40px;
+        }
+        .hero-nav {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .hero-nav li {
+            margin-bottom: 10px;
+        }
+        .hero-nav a {
+            display: inline-block;
+            font-size: 14px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--espresso);
+            transition: color 0.2s, transform 0.2s;
+        }
+        .hero-nav a:hover {
+            color: var(--comic-blue);
+            transform: translateX(5px);
+        }
+        .hero-rotator {
+            width: 300px;
+            height: 300px;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .hero-rotator img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transform: scale(1.6);
+            transition: none;
+        }
+        .hero-rotator img.active {
+            opacity: 1;
+        }
 
-    /* ============================================================
-       IMPRESSIONS – masonry-style image collage
-       (sits between hero and about, mixed tile sizes, one grid)
-       ============================================================ */
-    .impressions {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 24px 20px;
-    }
-    .impressions-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-auto-rows: 130px;
-      gap: 18px;
-    }
-    .imp-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 2px;
-      background: var(--espresso);
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .imp-item:hover {
-      transform: translateY(-4px);
-      box-shadow: 6px 6px 0 0 var(--comic-blue);
-      z-index: 2;
-    }
-    .imp-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s ease;
-    }
-    .imp-item:hover img { transform: scale(1.05); }
-    .imp-item .imp-caption {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      background: rgba(33, 30, 28, 0.8);
-      color: var(--sand);
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      padding: 6px 12px;
-      border-radius: 2px;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.25s ease, transform 0.25s ease;
-      pointer-events: none;
-    }
-    .imp-item:hover .imp-caption {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        /* ============================================================
+           IMPRESSIONS – masonry-style image collage
+           ============================================================ */
+        .impressions {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 20px;
+        }
+        .impressions-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-auto-rows: 130px;
+            gap: 18px;
+        }
+        .imp-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2px;
+            background: var(--espresso);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .imp-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 6px 6px 0 0 var(--comic-blue);
+            z-index: 2;
+        }
+        .imp-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .imp-item:hover img {
+            transform: scale(1.05);
+        }
+        .imp-item .imp-caption {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: rgba(33, 30, 28, 0.8);
+            color: var(--sand);
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            padding: 6px 12px;
+            border-radius: 2px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            pointer-events: none;
+        }
+        .imp-item:hover .imp-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* Asymmetric placement of the six tiles across the grid */
-    .imp-1 { grid-column: 1 / 4; grid-row: span 4; }
-    .imp-2 { grid-column: 4 / 7; grid-row: span 2; }
-    .imp-3 { grid-column: 4 / 5; grid-row: span 2; }
-    .imp-4 { grid-column: 5 / 7; grid-row: span 2; }
-    .imp-5 { grid-column: 1 / 3; grid-row: span 2; }
-    .imp-6 { grid-column: 3 / 4; grid-row: span 2; }
+        /* Asymmetric placement */
+        .imp-1 {
+            grid-column: 1 / 4;
+            grid-row: span 4;
+        }
+        .imp-2 {
+            grid-column: 4 / 7;
+            grid-row: span 2;
+        }
+        .imp-3 {
+            grid-column: 4 / 5;
+            grid-row: span 2;
+        }
+        .imp-4 {
+            grid-column: 5 / 7;
+            grid-row: span 2;
+        }
+        .imp-5 {
+            grid-column: 1 / 3;
+            grid-row: span 2;
+        }
+        .imp-6 {
+            grid-column: 3 / 4;
+            grid-row: span 2;
+        }
 
-    @media (max-width: 800px) {
-      .impressions { padding: 30px 20px 10px; }
-      .impressions-grid {
-        grid-template-columns: repeat(2, 1fr);
-        grid-auto-rows: 160px;
-        gap: 12px;
-      }
-      .imp-1 { grid-column: 1 / 3; grid-row: span 3; }
-      .imp-2 { grid-column: 1 / 3; grid-row: span 2; }
-      .imp-3 { grid-column: 1 / 2; grid-row: span 2; }
-      .imp-4 { grid-column: 2 / 3; grid-row: span 2; }
-      .imp-5 { grid-column: 1 / 2; grid-row: span 2; }
-      .imp-6 { grid-column: 2 / 3; grid-row: span 2; }
-    }
+        @media (max-width: 800px) {
+            .impressions {
+                padding: 30px 20px 10px;
+            }
+            .impressions-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 160px;
+                gap: 12px;
+            }
+            .imp-1 {
+                grid-column: 1 / 3;
+                grid-row: span 3;
+            }
+            .imp-2 {
+                grid-column: 1 / 3;
+                grid-row: span 2;
+            }
+            .imp-3 {
+                grid-column: 1 / 2;
+                grid-row: span 2;
+            }
+            .imp-4 {
+                grid-column: 2 / 3;
+                grid-row: span 2;
+            }
+            .imp-5 {
+                grid-column: 1 / 2;
+                grid-row: span 2;
+            }
+            .imp-6 {
+                grid-column: 2 / 3;
+                grid-row: span 2;
+            }
+        }
 
-    /* ---------- ABOUT ---------- */
-    .about {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 90px 24px;
-    }
-    .statement {
-      font-size: 20px;
-      color: var(--espresso);
-      max-width: 550px;
-      margin: 0 auto;
-    }
-    .statement h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-      text-align: center;
-      font-weight: 400;
-    }
-    .statement p {
-      margin-bottom: 30px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .statement p.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        /* ---------- ABOUT ---------- */
+        .about {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 90px 24px;
+        }
+        .statement {
+            font-size: 20px;
+            color: var(--espresso);
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        .statement h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 400;
+        }
+        .statement p {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .statement p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* ---------- EXPERIENCE / CREDITS ---------- */
-    .credits {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 90px 24px;
-    }
-    .credits h3 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--espresso);
-    }
-    .credit-item {
-      margin-bottom: 25px;
-      padding: 10px 15px;
-      background-color: rgba(207, 194, 169, 0.5);
-      border-radius: 2px;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    .credit-item:hover {
-      background-color: rgba(207, 194, 169, 0.8);
-      box-shadow: 5px 5px 0 0 var(--comic-blue);
-    }
-    .credit-title {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-    .credit-detail {
-      font-size: 15px;
-      color: var(--espresso);
-    }
-    .skill-list {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-    .skill-list li {
-      font-size: 14px;
-      background: var(--sand);
-      padding: 8px 15px;
-      border-radius: 20px;
-      border: 1px solid var(--espresso);
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .skill-list li:hover {
-      border-color: var(--comic-blue);
-      color: var(--comic-blue);
-    }
+        /* ---------- EXPERIENCE / CREDITS ---------- */
+        .credits {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 24px;
+        }
+        .credits h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--espresso);
+        }
+        .credit-item {
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            background-color: rgba(207, 194, 169, 0.5);
+            border-radius: 2px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .credit-item:hover {
+            background-color: rgba(207, 194, 169, 0.8);
+            box-shadow: 5px 5px 0 0 var(--comic-blue);
+        }
+        .credit-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .credit-detail {
+            font-size: 15px;
+            color: var(--espresso);
+        }
+        .skill-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .skill-list li {
+            font-size: 14px;
+            background: var(--sand);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid var(--espresso);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .skill-list li:hover {
+            border-color: var(--comic-blue);
+            color: var(--comic-blue);
+        }
 
-    /* ---------- GALLERY (MARQUEE) ---------- */
-    .marquee-section { margin-bottom: 60px; }
-    .marquee-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 25px;
-    }
-    .marquee-header .section-title { font-size: 30px; letter-spacing: -0.01em; }
-    .see-all-btn {
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--espresso);
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-    .see-all-btn:hover { color: var(--comic-blue); }
-    .see-all-btn.active { color: var(--comic-blue); }
+        /* ---------- GALLERY (MARQUEE) ---------- */
+        .marquee-section {
+            margin-bottom: 60px;
+        }
+        .marquee-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .marquee-header .section-title {
+            font-size: 30px;
+            letter-spacing: -0.01em;
+        }
+        .marquee-header .btn-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .see-all-btn {
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--espresso);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 4px 0;
+        }
+        .see-all-btn:hover {
+            color: var(--comic-blue);
+        }
+        .see-all-btn.active {
+            color: var(--comic-blue);
+        }
 
-    .marquee-outer {
-      overflow-x: auto;
-      overflow-y: hidden;
-      padding: 10px 0;
-      border-top: 1px solid var(--espresso);
-      border-bottom: 1px solid var(--espresso);
-      scrollbar-width: thin;
-      scrollbar-color: var(--espresso) transparent;
-    }
-    .marquee-outer::-webkit-scrollbar { height: 6px; }
-    .marquee-outer::-webkit-scrollbar-track { background: transparent; }
-    .marquee-outer::-webkit-scrollbar-thumb { background: var(--espresso); border-radius: 3px; }
+        /* secondary "See All" button (appears under Expand) */
+        .see-all-secondary {
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--espresso);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 0;
+            opacity: 0.7;
+            transition: opacity 0.2s, color 0.2s;
+            display: none;
+            /* hidden by default */;
+        }
+        .see-all-secondary:hover {
+            color: var(--comic-blue);
+            opacity: 1;
+        }
+        .see-all-secondary.visible {
+            display: inline-block;
+        }
 
-    .marquee-track {
-      display: flex;
-      gap: 25px;
-      padding: 0 20px;
-      width: max-content;
-      will-change: transform;
-      transform: translateZ(0);
-      animation: marqueeScroll 25s linear infinite;
-    }
-    .marquee-outer:hover .marquee-track { animation-play-state: paused; }
-    @keyframes marqueeScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
+        .marquee-outer {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 10px 0;
+            border-top: 1px solid var(--espresso);
+            border-bottom: 1px solid var(--espresso);
+            scrollbar-width: thin;
+            scrollbar-color: var(--espresso) transparent;
+        }
+        .marquee-outer::-webkit-scrollbar {
+            height: 6px;
+        }
+        .marquee-outer::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .marquee-outer::-webkit-scrollbar-thumb {
+            background: var(--espresso);
+            border-radius: 3px;
+        }
 
-    .marquee-item {
-      flex: 0 0 auto;
-      width: 260px;
-      background: var(--sand);
-      border: 1px solid var(--espresso);
-      border-radius: 2px;
-      overflow: hidden;
-      cursor: pointer;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
-      content-visibility: auto;
-      contain-intrinsic-size: 260px 325px;
-    }
-    .marquee-item:hover {
-      box-shadow: 6px 6px 0 0 var(--comic-blue);
-      transform: translateY(-4px);
-    }
-    .marquee-thumb {
-      position: relative;
-      aspect-ratio: 4 / 5;
-      background-color: #e0d5c0;
-      overflow: hidden;
-    }
-    .marquee-thumb img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .marquee-thumb.no-image::after {
-      content: "add image →";
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      letter-spacing: 0.05em;
-      color: var(--espresso);
-      opacity: 0.5;
-      z-index: 2;
-    }
-    .marquee-thumb .play-badge {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: var(--espresso);
-      color: var(--sand);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      z-index: 3;
-    }
-    .folder-count {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: var(--espresso);
-      color: var(--sand);
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 12px;
-      z-index: 3;
-    }
-    .marquee-info { padding: 15px 18px; }
-    .marquee-info h3 { font-size: 20px; font-weight: 400; }
+        .marquee-track {
+            display: flex;
+            gap: 25px;
+            padding: 0 20px;
+            width: max-content;
+            will-change: transform;
+            transform: translateZ(0);
+            animation: marqueeScroll 25s linear infinite;
+        }
+        .marquee-outer:hover .marquee-track {
+            animation-play-state: paused;
+        }
+        @keyframes marqueeScroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
 
-    .marquee-outer.expanded {
-      overflow-x: visible;
-      overflow-y: visible;
-    }
-    .marquee-outer.expanded .marquee-track {
-      flex-wrap: wrap;
-      width: 100%;
-      padding: 20px;
-      justify-content: center;
-      animation: none !important;
-    }
-    .marquee-outer.expanded .marquee-item {
-      content-visibility: visible;
-    }
+        .marquee-item {
+            flex: 0 0 auto;
+            width: 260px;
+            background: var(--sand);
+            border: 1px solid var(--espresso);
+            border-radius: 2px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            content-visibility: auto;
+            contain-intrinsic-size: 260px 325px;
+        }
+        .marquee-item:hover {
+            box-shadow: 6px 6px 0 0 var(--comic-blue);
+            transform: translateY(-4px);
+        }
+        .marquee-thumb {
+            position: relative;
+            aspect-ratio: 4 / 5;
+            background-color: #e0d5c0;
+            overflow: hidden;
+        }
+        .marquee-thumb img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .marquee-thumb.no-image::after {
+            content: "add image →";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            letter-spacing: 0.05em;
+            color: var(--espresso);
+            opacity: 0.5;
+            z-index: 2;
+        }
+        .marquee-thumb .play-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--espresso);
+            color: var(--sand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            z-index: 3;
+        }
+        .folder-count {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: var(--espresso);
+            color: var(--sand);
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            z-index: 3;
+        }
+        .marquee-info {
+            padding: 15px 18px;
+        }
+        .marquee-info h3 {
+            font-size: 20px;
+            font-weight: 400;
+        }
 
-    /* ---------- LIGHTBOX ---------- */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(33, 30, 28, 0.95);
-      z-index: 100;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .lightbox.open { display: flex; }
-    .lightbox-content {
-      max-width: 95vw;
-      max-height: 95vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox-media {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox-media img {
-      max-width: 95vw;
-      max-height: 95vh;
-      object-fit: contain;
-      display: block;
-      width: auto;
-      height: auto;
-    }
-    .lightbox-media iframe {
-      width: 90vw;
-      height: 90vh;
-      border: 0;
-      display: block;
-    }
-    .lightbox-close {
-      position: fixed;
-      top: 80px;
-      right: 25px;
-      font-size: 18px;
-      color: #fff;
-      background: none;
-      border: none;
-      cursor: pointer;
-      letter-spacing: 0.05em;
-      z-index: 101;
-    }
-    .lightbox-close:hover { color: var(--mustard); }
-    .lightbox-nav {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 40px;
-      color: white;
-      background: none;
-      border: none;
-      cursor: pointer;
-      z-index: 102;
-      padding: 10px;
-    }
-    .lightbox-prev { left: 20px; }
-    .lightbox-next { right: 20px; }
-    .lightbox-nav:hover { color: var(--mustard); }
+        .marquee-outer.expanded {
+            overflow-x: visible;
+            overflow-y: visible;
+        }
+        .marquee-outer.expanded .marquee-track {
+            flex-wrap: wrap;
+            width: 100%;
+            padding: 20px;
+            justify-content: center;
+            animation: none !important;
+        }
+        .marquee-outer.expanded .marquee-item {
+            content-visibility: visible;
+        }
 
-    /* ---------- CONTACT ---------- */
-    .contact-card {
-      background: var(--sand);
-      padding: 50px;
-      border-radius: 2px;
-      text-align: center;
-    }
-    .contact-card p { font-size: 18px; margin-bottom: 35px; }
-    .contact-links {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .contact-links a {
-      color: var(--espresso);
-      font-size: 18px;
-      padding: 8px 15px;
-      display: inline-block;
-      border-radius: 2px;
-      transition: color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .contact-links a:hover {
-      color: var(--comic-blue);
-      box-shadow: 5px 5px 0 0 var(--comic-blue);
-      transform: translateY(-2px);
-    }
+        /* ---------- LIGHTBOX ---------- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(33, 30, 28, 0.95);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            flex-direction: column;
+        }
+        .lightbox.open {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 95vw;
+            max-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .lightbox-media {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+        .lightbox-media img {
+            max-width: 95vw;
+            max-height: 80vh;
+            object-fit: contain;
+            display: block;
+            width: auto;
+            height: auto;
+        }
+        .lightbox-media iframe {
+            width: 90vw;
+            height: 80vh;
+            border: 0;
+            display: block;
+        }
+        /* ---- lightbox title ---- */
+        .lightbox-title {
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 22px;
+            font-weight: 400;
+            margin-top: 20px;
+            text-align: center;
+            letter-spacing: 0.02em;
+            max-width: 90vw;
+            padding: 0 10px;
+        }
+        .lightbox-title .sub {
+            font-size: 16px;
+            opacity: 0.6;
+            font-weight: 300;
+            display: block;
+            margin-top: 4px;
+        }
+        .lightbox-close {
+            position: fixed;
+            top: 80px;
+            right: 25px;
+            font-size: 18px;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            z-index: 101;
+        }
+        .lightbox-close:hover {
+            color: var(--mustard);
+        }
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 102;
+            padding: 10px;
+        }
+        .lightbox-prev {
+            left: 20px;
+        }
+        .lightbox-next {
+            right: 20px;
+        }
+        .lightbox-nav:hover {
+            color: var(--mustard);
+        }
 
-    /* ---------- FOOTER ---------- */
-    footer {
-      text-align: center;
-      padding: 40px 24px 60px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      color: var(--espresso);
-      border-top: 1px solid var(--espresso);
-      background: var(--sand);
-    }
-    footer p { margin-bottom: 5px; }
+        /* ---------- CONTACT ---------- */
+        .contact-card {
+            background: var(--sand);
+            padding: 50px;
+            border-radius: 2px;
+            text-align: center;
+        }
+        .contact-card p {
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+        .contact-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .contact-links a {
+            color: var(--espresso);
+            font-size: 18px;
+            padding: 8px 15px;
+            display: inline-block;
+            border-radius: 2px;
+            transition: color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .contact-links a:hover {
+            color: var(--comic-blue);
+            box-shadow: 5px 5px 0 0 var(--comic-blue);
+            transform: translateY(-2px);
+        }
 
-    /* ---------- PERFORMANCE ---------- */
-    .about,
-    .credits,
-    .marquee-section,
-    .contact {
-      content-visibility: auto;
-      contain-intrinsic-size: 1000px;
-    }
+        /* ---------- FOOTER ---------- */
+        footer {
+            text-align: center;
+            padding: 40px 24px 60px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            color: var(--espresso);
+            border-top: 1px solid var(--espresso);
+            background: var(--sand);
+        }
+        footer p {
+            margin-bottom: 5px;
+        }
 
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 800px) {
-      .hero-lower {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .hero-rotator {
-        width: 100%;
-        height: 250px;
-        margin-top: 20px;
-      }
-      .about { padding: 60px 20px; }
-      .credits { padding: 60px 20px; }
-      .hero { padding-top: 20px; }
-      .hero-title { font-size: 12vw; }
-      .marquee-item { width: 210px; }
-    }
-  </style>
+        /* ---------- PERFORMANCE ---------- */
+        .about,
+        .credits,
+        .marquee-section,
+        .contact {
+            content-visibility: auto;
+            contain-intrinsic-size: 1000px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 800px) {
+            .hero-lower {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-rotator {
+                width: 100%;
+                height: 250px;
+                margin-top: 20px;
+            }
+            .about {
+                padding: 60px 20px;
+            }
+            .credits {
+                padding: 60px 20px;
+            }
+            .hero {
+                padding-top: 20px;
+            }
+            .hero-title {
+                font-size: 12vw;
+            }
+            .marquee-item {
+                width: 210px;
+            }
+            .marquee-header .btn-group {
+                gap: 10px;
+            }
+            .lightbox-title {
+                font-size: 18px;
+                margin-top: 14px;
+            }
+            .lightbox-title .sub {
+                font-size: 14px;
+            }
+            .lightbox-media iframe {
+                width: 95vw;
+                height: 70vh;
+            }
+        }
+        @media (max-width: 480px) {
+            .marquee-item {
+                width: 170px;
+            }
+            .marquee-info h3 {
+                font-size: 16px;
+            }
+            .lightbox-title {
+                font-size: 16px;
+            }
+            .lightbox-title .sub {
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <!-- ============================================================
-       HTML STRUCTURE – all text is loaded from JavaScript
-       ============================================================ -->
+    <!-- ============================================================
+    HTML STRUCTURE
+    ============================================================ -->
 
-  <button class="lang-toggle" id="langToggle">DE</button>
+    <button class="lang-toggle" id="langToggle">DE</button>
 
-  <!-- Parallax background layers -->
-  <div id="layer-back" class="bg-layer" data-bg="assets/bg-desktop-back.jpg"></div>
-  <div id="layer-clouds" class="bg-layer" data-bg="assets/bg-desktop-clouds.png"></div>
+    <!-- Parallax background layers -->
+    <div id="layer-back" class="bg-layer" data-bg="assets/bg-desktop-back.jpg"></div>
+    <div id="layer-clouds" class="bg-layer" data-bg="assets/bg-desktop-clouds.png"></div>
 
-  <!-- ================= HERO ================= -->
-  <section class="hero" id="hero">
-    <h1 class="hero-title" data-i18n="heroTitle"></h1>
-    <div class="hero-bar" data-i18n="heroBar"></div>
-    <div class="hero-lower">
-      <div class="hero-left">
-        <div class="hero-subtitle" data-i18n="heroSubtitle"></div>
-        <ul class="hero-nav">
-          <li><a href="#about" data-i18n="navAbout"></a></li>
-          <li><a href="#photography" data-i18n="navPhotography"></a></li>
-          <li><a href="#film" data-i18n="navFilm"></a></li>
-          <li><a href="#art" data-i18n="navArt"></a></li>
-          <li><a href="#experience" data-i18n="navExperience"></a></li>
-          <li><a href="#contact" data-i18n="navContact"></a></li>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="hero">
+        <h1 class="hero-title" data-i18n="heroTitle"></h1>
+        <div class="hero-bar" data-i18n="heroBar"></div>
+        <div class="hero-lower">
+            <div class="hero-left">
+                <div class="hero-subtitle" data-i18n="heroSubtitle"></div>
+                <ul class="hero-nav">
+                    <li><a href="#about" data-i18n="navAbout"></a></li>
+                    <li><a href="#photography" data-i18n="navPhotography"></a></li>
+                    <li><a href="#film" data-i18n="navFilm"></a></li>
+                    <li><a href="#art" data-i18n="navArt"></a></li>
+                    <li><a href="#experience" data-i18n="navExperience"></a></li>
+                    <li><a href="#contact" data-i18n="navContact"></a></li>
+                </ul>
+            </div>
+            <div class="hero-rotator" id="heroRotator">
+                <img src="" data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active" />
+                <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2" />
+                <img src="" data-src="assets/gallery/hero-3.png" alt="Rotating image 3" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    IMPRESSIONS – masonry-style collage
+    ============================================================ -->
+    <section class="impressions" id="impressions">
+        <div class="impressions-grid" id="impressionsGrid"></div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about" id="about">
+        <div class="statement">
+            <h2>Alejandro Fidel Regueros-Wessels</h2>
+            <p data-i18n="aboutQuote"></p>
+            <p data-i18n="aboutAuthor"></p>
+        </div>
+    </section>
+
+    <!-- ================= GALLERY SECTIONS ================= -->
+
+    <!-- PHOTOGRAPHY (special: secondary "See All" + Close) -->
+    <section id="photography" class="marquee-section">
+        <div class="marquee-header">
+            <h2 class="section-title" data-i18n="sectionPhotography"></h2>
+            <div class="btn-group">
+                <button class="see-all-btn" data-target="photoOuter" data-i18n="seeAll"></button>
+                <button class="see-all-secondary" id="photoSecondarySeeAll" data-i18n="seeAll"></button>
+            </div>
+        </div>
+        <div class="marquee-outer" id="photoOuter">
+            <div class="marquee-track" id="photoTrack"></div>
+        </div>
+    </section>
+
+    <!-- FILM -->
+    <section id="film" class="marquee-section">
+        <div class="marquee-header">
+            <h2 class="section-title" data-i18n="sectionFilm"></h2>
+            <button class="see-all-btn" data-target="filmOuter" data-i18n="seeAll"></button>
+        </div>
+        <div class="marquee-outer" id="filmOuter">
+            <div class="marquee-track" id="filmTrack"></div>
+        </div>
+    </section>
+
+    <!-- ART -->
+    <section id="art" class="marquee-section">
+        <div class="marquee-header">
+            <h2 class="section-title" data-i18n="sectionArt"></h2>
+            <button class="see-all-btn" data-target="artOuter" data-i18n="seeAll"></button>
+        </div>
+        <div class="marquee-outer" id="artOuter">
+            <div class="marquee-track" id="artTrack"></div>
+        </div>
+    </section>
+
+    <!-- ================= EXPERIENCE ================= -->
+    <section class="credits" id="experience">
+        <h3 data-i18n="experienceTitle"></h3>
+        <div class="credit-item">
+            <div class="credit-title">
+                <span data-i18n="credit1Title"></span> | <em>Mizuko</em>
+            </div>
+            <div class="credit-detail" data-i18n="credit1Detail"></div>
+        </div>
+        <div class="credit-item">
+            <div class="credit-title">
+                <span data-i18n="credit2Title"></span> | Diprente / Netflix Production
+            </div>
+            <div class="credit-detail" data-i18n="credit2Detail"></div>
+        </div>
+
+        <h3 style="margin-top:40px;" data-i18n="skillsTitle"></h3>
+        <ul class="skill-list">
+            <li data-i18n="skill1"></li>
+            <li data-i18n="skill2"></li>
+            <li data-i18n="skill3"></li>
+            <li data-i18n="skill4"></li>
+            <li data-i18n="skill5"></li>
+            <li data-i18n="skill6"></li>
         </ul>
-      </div>
-      <div class="hero-rotator" id="heroRotator">
-        <img src="" data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active">
-        <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2">
-        <img src="" data-src="assets/gallery/hero-3.png" alt="Rotating image 3">
-      </div>
-    </div>
-  </section>
 
-  <!-- ============================================================
-       IMPRESSIONS – masonry-style collage of highlighted work
-       ============================================================ -->
-  <section class="impressions" id="impressions">
-    <div class="impressions-grid" id="impressionsGrid"></div>
-  </section>
+        <h3 data-i18n="techTitle"></h3>
+        <ul class="skill-list">
+            <li>DaVinci Resolve</li>
+            <li>Adobe Creative Suite (Premiere, After Effects, Photoshop)</li>
+            <li>Blender</li>
+        </ul>
 
-  <!-- ================= ABOUT ================= -->
-  <section class="about" id="about">
-    <div class="statement">
-      <h2>Alejandro Fidel Regueros-Wessels</h2>
-      <p data-i18n="aboutQuote"></p>
-      <p data-i18n="aboutAuthor"></p>
-    </div>
-  </section>
+        <h3 data-i18n="langTitle"></h3>
+        <ul class="skill-list">
+            <li data-i18n="lang1"></li>
+            <li data-i18n="lang2"></li>
+            <li data-i18n="lang3"></li>
+        </ul>
+    </section>
 
-  <!-- ================= GALLERY SECTIONS ================= -->
-  <section id="photography" class="marquee-section">
-    <div class="marquee-header">
-      <h2 class="section-title" data-i18n="sectionPhotography"></h2>
-      <button class="see-all-btn" data-target="photoOuter" data-i18n="seeAll"></button>
-    </div>
-    <div class="marquee-outer" id="photoOuter">
-      <div class="marquee-track" id="photoTrack"></div>
-    </div>
-  </section>
+    <!-- ================= CONTACT ================= -->
+    <section id="contact">
+        <div class="contact-card">
+            <p data-i18n="contactText"></p>
+            <div class="contact-links">
+                <a href="#" id="emailLink" data-i18n="emailMe"></a>
+                <a href="#" data-i18n="socialInstagram"></a>
+                <a href="#" data-i18n="socialLinkedIn"></a>
+            </div>
+        </div>
+    </section>
 
-  <section id="film" class="marquee-section">
-    <div class="marquee-header">
-      <h2 class="section-title" data-i18n="sectionFilm"></h2>
-      <button class="see-all-btn" data-target="filmOuter" data-i18n="seeAll"></button>
-    </div>
-    <div class="marquee-outer" id="filmOuter">
-      <div class="marquee-track" id="filmTrack"></div>
-    </div>
-  </section>
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <p>&copy; 2026 Alejandro Fidel Regueros-Wessels</p>
+        <p data-i18n="footerAddress"></p>
+        <p data-i18n="footerPhone"></p>
+        <p data-i18n="footerEmail"></p>
+    </footer>
 
-  <section id="art" class="marquee-section">
-    <div class="marquee-header">
-      <h2 class="section-title" data-i18n="sectionArt"></h2>
-      <button class="see-all-btn" data-target="artOuter" data-i18n="seeAll"></button>
-    </div>
-    <div class="marquee-outer" id="artOuter">
-      <div class="marquee-track" id="artTrack"></div>
-    </div>
-  </section>
-
-  <!-- ================= EXPERIENCE ================= -->
-  <section class="credits" id="experience">
-    <h3 data-i18n="experienceTitle"></h3>
-    <div class="credit-item">
-      <div class="credit-title">
-        <span data-i18n="credit1Title"></span> | <em>Mizuko</em>
-      </div>
-      <div class="credit-detail" data-i18n="credit1Detail"></div>
-    </div>
-    <div class="credit-item">
-      <div class="credit-title">
-        <span data-i18n="credit2Title"></span> | Diprente / Netflix Production
-      </div>
-      <div class="credit-detail" data-i18n="credit2Detail"></div>
+    <!-- ================= LIGHTBOX ================= -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" data-i18n="close"></button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" data-i18n="prev"></button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" data-i18n="next"></button>
+        <div class="lightbox-content">
+            <div class="lightbox-media" id="lightboxMedia"></div>
+            <div class="lightbox-title" id="lightboxTitle"></div>
+        </div>
     </div>
 
-    <h3 style="margin-top:40px;" data-i18n="skillsTitle"></h3>
-    <ul class="skill-list">
-      <li data-i18n="skill1"></li>
-      <li data-i18n="skill2"></li>
-      <li data-i18n="skill3"></li>
-      <li data-i18n="skill4"></li>
-      <li data-i18n="skill5"></li>
-      <li data-i18n="skill6"></li>
-    </ul>
+    <script>
+        /* ============================================================
+           JAVASCRIPT
+           ============================================================ */
 
-    <h3 data-i18n="techTitle"></h3>
-    <ul class="skill-list">
-      <li>DaVinci Resolve</li>
-      <li>Adobe Creative Suite (Premiere, After Effects, Photoshop)</li>
-      <li>Blender</li>
-    </ul>
+        /* ============================================================
+           STEP 1: ALL TEXT CONTENT (translations)
+           ============================================================ */
+        const translations = {
+            en: {
+                heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
+                heroBar: 'JOGDA',
+                heroSubtitle: 'Journey of Gestures, Digital Archive',
+                navAbout: 'About',
+                navPhotography: 'Photography',
+                navFilm: 'Film',
+                navArt: 'Art',
+                navExperience: 'Experience',
+                navContact: 'Contact',
 
-    <h3 data-i18n="langTitle"></h3>
-    <ul class="skill-list">
-      <li data-i18n="lang1"></li>
-      <li data-i18n="lang2"></li>
-      <li data-i18n="lang3"></li>
-    </ul>
-  </section>
+                aboutQuote: '"I am a 20-year-old South African with a Spanish name, and currently living in Austria. I\'m involved in a wide variety of things, such as design, photography and short films. I have traveled far alone but with that experience I understand others in a way that I want to be understood."',
+                aboutAuthor: '-Alejo',
 
-  <!-- ================= CONTACT ================= -->
-  <section id="contact">
-    <div class="contact-card">
-      <p data-i18n="contactText"></p>
-      <div class="contact-links">
-        <a href="#" id="emailLink" data-i18n="emailMe"></a>
-        <a href="#" data-i18n="socialInstagram"></a>
-        <a href="#" data-i18n="socialLinkedIn"></a>
-      </div>
-    </div>
-  </section>
+                sectionPhotography: 'Photography',
+                sectionFilm: 'Film',
+                sectionArt: 'Art',
+                seeAll: 'See All',
+                showLess: 'Show Less',
+                // This key is used for the primary photography button when expanded
+                // We've changed it to "Close" specifically for photography
+                closePhoto: 'Close',
 
-  <!-- ================= FOOTER ================= -->
-  <footer>
-    <p>&copy; 2026 Alejandro Fidel Regueros-Wessels</p>
-    <p data-i18n="footerAddress"></p>
-    <p data-i18n="footerPhone"></p>
-    <p data-i18n="footerEmail"></p>
-  </footer>
+                experienceTitle: 'Production Experience',
+                credit1Title: 'Runner',
+                credit1Detail: 'Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.',
+                credit2Title: 'Actor',
+                credit2Detail: 'Johannesburg, South Africa<br>Supporting role, on-set character development.',
+                skillsTitle: 'Key Skills',
+                skill1: 'Multilingual communication (EN/DE/NL)',
+                skill2: 'Organisation & coordination',
+                skill3: 'Problem-solving under pressure',
+                skill4: 'Acting experience',
+                skill5: 'Videography',
+                skill6: 'Photography',
+                techTitle: 'Tech Arsenal',
+                langTitle: 'Language Proficiency',
+                lang1: 'English (Native)',
+                lang2: 'German (B2)',
+                lang3: 'Dutch (B1)',
 
-  <!-- ================= LIGHTBOX ================= -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose" data-i18n="close"></button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" data-i18n="prev"></button>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext" data-i18n="next"></button>
-    <div class="lightbox-content">
-      <div class="lightbox-media" id="lightboxMedia"></div>
-    </div>
-  </div>
+                contactText: 'Whether you have a question, a project idea, or just want to say hi — my inbox is open.',
+                emailMe: 'Email me',
+                emailAddress: 'Alejandrowessels05@gmail.com',
+                socialInstagram: 'Instagram',
+                socialLinkedIn: 'LinkedIn',
+                socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
+                socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
 
-  <script>
-    /* ============================================================
-       JAVASCRIPT – the brain of the website
-       ============================================================ */
+                footerAddress: 'Sechshauserstrasse 9, Wien, Austria',
+                footerPhone: '+43 681 84315549',
+                footerEmail: 'alejandrowessels05@gmail.com',
 
-    /* ============================================================
-       STEP 1: ALL TEXT CONTENT (translations)
-       ============================================================ */
-    const translations = {
-      en: {
-        // ----- Hero -----
-        heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
-        heroBar: 'JOGDA',
-        heroSubtitle: 'Journey of Gestures, Digital Archive',
-        navAbout: 'About',
-        navPhotography: 'Photography',
-        navFilm: 'Film',
-        navArt: 'Art',
-        navExperience: 'Experience',
-        navContact: 'Contact',
+                close: 'close ✕',
+                prev: '←',
+                next: '→',
 
-        // ----- About -----
-        aboutQuote: '"I am a 20-year-old South African with a Spanish name, and currently living in Austria. I\'m involved in a wide variety of things, such as design, photography and short films. I have traveled far alone but with that experience I understand others in a way that I want to be understood."',
-        aboutAuthor: '-Alejo',
+                folderAlbum1: 'Album 1',
+                folderAlbum2: 'Album 2',
+                folderAlbum3: 'Album 3',
+                folderAlbum4: 'Album 4',
+                folderAlbum5: 'Album 5',
+            },
+            de: {
+                heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
+                heroBar: 'JOGDA',
+                heroSubtitle: 'Reise der Gesten, Digitales Archiv',
+                navAbout: 'Über mich',
+                navPhotography: 'Fotografie',
+                navFilm: 'Film',
+                navArt: 'Kunst',
+                navExperience: 'Erfahrung',
+                navContact: 'Kontakt',
 
-        // ----- Gallery section titles -----
-        sectionPhotography: 'Photography',
-        sectionFilm: 'Film',
-        sectionArt: 'Art',
-        seeAll: 'See All',
-        showLess: 'Show Less',
+                aboutQuote: '"Ich bin ein 20-jähriger Südafrikaner mit einem spanischen Namen und lebe derzeit in Österreich. Ich beschäftige mich mit den unterschiedlichsten Dingen, wie zum Beispiel Design, Fotografie und Kurzfilmen. Ich bin allein weit gereist, und durch diese Erfahrung verstehe ich andere so, wie ich selbst verstanden werden möchte."',
+                aboutAuthor: '-Alejo',
 
-        // ----- Experience -----
-        experienceTitle: 'Production Experience',
-        credit1Title: 'Runner',
-        credit1Detail: 'Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.',
-        credit2Title: 'Actor',
-        credit2Detail: 'Johannesburg, South Africa<br>Supporting role, on-set character development.',
-        skillsTitle: 'Key Skills',
-        skill1: 'Multilingual communication (EN/DE/NL)',
-        skill2: 'Organisation & coordination',
-        skill3: 'Problem-solving under pressure',
-        skill4: 'Acting experience',
-        skill5: 'Videography',
-        skill6: 'Photography',
-        techTitle: 'Tech Arsenal',
-        langTitle: 'Language Proficiency',
-        lang1: 'English (Native)',
-        lang2: 'German (B2)',
-        lang3: 'Dutch (B1)',
+                sectionPhotography: 'Fotografie',
+                sectionFilm: 'Film',
+                sectionArt: 'Kunst',
+                seeAll: 'Alle anzeigen',
+                showLess: 'Weniger anzeigen',
+                // German translation for the photography close button
+                closePhoto: 'Schließen',
 
-        // ----- Contact -----
-        contactText: 'Whether you have a question, a project idea, or just want to say hi — my inbox is open.',
-        emailMe: 'Email me',
-        emailAddress: 'Alejandrowessels05@gmail.com',
-        socialInstagram: 'Instagram',
-        socialLinkedIn: 'LinkedIn',
-        socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
-        socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
+                experienceTitle: 'Produktionserfahrung',
+                credit1Title: 'Runner',
+                credit1Detail: 'Regie: Helen Hideko | Wien, Österreich<br>Film-Set-Koordination, Schauspielerbetreuung, Requisitenverwaltung.',
+                credit2Title: 'Schauspieler',
+                credit2Detail: 'Johannesburg, Südafrika<br>Nebenrolle, Charakterentwicklung am Set.',
+                skillsTitle: 'Kernkompetenzen',
+                skill1: 'Mehrsprachige Kommunikation (EN/DE/NL)',
+                skill2: 'Organisation & Koordination',
+                skill3: 'Problemlösung unter Druck',
+                skill4: 'Schauspielerfahrung',
+                skill5: 'Videografie',
+                skill6: 'Fotografie',
+                techTitle: 'Technisches Arsenal',
+                langTitle: 'Sprachkenntnisse',
+                lang1: 'Englisch (Muttersprache)',
+                lang2: 'Deutsch (B2)',
+                lang3: 'Niederländisch (B1)',
 
-        // ----- Footer -----
-        footerAddress: 'Sechshauserstrasse 9, Wien, Austria',
-        footerPhone: '+43 681 84315549',
-        footerEmail: 'alejandrowessels05@gmail.com',
+                contactText: 'Ob du eine Frage hast, eine Projektidee oder einfach nur Hallo sagen möchtest – mein Postfach ist offen.',
+                emailMe: 'E-Mail schreiben',
+                emailAddress: 'Alejandrowessels05@gmail.com',
+                socialInstagram: 'Instagram',
+                socialLinkedIn: 'LinkedIn',
+                socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
+                socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
 
-        // ----- Lightbox -----
-        close: 'close ✕',
-        prev: '←',
-        next: '→',
+                footerAddress: 'Sechshauserstrasse 9, Wien, Österreich',
+                footerPhone: '+43 681 84315549',
+                footerEmail: 'alejandrowessels05@gmail.com',
 
-        // ----- Gallery folder names -----
-        folderAlbum1: 'Album 1',
-        folderAlbum2: 'Album 2',
-        folderAlbum3: 'Album 3',
-        folderAlbum4: 'Album 4',
-        folderAlbum5: 'Album 5',
-      },
-      de: {
-        // ----- Hero -----
-        heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
-        heroBar: 'JOGDA',
-        heroSubtitle: 'Reise der Gesten, Digitales Archiv',
-        navAbout: 'Über mich',
-        navPhotography: 'Fotografie',
-        navFilm: 'Film',
-        navArt: 'Kunst',
-        navExperience: 'Erfahrung',
-        navContact: 'Kontakt',
+                close: 'schließen ✕',
+                prev: '←',
+                next: '→',
 
-        // ----- About -----
-        aboutQuote: '"Ich bin ein 20-jähriger Südafrikaner mit einem spanischen Namen und lebe derzeit in Österreich. Ich beschäftige mich mit den unterschiedlichsten Dingen, wie zum Beispiel Design, Fotografie und Kurzfilmen. Ich bin allein weit gereist, und durch diese Erfahrung verstehe ich andere so, wie ich selbst verstanden werden möchte."',
-        aboutAuthor: '-Alejo',
-
-        // ----- Gallery section titles -----
-        sectionPhotography: 'Fotografie',
-        sectionFilm: 'Film',
-        sectionArt: 'Kunst',
-        seeAll: 'Alle anzeigen',
-        showLess: 'Weniger anzeigen',
-
-        // ----- Experience -----
-        experienceTitle: 'Produktionserfahrung',
-        credit1Title: 'Runner',
-        credit1Detail: 'Regie: Helen Hideko | Wien, Österreich<br>Film-Set-Koordination, Schauspielerbetreuung, Requisitenverwaltung.',
-        credit2Title: 'Schauspieler',
-        credit2Detail: 'Johannesburg, Südafrika<br>Nebenrolle, Charakterentwicklung am Set.',
-        skillsTitle: 'Kernkompetenzen',
-        skill1: 'Mehrsprachige Kommunikation (EN/DE/NL)',
-        skill2: 'Organisation & Koordination',
-        skill3: 'Problemlösung unter Druck',
-        skill4: 'Schauspielerfahrung',
-        skill5: 'Videografie',
-        skill6: 'Fotografie',
-        techTitle: 'Technisches Arsenal',
-        langTitle: 'Sprachkenntnisse',
-        lang1: 'Englisch (Muttersprache)',
-        lang2: 'Deutsch (B2)',
-        lang3: 'Niederländisch (B1)',
-
-        // ----- Contact -----
-        contactText: 'Ob du eine Frage hast, eine Projektidee oder einfach nur Hallo sagen möchtest – mein Postfach ist offen.',
-        emailMe: 'E-Mail schreiben',
-        emailAddress: 'Alejandrowessels05@gmail.com',
-        socialInstagram: 'Instagram',
-        socialLinkedIn: 'LinkedIn',
-        socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
-        socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
-
-        // ----- Footer -----
-        footerAddress: 'Sechshauserstrasse 9, Wien, Österreich',
-        footerPhone: '+43 681 84315549',
-        footerEmail: 'alejandrowessels05@gmail.com',
-
-        // ----- Lightbox -----
-        close: 'schließen ✕',
-        prev: '←',
-        next: '→',
-
-        // ----- Gallery folder names -----
-        folderAlbum1: 'Album 1',
-        folderAlbum2: 'Album 2',
-        folderAlbum3: 'Album 3',
-        folderAlbum4: 'Album 4',
-        folderAlbum5: 'Album 5',
-      }
-    };
-
-    /* ============================================================
-       STEP 2: GALLERY DATA – your photos, films, and art
-       ============================================================ */
-    const galleryItems = [
-      // ---- PHOTOGRAPHY ----
-      { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.jpg", video: "", description: "" },
-      { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.jpg", video: "", description: "" },
-      { title: "Joy", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/03.jpg", video: "", description: "" },
-      { title: "Blissful ignorance", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/04.jpg", video: "", description: "" },
-      { title: "times up", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/05.jpg", video: "", description: "" },
-
-      { title: "ugh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/06.JPG", video: "", description: "" },
-      { title: " hmm.. ", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/07.JPG", video: "", description: "" },
-      { title: "ummm", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/08.JPG", video: "", description: "" },
-      { title: "urghh...", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/09.JPG", video: "", description: "" },
-      { title: "woahh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/10.JPG", video: "", description: "" },
-      { title: "Yawns", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/11.JPG", video: "", description: "" },
-
-      { title: "The dark angel", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/13.JPG", video: "", description: "" },
-      { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG", video: "", description: "" },
-
-      // ---- FILM ----
-      { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM", description: "" },
-
-      // ---- ART ----
-      { title: "Land of art", category: "Art", image: "assets/gallery/A01.png", video: "", description: "" },
-      { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png", video: "", description: "" },
-      { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png", video: "", description: "" },
-      { title: "Jippy in catch me", category: "Art", image: "assets/gallery/A04.png", video: "", description: "" },
-      { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg", video: "", description: "" },
-    ];
-
-    /* ============================================================
-       IMPRESSIONS DATA – pick which pieces headline the collage.
-       Edit this list (and the order) to change what shows up top.
-       ============================================================ */
-    const impressionItems = [
-      { title: "Carelesness",    image: "assets/gallery/01.jpg" },
-      { title: "Joy",            image: "assets/gallery/03.jpg" },
-      { title: "The dark angel", image: "assets/gallery/13.JPG" },
-      { title: "Midnight Snack", image: "assets/gallery/film-1.jpg" },
-      { title: "Land of art",    image: "assets/gallery/A01.png" },
-      { title: "Lost cow",       image: "assets/gallery/A05.jpg" },
-    ];
-
-    /* ============================================================
-       STEP 3: THE ENGINE – DO NOT EDIT BELOW UNLESS YOU KNOW WHAT YOU'RE DOING
-       ============================================================ */
-
-    // ---- Language handling ----
-    let currentLang = 'en';
-
-    function applyLanguage(lang) {
-      currentLang = lang;
-
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key] !== undefined) {
-          el.innerHTML = translations[lang][key];
-        }
-      });
-
-      const emailLink = document.getElementById('emailLink');
-      if (emailLink) {
-        const email = translations[lang].emailAddress;
-        emailLink.href = `mailto:${email}`;
-        emailLink.textContent = translations[lang].emailMe;
-      }
-
-      const instaLink = document.querySelector('[data-i18n="socialInstagram"]');
-      const linkedinLink = document.querySelector('[data-i18n="socialLinkedIn"]');
-      if (instaLink) instaLink.href = translations[lang].socialInstagramUrl;
-      if (linkedinLink) linkedinLink.href = translations[lang].socialLinkedInUrl;
-
-      document.querySelectorAll('.see-all-btn').forEach(btn => {
-        const outer = document.getElementById(btn.dataset.target);
-        if (outer && outer.classList.contains('expanded')) {
-          btn.textContent = translations[lang].showLess;
-        } else {
-          btn.textContent = translations[lang].seeAll;
-        }
-      });
-
-      const closeBtn = document.getElementById('lightboxClose');
-      if (closeBtn) closeBtn.textContent = translations[lang].close;
-
-      renderTrack('photoTrack', true);
-      renderTrack('filmTrack', true);
-      renderTrack('artTrack', true);
-      document.querySelectorAll('.marquee-outer.expanded').forEach(outer => {
-        const trackKey = outer.id.replace('Outer', 'Track');
-        renderTrack(trackKey, false);
-      });
-    }
-
-    document.getElementById('langToggle').addEventListener('click', () => {
-      const newLang = currentLang === 'en' ? 'de' : 'en';
-      applyLanguage(newLang);
-      document.getElementById('langToggle').textContent = newLang === 'en' ? 'DE' : 'EN';
-    });
-
-    // ---- Gallery rendering ----
-    const tracks = {
-      photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
-      filmTrack:  { element: document.getElementById('filmTrack'),  category: 'Film' },
-      artTrack:   { element: document.getElementById('artTrack'),   category: 'Art' }
-    };
-
-    function lazyLoadImage(img) {
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.src = entry.target.dataset.src;
-              observer.unobserve(entry.target);
+                folderAlbum1: 'Album 1',
+                folderAlbum2: 'Album 2',
+                folderAlbum3: 'Album 3',
+                folderAlbum4: 'Album 4',
+                folderAlbum5: 'Album 5',
             }
-          });
-        }, { rootMargin: '200px' });
-        observer.observe(img);
-      } else {
-        img.src = img.dataset.src;
-      }
-    }
+        };
 
-    function getFolderDisplayName(folderKey) {
-      return translations[currentLang][folderKey] || folderKey;
-    }
+        /* ============================================================
+           STEP 2: GALLERY DATA
+           ============================================================ */
+        const galleryItems = [
+            // ---- PHOTOGRAPHY ----
+            { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.jpg",
+                video: "", description: "" },
+            { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1",
+                image: "assets/gallery/02.jpg", video: "", description: "" },
+            { title: "Joy", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/03.jpg", video: "",
+                description: "" },
+            { title: "Blissful ignorance", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/04.jpg",
+                video: "", description: "" },
+            { title: "times up", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/05.jpg", video: "",
+                description: "" },
 
-    function createFolderCard(folderKey, items) {
-      const card = document.createElement('div');
-      card.className = 'marquee-item folder-card';
+            { title: "ugh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/06.JPG", video: "",
+                description: "" },
+            { title: " hmm.. ", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/07.JPG", video: "",
+                description: "" },
+            { title: "ummm", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/08.JPG", video: "",
+                description: "" },
+            { title: "urghh...", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/09.JPG", video: "",
+                description: "" },
+            { title: "woahh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/10.JPG", video: "",
+                description: "" },
+            { title: "Yawns", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/11.JPG", video: "",
+                description: "" },
 
-      const coverItem = items[0];
-      const thumb = document.createElement('div');
-      thumb.className = 'marquee-thumb' + (coverItem.image ? '' : ' no-image');
+            { title: "The dark angel", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/13.JPG",
+                video: "", description: "" },
+            { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG",
+                video: "", description: "" },
 
-      if (coverItem.image) {
-        const img = document.createElement('img');
-        img.dataset.src = coverItem.image;
-        img.alt = getFolderDisplayName(folderKey);
-        img.onerror = () => { thumb.classList.add('no-image'); img.remove(); };
-        thumb.appendChild(img);
-        lazyLoadImage(img);
-      }
+            // ---- FILM ----
+            { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg",
+                video: "https://www.youtube.com/embed/p0pZ9HH-_PM", description: "" },
 
-      const countBadge = document.createElement('div');
-      countBadge.className = 'folder-count';
-      countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
-      thumb.appendChild(countBadge);
+            // ---- ART ----
+            { title: "Land of art", category: "Art", image: "assets/gallery/A01.png", video: "", description: "" },
+            { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png", video: "",
+                description: "" },
+            { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png", video: "",
+                description: "" },
+            { title: "Jippy in catch me", category: "Art", image: "assets/gallery/A04.png", video: "",
+                description: "" },
+            { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg", video: "", description: "" },
+        ];
 
-      const info = document.createElement('div');
-      info.className = 'marquee-info';
-      info.innerHTML = `<h3>${getFolderDisplayName(folderKey)}</h3>`;
+        /* ============================================================
+           IMPRESSIONS DATA
+           ============================================================ */
+        const impressionItems = [
+            { title: "Carelesness", image: "assets/gallery/01.jpg" },
+            { title: "Joy", image: "assets/gallery/03.jpg" },
+            { title: "The dark angel", image: "assets/gallery/13.JPG" },
+            { title: "Midnight Snack", image: "assets/gallery/film-1.jpg" },
+            { title: "Land of art", image: "assets/gallery/A01.png" },
+            { title: "Lost cow", image: "assets/gallery/A05.jpg" },
+        ];
 
-      card.appendChild(thumb);
-      card.appendChild(info);
+        /* ============================================================
+           STEP 3: THE ENGINE
+           ============================================================ */
 
-      card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
-      return card;
-    }
+        let currentLang = 'en';
 
-    function createMarqueeItem(item) {
-      const card = document.createElement('div');
-      card.className = 'marquee-item';
+        // ---- Language ----
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key] !== undefined) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
 
-      const thumb = document.createElement('div');
-      thumb.className = 'marquee-thumb' + (item.image ? '' : ' no-image');
+            const emailLink = document.getElementById('emailLink');
+            if (emailLink) {
+                const email = translations[lang].emailAddress;
+                emailLink.href = `mailto:${email}`;
+                emailLink.textContent = translations[lang].emailMe;
+            }
 
-      if (item.image) {
-        const img = document.createElement('img');
-        img.dataset.src = item.image;
-        img.alt = item.title;
-        img.onerror = () => { thumb.classList.add('no-image'); img.remove(); };
-        thumb.appendChild(img);
-        lazyLoadImage(img);
-      }
+            const instaLink = document.querySelector('[data-i18n="socialInstagram"]');
+            const linkedinLink = document.querySelector('[data-i18n="socialLinkedIn"]');
+            if (instaLink) instaLink.href = translations[lang].socialInstagramUrl;
+            if (linkedinLink) linkedinLink.href = translations[lang].socialLinkedInUrl;
 
-      if (item.video) {
-        const badge = document.createElement('div');
-        badge.className = 'play-badge';
-        badge.textContent = '▶';
-        thumb.appendChild(badge);
-      }
+            // Update button texts
+            updateButtonTexts();
 
-      const info = document.createElement('div');
-      info.className = 'marquee-info';
-      info.innerHTML = `<h3>${item.title}</h3>`;
+            const closeBtn = document.getElementById('lightboxClose');
+            if (closeBtn) closeBtn.textContent = translations[lang].close;
 
-      card.appendChild(thumb);
-      card.appendChild(info);
-
-      card.addEventListener('click', () => openLightbox(item));
-      return card;
-    }
-
-    function groupByFolder(items) {
-      const groups = {};
-      items.forEach(item => {
-        const folderKey = item.folder || 'folderAlbum1';
-        if (!groups[folderKey]) groups[folderKey] = [];
-        groups[folderKey].push(item);
-      });
-      return groups;
-    }
-
-    function renderTrack(trackKey, duplicate) {
-      const track = tracks[trackKey];
-      if (!track) return;
-
-      const items = galleryItems.filter(item => item.category === track.category);
-      track.element.innerHTML = '';
-
-      let cardCount = 0;
-
-      if (track.category === 'Photography') {
-        const groups = groupByFolder(items);
-        const folderKeys = Object.keys(groups);
-        cardCount = folderKeys.length;
-        const animate = duplicate && cardCount >= 4;
-        const count = animate ? 2 : 1;
-        for (let i = 0; i < count; i++) {
-          folderKeys.forEach(folderKey => {
-            track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
-          });
-        }
-        track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
-      } else {
-        cardCount = items.length;
-        const animate = duplicate && cardCount >= 4;
-        const count = animate ? 2 : 1;
-        for (let i = 0; i < count; i++) {
-          items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
-        }
-        track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
-      }
-    }
-
-    // ============================================================
-    // IMPRESSIONS – masonry-style collage grid (hero -> about)
-    // ============================================================
-    function buildImpressions() {
-      const grid = document.getElementById('impressionsGrid');
-      if (!grid) return;
-      grid.innerHTML = '';
-
-      impressionItems.slice(0, 6).forEach((item, idx) => {
-        const tile = document.createElement('div');
-        tile.className = `imp-item imp-${idx + 1}`;
-
-        const img = document.createElement('img');
-        img.dataset.src = item.image;
-        img.alt = item.title || 'Work';
-        img.onerror = () => { tile.style.display = 'none'; };
-        tile.appendChild(img);
-        lazyLoadImage(img);
-
-        if (item.title) {
-          const caption = document.createElement('div');
-          caption.className = 'imp-caption';
-          caption.textContent = item.title;
-          tile.appendChild(caption);
+            // Re-render all tracks
+            renderTrack('photoTrack', true);
+            renderTrack('filmTrack', true);
+            renderTrack('artTrack', true);
         }
 
-        // Find the matching full gallery item (for video/description) so the
-        // lightbox behaves the same as it does everywhere else on the site.
-        const fullItem = galleryItems.find(g => g.image === item.image) || item;
-        tile.addEventListener('click', () => openLightbox(fullItem));
+        document.getElementById('langToggle').addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'de' : 'en';
+            applyLanguage(newLang);
+            document.getElementById('langToggle').textContent = newLang === 'en' ? 'DE' : 'EN';
+        });
 
-        grid.appendChild(tile);
-      });
-    }
+        // ---- Helpers ----
+        function lazyLoadImage(img) {
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.src = entry.target.dataset.src;
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '200px' });
+                observer.observe(img);
+            } else {
+                img.src = img.dataset.src;
+            }
+        }
 
-    // ---- Lightbox ----
-    const lightbox = document.getElementById('lightbox');
-    const lightboxMedia = document.getElementById('lightboxMedia');
-    let currentSlideshow = [];
-    let currentSlideIndex = 0;
+        function getFolderDisplayName(folderKey) {
+            return translations[currentLang][folderKey] || folderKey;
+        }
 
-    function openSlideshow(items, startIndex) {
-      currentSlideshow = items;
-      currentSlideIndex = startIndex;
-      updateLightboxMedia();
-      lightbox.classList.add('open');
-      updateNavButtons();
-    }
+        // ---- Create cards ----
+        function createFolderCard(folderKey, items) {
+            const card = document.createElement('div');
+            card.className = 'marquee-item folder-card';
 
-    function openLightbox(item) { openSlideshow([item], 0); }
-    function openFolderSlideshow(folderKey, items) { openSlideshow(items, 0); }
+            const coverItem = items[0];
+            const thumb = document.createElement('div');
+            thumb.className = 'marquee-thumb' + (coverItem.image ? '' : ' no-image');
 
-    function updateLightboxMedia() {
-      const item = currentSlideshow[currentSlideIndex];
-      lightboxMedia.innerHTML = '';
-      if (item.video) {
-        const iframe = document.createElement('iframe');
-        iframe.src = item.video;
-        iframe.allow = "autoplay; fullscreen; picture-in-picture";
-        iframe.allowFullscreen = true;
-        lightboxMedia.appendChild(iframe);
-      } else if (item.image) {
-        const img = document.createElement('img');
-        img.src = item.image;
-        img.alt = item.title;
-        lightboxMedia.appendChild(img);
-      }
-    }
+            if (coverItem.image) {
+                const img = document.createElement('img');
+                img.dataset.src = coverItem.image;
+                img.alt = getFolderDisplayName(folderKey);
+                img.onerror = () => { thumb.classList.add('no-image');
+                    img.remove(); };
+                thumb.appendChild(img);
+                lazyLoadImage(img);
+            }
 
-    function showPrevSlide() {
-      if (currentSlideshow.length === 0) return;
-      currentSlideIndex = (currentSlideIndex - 1 + currentSlideshow.length) % currentSlideshow.length;
-      updateLightboxMedia();
-      updateNavButtons();
-    }
+            const countBadge = document.createElement('div');
+            countBadge.className = 'folder-count';
+            countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
+            thumb.appendChild(countBadge);
 
-    function showNextSlide() {
-      if (currentSlideshow.length === 0) return;
-      currentSlideIndex = (currentSlideIndex + 1) % currentSlideshow.length;
-      updateLightboxMedia();
-      updateNavButtons();
-    }
+            const info = document.createElement('div');
+            info.className = 'marquee-info';
+            info.innerHTML = `<h3>${getFolderDisplayName(folderKey)}</h3>`;
 
-    function updateNavButtons() {
-      const prevBtn = document.getElementById('lightboxPrev');
-      const nextBtn = document.getElementById('lightboxNext');
-      const single = currentSlideshow.length <= 1;
-      prevBtn.style.display = single ? 'none' : 'block';
-      nextBtn.style.display = single ? 'none' : 'block';
-    }
+            card.appendChild(thumb);
+            card.appendChild(info);
 
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lightboxMedia.innerHTML = '';
-      currentSlideshow = [];
-      currentSlideIndex = 0;
-    }
+            card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
+            return card;
+        }
 
-    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-    document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
-    document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') showPrevSlide();
-      if (e.key === 'ArrowRight') showNextSlide();
-    });
+        function createMarqueeItem(item) {
+            const card = document.createElement('div');
+            card.className = 'marquee-item';
 
-    // ---- "See All" buttons ----
-    document.querySelectorAll('.see-all-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.dataset.target;
-        const outer = document.getElementById(targetId);
-        const trackKey = targetId.replace('Outer', 'Track');
-        if (!outer || !tracks[trackKey]) return;
+            const thumb = document.createElement('div');
+            thumb.className = 'marquee-thumb' + (item.image ? '' : ' no-image');
 
-        outer.classList.toggle('expanded');
-        btn.classList.toggle('active');
-        const isExpanded = outer.classList.contains('expanded');
-        btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
+            if (item.image) {
+                const img = document.createElement('img');
+                img.dataset.src = item.image;
+                img.alt = item.title;
+                img.onerror = () => { thumb.classList.add('no-image');
+                    img.remove(); };
+                thumb.appendChild(img);
+                lazyLoadImage(img);
+            }
 
-        renderTrack(trackKey, !isExpanded);
-      });
-    });
+            if (item.video) {
+                const badge = document.createElement('div');
+                badge.className = 'play-badge';
+                badge.textContent = '▶';
+                thumb.appendChild(badge);
+            }
 
-    // ---- Hero rotator ----
-    const rotatorImages = document.querySelectorAll('#heroRotator img');
-    let currentImageIndex = 0;
-    rotatorImages.forEach(img => { img.src = img.dataset.src; });
+            const info = document.createElement('div');
+            info.className = 'marquee-info';
+            info.innerHTML = `<h3>${item.title}</h3>`;
 
-    function rotateImages() {
-      rotatorImages.forEach(img => img.classList.remove('active'));
-      currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
-      rotatorImages[currentImageIndex].classList.add('active');
-    }
-    setInterval(rotateImages, 800);
+            card.appendChild(thumb);
+            card.appendChild(info);
 
-    // ---- Parallax & background darkening ----
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.bg-layer').forEach(layer => {
-        const bg = layer.getAttribute('data-bg');
-        if (bg) layer.style.backgroundImage = `url('${bg}')`;
-      });
-    });
+            card.addEventListener('click', () => openLightbox(item));
+            return card;
+        }
 
-    window.addEventListener('scroll', function() {
-      const scrolled = window.scrollY;
-      document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
-      document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
-    });
+        function groupByFolder(items) {
+            const groups = {};
+            items.forEach(item => {
+                const folderKey = item.folder || 'folderAlbum1';
+                if (!groups[folderKey]) groups[folderKey] = [];
+                groups[folderKey].push(item);
+            });
+            return groups;
+        }
 
-    const baseBg = { r: 207, g: 194, b: 169 };
-    const darkBg = { r: 185, g: 170, b: 145 };
-    function handleBackgroundScroll() {
-      const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = Math.min(scrollY / docHeight, 1);
-      const r = Math.round(baseBg.r + (darkBg.r - baseBg.r) * progress);
-      const g = Math.round(baseBg.g + (darkBg.g - baseBg.g) * progress);
-      const b = Math.round(baseBg.b + (darkBg.b - baseBg.b) * progress);
-      document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
-    }
-    window.addEventListener('scroll', handleBackgroundScroll);
+        // ---- Render tracks ----
+        const tracks = {
+            photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
+            filmTrack: { element: document.getElementById('filmTrack'), category: 'Film' },
+            artTrack: { element: document.getElementById('artTrack'), category: 'Art' }
+        };
 
-    // ---- Fade in About section ----
-    const statementParagraphs = document.querySelectorAll('.statement p');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.3 });
-    statementParagraphs.forEach(p => observer.observe(p));
+        function renderTrack(trackKey, duplicate) {
+            const track = tracks[trackKey];
+            if (!track) return;
 
-    // ---- Initialisation ----
-    applyLanguage('en');
-    handleBackgroundScroll();
-    buildImpressions();  // build the new collage gallery
+            const items = galleryItems.filter(item => item.category === track.category);
+            const outer = document.getElementById(trackKey.replace('Track', 'Outer'));
+            if (!outer) return;
 
-    setTimeout(() => {
-      rotatorImages.forEach(img => { if (!img.src) img.src = img.dataset.src; });
-    }, 100);
-  </script>
+            const isExpanded = outer.classList.contains('expanded');
+            const isPhoto = trackKey === 'photoTrack';
+            const individual = isPhoto && outer.dataset.individual === 'true';
+
+            track.element.innerHTML = '';
+
+            if (isPhoto) {
+                if (!isExpanded) {
+                    // State A: marquee folders
+                    const groups = groupByFolder(items);
+                    const folderKeys = Object.keys(groups);
+                    const animate = duplicate && folderKeys.length >= 4;
+                    const count = animate ? 2 : 1;
+                    for (let i = 0; i < count; i++) {
+                        folderKeys.forEach(folderKey => {
+                            track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
+                        });
+                    }
+                    track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
+                } else if (individual) {
+                    // State C: grid of individual photos
+                    const animate = duplicate && items.length >= 4;
+                    const count = animate ? 2 : 1;
+                    for (let i = 0; i < count; i++) {
+                        items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+                    }
+                    track.element.style.animation = 'none';
+                } else {
+                    // State B: grid of folders
+                    const groups = groupByFolder(items);
+                    const folderKeys = Object.keys(groups);
+                    folderKeys.forEach(folderKey => {
+                        track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
+                    });
+                    track.element.style.animation = 'none';
+                }
+            } else {
+                // Film / Art: marquee or grid
+                if (!isExpanded) {
+                    const animate = duplicate && items.length >= 4;
+                    const count = animate ? 2 : 1;
+                    for (let i = 0; i < count; i++) {
+                        items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+                    }
+                    track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
+                } else {
+                    // Grid of individual items
+                    items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+                    track.element.style.animation = 'none';
+                }
+            }
+
+            // Update button texts
+            updateButtonTexts();
+        }
+
+        // ---- Update button texts ----
+        function updateButtonTexts() {
+            // Primary buttons
+            document.querySelectorAll('.see-all-btn').forEach(btn => {
+                const outer = document.getElementById(btn.dataset.target);
+                if (!outer) return;
+                const isPhoto = btn.dataset.target === 'photoOuter';
+                const expanded = outer.classList.contains('expanded');
+
+                if (isPhoto) {
+                    if (expanded) {
+                        // Use the new closePhoto key for photography when expanded
+                        btn.textContent = translations[currentLang].closePhoto || 'Close';
+                    } else {
+                        btn.textContent = translations[currentLang].seeAll;
+                    }
+                } else {
+                    // Film / Art
+                    if (expanded) {
+                        btn.textContent = translations[currentLang].showLess;
+                    } else {
+                        btn.textContent = translations[currentLang].seeAll;
+                    }
+                }
+            });
+
+            // Secondary for photography
+            const secBtn = document.getElementById('photoSecondarySeeAll');
+            if (secBtn) {
+                const outer = document.getElementById('photoOuter');
+                const expanded = outer && outer.classList.contains('expanded');
+                const individual = outer && outer.dataset.individual === 'true';
+                if (expanded) {
+                    secBtn.textContent = individual ? translations[currentLang].showLess : translations[currentLang].seeAll;
+                    secBtn.classList.add('visible');
+                } else {
+                    secBtn.classList.remove('visible');
+                }
+            }
+        }
+
+        // ---- Impressions ----
+        function buildImpressions() {
+            const grid = document.getElementById('impressionsGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            impressionItems.slice(0, 6).forEach((item, idx) => {
+                const tile = document.createElement('div');
+                tile.className = `imp-item imp-${idx + 1}`;
+
+                const img = document.createElement('img');
+                img.dataset.src = item.image;
+                img.alt = item.title || 'Work';
+                img.onerror = () => { tile.style.display = 'none'; };
+                tile.appendChild(img);
+                lazyLoadImage(img);
+
+                if (item.title) {
+                    const caption = document.createElement('div');
+                    caption.className = 'imp-caption';
+                    caption.textContent = item.title;
+                    tile.appendChild(caption);
+                }
+
+                const fullItem = galleryItems.find(g => g.image === item.image) || item;
+                tile.addEventListener('click', () => openLightbox(fullItem));
+                grid.appendChild(tile);
+            });
+        }
+
+        // ---- Lightbox ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxMedia = document.getElementById('lightboxMedia');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        let currentSlideshow = [];
+        let currentSlideIndex = 0;
+
+        function openSlideshow(items, startIndex) {
+            currentSlideshow = items;
+            currentSlideIndex = startIndex;
+            updateLightboxMedia();
+            lightbox.classList.add('open');
+            updateNavButtons();
+        }
+
+        function openLightbox(item) { openSlideshow([item], 0); }
+
+        function openFolderSlideshow(folderKey, items) { openSlideshow(items, 0); }
+
+        function updateLightboxMedia() {
+            const item = currentSlideshow[currentSlideIndex];
+            lightboxMedia.innerHTML = '';
+            // Set title
+            let titleText = item.title || '';
+            let subText = item.category || '';
+            if (item.folder) {
+                subText = getFolderDisplayName(item.folder) + (subText ? ` · ${subText}` : '');
+            }
+            lightboxTitle.innerHTML = titleText ? `${titleText} <span class="sub">${subText}</span>` : '';
+
+            if (item.video) {
+                const iframe = document.createElement('iframe');
+                iframe.src = item.video;
+                iframe.allow = "autoplay; fullscreen; picture-in-picture";
+                iframe.allowFullscreen = true;
+                lightboxMedia.appendChild(iframe);
+            } else if (item.image) {
+                const img = document.createElement('img');
+                img.src = item.image;
+                img.alt = item.title || '';
+                lightboxMedia.appendChild(img);
+            }
+        }
+
+        function showPrevSlide() {
+            if (currentSlideshow.length === 0) return;
+            currentSlideIndex = (currentSlideIndex - 1 + currentSlideshow.length) % currentSlideshow.length;
+            updateLightboxMedia();
+            updateNavButtons();
+        }
+
+        function showNextSlide() {
+            if (currentSlideshow.length === 0) return;
+            currentSlideIndex = (currentSlideIndex + 1) % currentSlideshow.length;
+            updateLightboxMedia();
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const single = currentSlideshow.length <= 1;
+            prevBtn.style.display = single ? 'none' : 'block';
+            nextBtn.style.display = single ? 'none' : 'block';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            lightboxMedia.innerHTML = '';
+            lightboxTitle.innerHTML = '';
+            currentSlideshow = [];
+            currentSlideIndex = 0;
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
+        document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrevSlide();
+            if (e.key === 'ArrowRight') showNextSlide();
+        });
+
+        // ---- Primary "See All" / "Close" button ----
+        document.querySelectorAll('.see-all-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const outer = document.getElementById(targetId);
+                const trackKey = targetId.replace('Outer', 'Track');
+                if (!outer || !tracks[trackKey]) return;
+
+                const isPhoto = targetId === 'photoOuter';
+
+                if (isPhoto) {
+                    const expanded = outer.classList.contains('expanded');
+                    if (!expanded) {
+                        // Go to State B: expanded folders
+                        outer.classList.add('expanded');
+                        outer.dataset.individual = 'false';
+                        renderTrack(trackKey, false);
+                    } else {
+                        // Go back to State A: marquee folders
+                        outer.classList.remove('expanded');
+                        outer.dataset.individual = 'false';
+                        renderTrack(trackKey, true);
+                    }
+                } else {
+                    // Film / Art toggle
+                    outer.classList.toggle('expanded');
+                    const expanded = outer.classList.contains('expanded');
+                    renderTrack(trackKey, !expanded);
+                }
+
+                // Update button texts
+                updateButtonTexts();
+            });
+        });
+
+        // ---- Secondary "See All" for Photography ----
+        document.getElementById('photoSecondarySeeAll').addEventListener('click', () => {
+            const outer = document.getElementById('photoOuter');
+            const trackKey = 'photoTrack';
+            if (!outer || !tracks[trackKey]) return;
+
+            // Only works if expanded
+            if (!outer.classList.contains('expanded')) return;
+
+            const individual = outer.dataset.individual === 'true';
+            if (!individual) {
+                // Go to State C: individual photos
+                outer.dataset.individual = 'true';
+                renderTrack(trackKey, false);
+            } else {
+                // Go back to State B: folders
+                outer.dataset.individual = 'false';
+                renderTrack(trackKey, false);
+            }
+
+            // Update button texts
+            updateButtonTexts();
+        });
+
+        // ---- Hero rotator ----
+        const rotatorImages = document.querySelectorAll('#heroRotator img');
+        let currentImageIndex = 0;
+        rotatorImages.forEach(img => { img.src = img.dataset.src; });
+
+        function rotateImages() {
+            rotatorImages.forEach(img => img.classList.remove('active'));
+            currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
+            rotatorImages[currentImageIndex].classList.add('active');
+        }
+        setInterval(rotateImages, 800);
+
+        // ---- Parallax ----
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.bg-layer').forEach(layer => {
+                const bg = layer.getAttribute('data-bg');
+                if (bg) layer.style.backgroundImage = `url('${bg}')`;
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const scrolled = window.scrollY;
+            document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
+            document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
+        });
+
+        const baseBg = { r: 207, g: 194, b: 169 };
+        const darkBg = { r: 185, g: 170, b: 145 };
+
+        function handleBackgroundScroll() {
+            const scrollY = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = Math.min(scrollY / docHeight, 1);
+            const r = Math.round(baseBg.r + (darkBg.r - baseBg.r) * progress);
+            const g = Math.round(baseBg.g + (darkBg.g - baseBg.g) * progress);
+            const b = Math.round(baseBg.b + (darkBg.b - baseBg.b) * progress);
+            document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+        }
+        window.addEventListener('scroll', handleBackgroundScroll);
+
+        // ---- Fade in About ----
+        const statementParagraphs = document.querySelectorAll('.statement p');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.3 });
+        statementParagraphs.forEach(p => observer.observe(p));
+
+        // ---- Initialisation ----
+        applyLanguage('en');
+        handleBackgroundScroll();
+        buildImpressions();
+
+        // Ensure photo track renders correctly on load
+        setTimeout(() => {
+            renderTrack('photoTrack', true);
+            renderTrack('filmTrack', true);
+            renderTrack('artTrack', true);
+            updateButtonTexts();
+        }, 50);
+
+        setTimeout(() => {
+            rotatorImages.forEach(img => { if (!img.src) img.src = img.dataset.src; });
+        }, 100);
+    </script>
 </body>
 </html>
