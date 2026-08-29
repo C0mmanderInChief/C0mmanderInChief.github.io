@@ -471,7 +471,7 @@
             color: var(--comic-blue);
         }
 
-        /* secondary "See All" button (appears under Expand) */
+        /* secondary button (now uses "Expand to All") */
         .see-all-secondary {
             font-size: 13px;
             letter-spacing: 0.08em;
@@ -484,7 +484,6 @@
             opacity: 0.7;
             transition: opacity 0.2s, color 0.2s;
             display: none;
-            /* hidden by default */;
         }
         .see-all-secondary:hover {
             color: var(--comic-blue);
@@ -897,7 +896,7 @@
             <h2 class="section-title" data-i18n="sectionPhotography"></h2>
             <div class="btn-group">
                 <button class="see-all-btn" data-target="photoOuter" data-i18n="seeAll"></button>
-                <button class="see-all-secondary" id="photoSecondarySeeAll" data-i18n="seeAll"></button>
+                <button class="see-all-secondary" id="photoSecondarySeeAll" data-i18n="expandToAll"></button>
             </div>
         </div>
         <div class="marquee-outer" id="photoOuter">
@@ -1027,9 +1026,9 @@
                 sectionArt: 'Art',
                 seeAll: 'See All',
                 showLess: 'Show Less',
-                // This key is used for the primary photography button when expanded
-                // We've changed it to "Close" specifically for photography
                 closePhoto: 'Close',
+                // New key for the secondary button
+                expandToAll: 'Expand to All',
 
                 experienceTitle: 'Production Experience',
                 credit1Title: 'Runner',
@@ -1090,8 +1089,8 @@
                 sectionArt: 'Kunst',
                 seeAll: 'Alle anzeigen',
                 showLess: 'Weniger anzeigen',
-                // German translation for the photography close button
                 closePhoto: 'Schließen',
+                expandToAll: 'Alle erweitern',
 
                 experienceTitle: 'Produktionserfahrung',
                 credit1Title: 'Runner',
@@ -1425,7 +1424,6 @@
 
                 if (isPhoto) {
                     if (expanded) {
-                        // Use the new closePhoto key for photography when expanded
                         btn.textContent = translations[currentLang].closePhoto || 'Close';
                     } else {
                         btn.textContent = translations[currentLang].seeAll;
@@ -1447,7 +1445,11 @@
                 const expanded = outer && outer.classList.contains('expanded');
                 const individual = outer && outer.dataset.individual === 'true';
                 if (expanded) {
-                    secBtn.textContent = individual ? translations[currentLang].showLess : translations[currentLang].seeAll;
+                    if (individual) {
+                        secBtn.textContent = translations[currentLang].showLess || 'Show Less';
+                    } else {
+                        secBtn.textContent = translations[currentLang].expandToAll || 'Expand to All';
+                    }
                     secBtn.classList.add('visible');
                 } else {
                     secBtn.classList.remove('visible');
@@ -1604,7 +1606,7 @@
             });
         });
 
-        // ---- Secondary "See All" for Photography ----
+        // ---- Secondary "Expand to All" / "Show Less" for Photography ----
         document.getElementById('photoSecondarySeeAll').addEventListener('click', () => {
             const outer = document.getElementById('photoOuter');
             const trackKey = 'photoTrack';
