@@ -233,19 +233,17 @@
         }
 
         /* ============================================================
-           IMPRESSIONS - masonry-style image collage
-           "Featured / Work" is now a real grid item (not floating text),
-           so it can never overlap the tiles around it.
+           IMPRESSIONS – masonry-style image collage
            ============================================================ */
         .impressions {
             max-width: 1200px;
             margin: 0 auto;
             padding: 40px 24px 20px;
-            position: relative;
+            position: relative; /* for absolute positioning of title */
         }
         .impressions-grid {
             display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             grid-auto-rows: 130px;
             gap: 18px;
         }
@@ -292,27 +290,37 @@
             transform: translateY(0);
         }
 
-        /* Featured / Work title - a real grid cell, sits directly left of
-           the image beside it, sharing the same row and height. */
-        .imp-title {
-            order: 99;
-            grid-column: 7 / 8;
-            grid-row: 1 / -1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 4px 10px;
-        }
-        .imp-title span {
-            display: block;
+        /* Featured work title – positioned bottom right of the impressions area */
+        .featured-title {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-size: clamp(40px, 6vw, 72px);
             font-family: var(--font-body);
             font-weight: 400;
-            text-transform: uppercase;
             color: var(--espresso);
-            line-height: 0.92;
-            letter-spacing: 0.01em;
-            font-size: clamp(24px, 2vw, 34px);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            line-height: 1;
+            opacity: 0.9;
+            pointer-events: none; /* allow clicks to pass through to images */
+            text-shadow: 2px 2px 0 rgba(207, 194, 169, 0.5);
+            z-index: 1;
+        }
+        /* On smaller screens, adjust position */
+        @media (max-width: 800px) {
+            .featured-title {
+                bottom: 20px;
+                right: 20px;
+                font-size: 32px;
+            }
+        }
+        @media (max-width: 480px) {
+            .featured-title {
+                font-size: 24px;
+                bottom: 10px;
+                right: 10px;
+            }
         }
 
         /* Asymmetric placement */
@@ -373,16 +381,6 @@
             .imp-6 {
                 grid-column: 2 / 3;
                 grid-row: span 2;
-            }
-            .imp-title {
-                grid-column: 1 / 3;
-                grid-row: auto;
-                align-items: center;
-                text-align: center;
-                padding: 20px 10px 4px;
-            }
-            .imp-title span {
-                font-size: clamp(28px, 8vw, 40px);
             }
         }
 
@@ -909,12 +907,11 @@
     </section>
 
     <!-- ============================================================
-    IMPRESSIONS - masonry-style collage. "Featured / Work" is built
-    as a real grid item in JS (see buildImpressions) so it never
-    overlaps the images around it.
+    IMPRESSIONS – masonry-style collage with "Featured Work" title
     ============================================================ -->
     <section class="impressions" id="impressions">
         <div class="impressions-grid" id="impressionsGrid"></div>
+        <div class="featured-title">Featured Work</div>
     </section>
 
     <!-- ================= ABOUT ================= -->
@@ -1038,7 +1035,7 @@
 
     <script>
         /* ============================================================
-           JAVASCRIPT
+           JAVASCRIPT (unchanged from previous version)
            ============================================================ */
 
         // ---- Translations ----
@@ -1178,9 +1175,6 @@
             { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg" },
         ];
 
-        // 6 images fill imp-1..imp-6. "Featured / Work" gets its own
-        // reserved 7th column in the grid (see buildImpressions below),
-        // so it never has to replace one of these.
         const impressionItems = [
             { title: "Carelesness", image: "assets/gallery/01.jpg" },
             { title: "Joy", image: "assets/gallery/03.jpg" },
@@ -1403,37 +1397,25 @@
             const grid = document.getElementById('impressionsGrid');
             if (!grid) return;
             grid.innerHTML = '';
-
             impressionItems.slice(0, 6).forEach((item, idx) => {
                 const tile = document.createElement('div');
                 tile.className = `imp-item imp-${idx + 1}`;
-
                 const img = document.createElement('img');
                 img.dataset.src = item.image;
                 img.alt = item.title || 'Work';
                 img.onerror = () => { tile.style.display = 'none'; };
                 tile.appendChild(img);
                 lazyLoadImage(img);
-
                 if (item.title) {
                     const caption = document.createElement('div');
                     caption.className = 'imp-caption';
                     caption.textContent = item.title;
                     tile.appendChild(caption);
                 }
-
                 const fullItem = galleryItems.find(g => g.image === item.image) || item;
                 tile.addEventListener('click', () => openLightbox(fullItem));
-
                 grid.appendChild(tile);
             });
-
-            // Title sits in its own reserved column (see .imp-title CSS),
-            // so it never displaces one of the 6 images above.
-            const titleTile = document.createElement('div');
-            titleTile.className = 'imp-title';
-            titleTile.innerHTML = '<span>Featured</span><span>Work</span>';
-            grid.appendChild(titleTile);
         }
 
         // ---- Lightbox ----
