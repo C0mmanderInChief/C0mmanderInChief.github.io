@@ -5,8 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JOGDA.com</title>
 
+  <!-- ===== FAVICON ===== -->
+  <!-- Place your favicon.png (or .ico) inside the /assets/ folder -->
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico"> <!-- fallback -->
+
   <!-- ================= FONT ================= -->
-  <!-- We use Google Fonts: Archivo Black – bold, clean, all caps friendly -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
@@ -18,17 +22,17 @@
 
     /* ---------- CSS VARIABLES (easy theming) ---------- */
     :root {
-      --mustard: #EBD45C;        /* Accent yellow – used in hero bar & hover */
-      --sand:    #CFC2A9;        /* Main background – light brown */
-      --espresso: #211E1C;       /* Main text colour – dark brown */
-      --comic-blue: #000000;     /* Used for shadows & hover effects */
-      --grain:   0.04;           /* Opacity of the texture overlay (0 = off) */
+      --mustard: #EBD45C;
+      --sand:    #CFC2A9;
+      --espresso: #211E1C;
+      --comic-blue: #000000;
+      --grain:   0.04;
       --font-body: 'Archivo Black', sans-serif;
     }
 
     /* ---------- Reset & Base ---------- */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }  /* Smooth scrolling for anchor links */
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--sand);
@@ -38,13 +42,12 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
-      transition: background-color 0.4s ease; /* Darkens on scroll */
+      transition: background-color 0.4s ease;
     }
 
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
-    /* Every <section> gets consistent spacing */
     section {
       max-width: 1200px;
       margin: 0 auto;
@@ -53,19 +56,18 @@
 
     h1, h2, h3 {
       font-family: var(--font-body);
-      font-weight: 400;   /* Archivo Black is already bold */
+      font-weight: 400;
       line-height: 1.1;
     }
 
-    /* ---------- GRAIN OVERLAY (texture) ---------- */
-    /* A fixed pseudo‑element that adds a subtle noisy texture over everything */
+    /* ---------- GRAIN OVERLAY ---------- */
     body::after {
       content: "";
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      pointer-events: none;    /* lets clicks pass through */
+      pointer-events: none;
       z-index: 999;
       opacity: var(--grain);
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23fff' fill-opacity='0.03'/%3E%3C/svg%3E");
@@ -74,17 +76,16 @@
     }
 
     /* ---------- PARALLAX BACKGROUND LAYERS ---------- */
-    /* Two fixed layers that move at different speeds on scroll */
     .bg-layer {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-size: 100% auto;   /* stretch horizontally, repeat vertically */
+      background-size: 100% auto;
       background-repeat: repeat-y;
-      z-index: -2;                  /* behind everything */
-      will-change: transform;       /* hint for smoother animation */
+      z-index: -2;
+      will-change: transform;
     }
-    #layer-clouds { z-index: -1; }  /* clouds sit above the back layer */
+    #layer-clouds { z-index: -1; }
 
     /* ---------- LANGUAGE TOGGLE ---------- */
     .lang-toggle {
@@ -113,13 +114,13 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;    /* vertically centre content */
+      justify-content: center;
       position: relative;
       padding-top: 40px;
       padding-bottom: 60px;
     }
     .hero-title {
-      font-size: clamp(50px, 8vw, 100px); /* responsive: min 50px, ideal 8vw, max 100px */
+      font-size: clamp(50px, 8vw, 100px);
       letter-spacing: -0.02em;
       color: var(--espresso);
       line-height: 0.95;
@@ -165,7 +166,6 @@
       color: var(--comic-blue);
       transform: translateX(5px);
     }
-    /* Rotating image box */
     .hero-rotator {
       width: 300px;
       height: 300px;
@@ -181,7 +181,7 @@
       position: absolute;
       top: 0; left: 0;
       opacity: 0;
-      transform: scale(1.6);   /* slight zoom for a nice fade‑in */
+      transform: scale(1.6);
       transition: none;
     }
     .hero-rotator img.active { opacity: 1; }
@@ -200,11 +200,11 @@
     }
     .statement p {
       margin-bottom: 30px;
-      opacity: 0;                 /* hidden initially */
+      opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
-    .statement p.visible {       /* added by IntersectionObserver when scrolled into view */
+    .statement p.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -241,7 +241,6 @@
       font-size: 15px;
       color: var(--espresso);
     }
-    /* Skill tags */
     .skill-list {
       list-style: none;
       display: flex;
@@ -301,16 +300,15 @@
       display: flex;
       gap: 25px;
       padding: 0 20px;
-      width: max-content;            /* important for seamless looping */
+      width: max-content;
       will-change: transform;
       transform: translateZ(0);
-      /* Default animation – JavaScript may override this if fewer than 4 items */
       animation: marqueeScroll 25s linear infinite;
     }
     .marquee-outer:hover .marquee-track { animation-play-state: paused; }
     @keyframes marqueeScroll {
       from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }   /* moves left by half the total width */
+      to   { transform: translateX(-50%); }
     }
 
     .marquee-item {
@@ -322,7 +320,7 @@
       overflow: hidden;
       cursor: pointer;
       transition: box-shadow 0.3s ease, transform 0.3s ease;
-      content-visibility: auto;       /* performance: skip off‑screen rendering */
+      content-visibility: auto;
       contain-intrinsic-size: 260px 325px;
     }
     .marquee-item:hover {
@@ -331,7 +329,7 @@
     }
     .marquee-thumb {
       position: relative;
-      aspect-ratio: 4 / 5;            /* width:height = 4:5 */
+      aspect-ratio: 4 / 5;
       background-color: #e0d5c0;
       overflow: hidden;
     }
@@ -342,7 +340,7 @@
       height: 100%;
       object-fit: cover;
     }
-    .marquee-thumb.no-image::after {   /* placeholder if image missing */
+    .marquee-thumb.no-image::after {
       content: "add image →";
       position: absolute;
       inset: 0;
@@ -355,7 +353,7 @@
       opacity: 0.5;
       z-index: 2;
     }
-    .marquee-thumb .play-badge {       /* video indicator */
+    .marquee-thumb .play-badge {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -369,7 +367,7 @@
       font-size: 12px;
       z-index: 3;
     }
-    .folder-count {                    /* number badge on folder cards */
+    .folder-count {
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -383,7 +381,6 @@
     .marquee-info { padding: 15px 18px; }
     .marquee-info h3 { font-size: 20px; font-weight: 400; }
 
-    /* Expanded (grid) view when "See All" is clicked */
     .marquee-outer.expanded {
       overflow-x: visible;
       overflow-y: visible;
@@ -393,7 +390,7 @@
       width: 100%;
       padding: 20px;
       justify-content: center;
-      animation: none !important;   /* stop scrolling */
+      animation: none !important;
     }
     .marquee-outer.expanded .marquee-item {
       content-visibility: visible;
@@ -405,7 +402,7 @@
       inset: 0;
       background: rgba(33, 30, 28, 0.95);
       z-index: 100;
-      display: none;                /* hidden by default */
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
@@ -507,7 +504,6 @@
     footer p { margin-bottom: 5px; }
 
     /* ---------- PERFORMANCE ---------- */
-    /* Off‑screen sections are skipped for rendering until needed */
     .about,
     .credits,
     .marquee-section,
@@ -541,16 +537,14 @@
        HTML STRUCTURE – all text is loaded from JavaScript
        ============================================================ -->
 
-  <!-- Language toggle button – shows "DE" when English is active, and vice versa -->
   <button class="lang-toggle" id="langToggle">DE</button>
 
-  <!-- Parallax background layers – images are set by JavaScript -->
+  <!-- Parallax background layers -->
   <div id="layer-back" class="bg-layer" data-bg="assets/bg-desktop-back.jpg"></div>
   <div id="layer-clouds" class="bg-layer" data-bg="assets/bg-desktop-clouds.png"></div>
 
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
-    <!-- data-i18n tells JavaScript which translation key to use -->
     <h1 class="hero-title" data-i18n="heroTitle"></h1>
     <div class="hero-bar" data-i18n="heroBar"></div>
     <div class="hero-lower">
@@ -565,7 +559,6 @@
           <li><a href="#contact" data-i18n="navContact"></a></li>
         </ul>
       </div>
-      <!-- Rotating images – loaded from data-src -->
       <div class="hero-rotator" id="heroRotator">
         <img src="" data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active">
         <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2">
@@ -583,7 +576,6 @@
   </section>
 
   <!-- ================= GALLERY SECTIONS ================= -->
-  <!-- Each gallery section has a track element where cards will be injected -->
   <section id="photography" class="marquee-section">
     <div class="marquee-header">
       <h2 class="section-title" data-i18n="sectionPhotography"></h2>
@@ -641,10 +633,11 @@
     </ul>
 
     <h3 data-i18n="techTitle"></h3>
+    <!-- UPDATED TECH ARSENAL -->
     <ul class="skill-list">
-      <li>Photoshop</li>
-      <li>Microsoft Office</li>
-      <li>Google Workspace</li>
+      <li>DaVinci Resolve</li>
+      <li>Adobe Creative Suite (Premiere, After Effects, Photoshop)</li>
+      <li>Blender</li>
     </ul>
 
     <h3 data-i18n="langTitle"></h3>
@@ -660,9 +653,7 @@
     <div class="contact-card">
       <p data-i18n="contactText"></p>
       <div class="contact-links">
-        <!-- Email link gets its href from translations -->
         <a href="#" id="emailLink" data-i18n="emailMe"></a>
-        <!-- Social links – the href will be set by JavaScript from translations -->
         <a href="#" data-i18n="socialInstagram"></a>
         <a href="#" data-i18n="socialLinkedIn"></a>
       </div>
@@ -694,9 +685,6 @@
     /* ============================================================
        STEP 1: ALL TEXT CONTENT (translations)
        ============================================================ */
-    // This object stores every piece of text on the site in two languages.
-    // To change any text, simply edit the value inside the appropriate language block.
-    // To add a new language, copy the 'de' block, rename it (e.g., 'fr'), and translate the values.
     const translations = {
       en: {
         // ----- Hero -----
@@ -727,13 +715,14 @@
         credit1Detail: 'Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.',
         credit2Title: 'Actor',
         credit2Detail: 'Johannesburg, South Africa<br>Supporting role, on-set character development.',
+        /* ----- UPDATED SKILLS (English) ----- */
         skillsTitle: 'Key Skills',
-        skill1: 'On-Set Coordination',
-        skill2: 'Multilingual Communication (EN/DE/NL)',
-        skill3: 'Actor Coaching',
-        skill4: 'Scene Analysis',
-        skill5: 'Set Etiquette',
-        skill6: 'Post-Production Organization',
+        skill1: 'Multilingual communication (EN/DE/NL)',
+        skill2: 'Organisation & coordination',
+        skill3: 'Problem-solving under pressure',
+        skill4: 'Acting experience',
+        skill5: 'Videography',
+        skill6: 'Photography',
         techTitle: 'Tech Arsenal',
         langTitle: 'Language Proficiency',
         lang1: 'English (Native)',
@@ -743,10 +732,9 @@
         // ----- Contact -----
         contactText: 'Whether you have a question, a project idea, or just want to say hi — my inbox is open.',
         emailMe: 'Email me',
-        emailAddress: 'Alejandrowessels05@gmail.com',  // used for mailto: link and display
+        emailAddress: 'Alejandrowessels05@gmail.com',
         socialInstagram: 'Instagram',
         socialLinkedIn: 'LinkedIn',
-        // Social media URLs – paste your links here
         socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
         socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
 
@@ -760,7 +748,7 @@
         prev: '←',
         next: '→',
 
-        // ----- Gallery folder names (for Photography albums) -----
+        // ----- Gallery folder names -----
         folderAlbum1: 'Album 1',
         folderAlbum2: 'Album 2',
         folderAlbum3: 'Album 3',
@@ -796,13 +784,14 @@
         credit1Detail: 'Regie: Helen Hideko | Wien, Österreich<br>Film-Set-Koordination, Schauspielerbetreuung, Requisitenverwaltung.',
         credit2Title: 'Schauspieler',
         credit2Detail: 'Johannesburg, Südafrika<br>Nebenrolle, Charakterentwicklung am Set.',
+        /* ----- UPDATED SKILLS (German) ----- */
         skillsTitle: 'Kernkompetenzen',
-        skill1: 'Set-Koordination',
-        skill2: 'Mehrsprachige Kommunikation (EN/DE/NL)',
-        skill3: 'Schauspielcoaching',
-        skill4: 'Szenenanalyse',
-        skill5: 'Set-Etikette',
-        skill6: 'Postproduktions-Organisation',
+        skill1: 'Mehrsprachige Kommunikation (EN/DE/NL)',
+        skill2: 'Organisation & Koordination',
+        skill3: 'Problemlösung unter Druck',
+        skill4: 'Schauspielerfahrung',
+        skill5: 'Videografie',
+        skill6: 'Fotografie',
         techTitle: 'Technisches Arsenal',
         langTitle: 'Sprachkenntnisse',
         lang1: 'Englisch (Muttersprache)',
@@ -840,21 +829,8 @@
     /* ============================================================
        STEP 2: GALLERY DATA – your photos, films, and art
        ============================================================ */
-    // This array holds all items shown in the three gallery sections.
-    // Each item must have:
-    //   - title: (string) displayed under the thumbnail
-    //   - category: "Photography", "Film", or "Art"
-    //   - folder: (only for Photography) groups images into albums – must match a folderAlbum key above
-    //   - image: (string) path to the image file
-    //   - video: (string, optional) YouTube embed URL – if present, a play badge appears and the lightbox will show the video
-    //   - description: (string, optional) not currently used, but you can add extra info for future features
-    //
-    // To ADD a new item: add a new object to the array.
-    // To REMOVE: delete the object.
-    // To REORDER: move the objects around – they will appear in that order.
     const galleryItems = [
       // ---- PHOTOGRAPHY ----
-      // Items with the same 'folder' value will be grouped into one album card.
       { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.JPG", video: "", description: "" },
       { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.JPG", video: "", description: "" },
       { title: "Joy", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/03.JPG", video: "", description: "" },
@@ -872,7 +848,6 @@
       { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG", video: "", description: "" },
 
       // ---- FILM ----
-      // If you provide a 'video' URL, the card will show a play badge and clicking opens the video in the lightbox.
       { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM", description: "" },
 
       // ---- ART ----
@@ -888,12 +863,11 @@
        ============================================================ */
 
     // ---- Language handling ----
-    let currentLang = 'en';   // start with English
+    let currentLang = 'en';
 
     function applyLanguage(lang) {
       currentLang = lang;
 
-      // 1. Update all elements with data-i18n attributes
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key] !== undefined) {
@@ -901,7 +875,6 @@
         }
       });
 
-      // 2. Set email link href and text
       const emailLink = document.getElementById('emailLink');
       if (emailLink) {
         const email = translations[lang].emailAddress;
@@ -909,13 +882,11 @@
         emailLink.textContent = translations[lang].emailMe;
       }
 
-      // 3. Set social media links
       const instaLink = document.querySelector('[data-i18n="socialInstagram"]');
       const linkedinLink = document.querySelector('[data-i18n="socialLinkedIn"]');
       if (instaLink) instaLink.href = translations[lang].socialInstagramUrl;
       if (linkedinLink) linkedinLink.href = translations[lang].socialLinkedInUrl;
 
-      // 4. Update "See All" buttons text (they change between "See All" and "Show Less")
       document.querySelectorAll('.see-all-btn').forEach(btn => {
         const outer = document.getElementById(btn.dataset.target);
         if (outer && outer.classList.contains('expanded')) {
@@ -925,22 +896,18 @@
         }
       });
 
-      // 5. Update lightbox close button
       const closeBtn = document.getElementById('lightboxClose');
       if (closeBtn) closeBtn.textContent = translations[lang].close;
 
-      // 6. Re‑render the gallery tracks (so folder names update)
       renderTrack('photoTrack', true);
       renderTrack('filmTrack', true);
       renderTrack('artTrack', true);
-      // If any track is in expanded mode, re‑render without duplication
       document.querySelectorAll('.marquee-outer.expanded').forEach(outer => {
         const trackKey = outer.id.replace('Outer', 'Track');
         renderTrack(trackKey, false);
       });
     }
 
-    // Language toggle button
     document.getElementById('langToggle').addEventListener('click', () => {
       const newLang = currentLang === 'en' ? 'de' : 'en';
       applyLanguage(newLang);
@@ -948,14 +915,12 @@
     });
 
     // ---- Gallery rendering ----
-    // These are the three track containers
     const tracks = {
       photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
       filmTrack:  { element: document.getElementById('filmTrack'),  category: 'Film' },
       artTrack:   { element: document.getElementById('artTrack'),   category: 'Art' }
     };
 
-    // Lazy load images – they only load when they come into view
     function lazyLoadImage(img) {
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
@@ -968,16 +933,14 @@
         }, { rootMargin: '200px' });
         observer.observe(img);
       } else {
-        img.src = img.dataset.src;   // fallback for older browsers
+        img.src = img.dataset.src;
       }
     }
 
-    // Get the translated folder name
     function getFolderDisplayName(folderKey) {
       return translations[currentLang][folderKey] || folderKey;
     }
 
-    // Create a folder card (for Photography)
     function createFolderCard(folderKey, items) {
       const card = document.createElement('div');
       card.className = 'marquee-item folder-card';
@@ -995,7 +958,6 @@
         lazyLoadImage(img);
       }
 
-      // Show number of photos in folder
       const countBadge = document.createElement('div');
       countBadge.className = 'folder-count';
       countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
@@ -1008,12 +970,10 @@
       card.appendChild(thumb);
       card.appendChild(info);
 
-      // Clicking a folder opens a slideshow of all photos in it
       card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
       return card;
     }
 
-    // Create a single item card (for Film and Art)
     function createMarqueeItem(item) {
       const card = document.createElement('div');
       card.className = 'marquee-item';
@@ -1030,7 +990,6 @@
         lazyLoadImage(img);
       }
 
-      // If video exists, show a play badge
       if (item.video) {
         const badge = document.createElement('div');
         badge.className = 'play-badge';
@@ -1045,12 +1004,10 @@
       card.appendChild(thumb);
       card.appendChild(info);
 
-      // Click opens the item in the lightbox
       card.addEventListener('click', () => openLightbox(item));
       return card;
     }
 
-    // Group photography items by folder
     function groupByFolder(items) {
       const groups = {};
       items.forEach(item => {
@@ -1061,9 +1018,6 @@
       return groups;
     }
 
-    // Main render function
-    // duplicate = true means we double the items for a seamless marquee loop
-    // The animation is only applied if the number of cards >= 4
     function renderTrack(trackKey, duplicate) {
       const track = tracks[trackKey];
       if (!track) return;
@@ -1078,7 +1032,7 @@
         const folderKeys = Object.keys(groups);
         cardCount = folderKeys.length;
         const animate = duplicate && cardCount >= 4;
-        const count = animate ? 2 : 1;   // only duplicate if we want animation
+        const count = animate ? 2 : 1;
         for (let i = 0; i < count; i++) {
           folderKeys.forEach(folderKey => {
             track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
@@ -1159,7 +1113,6 @@
       currentSlideIndex = 0;
     }
 
-    // Event listeners for lightbox
     document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
     document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
     document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
@@ -1183,7 +1136,6 @@
         const isExpanded = outer.classList.contains('expanded');
         btn.textContent = isExpanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
 
-        // When expanded, we don't duplicate; otherwise we duplicate if we have enough items
         renderTrack(trackKey, !isExpanded);
       });
     });
@@ -1191,7 +1143,6 @@
     // ---- Hero rotator ----
     const rotatorImages = document.querySelectorAll('#heroRotator img');
     let currentImageIndex = 0;
-    // Load hero images immediately (they are above the fold)
     rotatorImages.forEach(img => { img.src = img.dataset.src; });
 
     function rotateImages() {
@@ -1215,9 +1166,8 @@
       document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
     });
 
-    // Darken background gradually on scroll
-    const baseBg = { r: 207, g: 194, b: 169 };   // original sand
-    const darkBg = { r: 185, g: 170, b: 145 };   // darker sand
+    const baseBg = { r: 207, g: 194, b: 169 };
+    const darkBg = { r: 185, g: 170, b: 145 };
     function handleBackgroundScroll() {
       const scrollY = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1242,7 +1192,6 @@
     applyLanguage('en');
     handleBackgroundScroll();
 
-    // Safety fallback for hero images
     setTimeout(() => {
       rotatorImages.forEach(img => { if (!img.src) img.src = img.dataset.src; });
     }, 100);
