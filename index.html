@@ -234,8 +234,8 @@
 
         /* ============================================================
            IMPRESSIONS - masonry-style image collage
-           "Featured / Work" is now a real grid item (not floating text),
-           so it can never overlap the tiles around it.
+           "Featured / Work" is a real grid item, placed below the two
+           images and next to "Bullies of Belgrade" in the empty square.
            ============================================================ */
         .impressions {
             max-width: 1200px;
@@ -292,17 +292,20 @@
             transform: translateY(0);
         }
 
-        /* Featured / Work title - a real grid cell, sits directly left of
-           the image beside it, sharing the same row and height. */
+        /* ---- FEATURED / WORK title - sits below the two images and
+             next to "Bullies of Belgrade" in the empty square. ---- */
         .imp-title {
             grid-column: 4 / 7;
-            grid-row: 3 / 5;
+            grid-row: 5 / 7;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 14px;
-            padding: 4px 10px;
+            gap: 0px;
+            padding: 8px 6px;
+            background: transparent;
+            border: none;
+            text-align: center;
         }
         .imp-title span {
             display: block;
@@ -312,7 +315,12 @@
             color: var(--espresso);
             line-height: 0.92;
             letter-spacing: 0.01em;
-            font-size: clamp(20px, 2.4vw, 32px);
+        }
+        .imp-title .featured-line {
+            font-size: clamp(26px, 3vw, 44px);
+        }
+        .imp-title .work-line {
+            font-size: clamp(34px, 4vw, 56px);
         }
 
         /* Asymmetric placement */
@@ -381,9 +389,13 @@
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
+                gap: 6px;
                 padding: 20px 10px 4px;
             }
-            .imp-title span {
+            .imp-title .featured-line {
+                font-size: clamp(20px, 6vw, 30px);
+            }
+            .imp-title .work-line {
                 font-size: clamp(24px, 7vw, 34px);
             }
         }
@@ -912,8 +924,8 @@
 
     <!-- ============================================================
     IMPRESSIONS - masonry-style collage. "Featured / Work" is built
-    as a real grid item in JS (see buildImpressions) so it never
-    overlaps the images around it.
+    as a real grid item placed below the two images and next to
+    "Bullies of Belgrade" in the empty square.
     ============================================================ -->
     <section class="impressions" id="impressions">
         <div class="impressions-grid" id="impressionsGrid"></div>
@@ -1180,9 +1192,8 @@
             { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg" },
         ];
 
-        // 6 images fill imp-1..imp-6. "Featured / Work" gets its own
-        // reserved 7th column in the grid (see buildImpressions below),
-        // so it never has to replace one of these.
+        // 6 images fill imp-1..imp-6. The "Featured / Work" title is
+        // built as a reserved grid cell (see buildImpressions below).
         const impressionItems = [
             { title: "Carelesness", image: "assets/gallery/01.jpg" },
             { title: "Joy", image: "assets/gallery/03.jpg" },
@@ -1406,6 +1417,7 @@
             if (!grid) return;
             grid.innerHTML = '';
 
+            // Add the 6 image tiles (imp-1 through imp-6)
             impressionItems.slice(0, 6).forEach((item, idx) => {
                 const tile = document.createElement('div');
                 tile.className = `imp-item imp-${idx + 1}`;
@@ -1430,11 +1442,14 @@
                 grid.appendChild(tile);
             });
 
-            // Title sits in its own reserved column (see .imp-title CSS),
-            // so it never displaces one of the 6 images above.
+            // ---- "Featured / Work" title - sits below the two images
+            //      and next to "Bullies of Belgrade" in the empty square.
             const titleTile = document.createElement('div');
             titleTile.className = 'imp-title';
-            titleTile.innerHTML = '<span>Featured</span><span>Work</span>';
+            titleTile.innerHTML = `
+                <span class="featured-line">Featured</span>
+                <span class="work-line">Work</span>
+            `;
             grid.appendChild(titleTile);
         }
 
