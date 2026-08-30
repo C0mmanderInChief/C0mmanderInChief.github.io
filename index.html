@@ -287,29 +287,51 @@
         }
 
         /* ----- ABOUT (with margin outside) ----- */
-        .about {
-            margin-top: 120px;      /* space above (outside) */
-            margin-bottom: 120px;   /* space below (outside) */
-            padding: 100px 20px;    /* space inside (padding) */
-        }
-        .statement { max-width:550px; margin:0 auto; font-size:18px; }
-        .statement h2 { font-size:24px; margin-bottom:20px; text-align:center; }
-        .statement p {
-            margin-bottom:20px;
-            opacity:0;
-            transform:translateY(20px);
-            transition:opacity 0.8s ease, transform 0.8s ease;
-        }
-        .statement p.visible { opacity:1; transform:translateY(0); }
-        @media (max-width:480px) {
-            .about {
-                margin-top: 60px;    /* less margin on mobile */
-                margin-bottom: 60px;
-                padding: 50px 15px;
-            }
-            .statement { font-size:16px; }
-            .statement h2 { font-size:20px; }
-        }
+       /* ----- ABOUT (BIGGER) ----- */
+.about {
+    margin-top: 120px;      /* more space above (outside) */
+    margin-bottom: 120px;   /* more space below (outside) */
+    padding: 160px 30px;    /* much taller box – more padding inside */
+}
+.statement { 
+    max-width: 800px;       /* wider text block */
+    margin: 0 auto; 
+    font-size: 24px;        /* bigger text */
+}
+.statement h2 { 
+    font-size: 42px;        /* much bigger heading */
+    margin-bottom: 35px; 
+    text-align: center; 
+}
+.statement p {
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.statement p.visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+/* ----- Mobile adjustment (still bigger than before) ----- */
+@media (max-width: 480px) {
+    .about {
+        margin-top: 60px;
+        margin-bottom: 60px;
+        padding: 70px 20px;
+    }
+    .statement { 
+        font-size: 20px; 
+        max-width: 100%;
+    }
+    .statement h2 { 
+        font-size: 32px; 
+    }
+    .statement p {
+        margin-bottom: 20px;
+    }
+}
 
         /* ----- CREDITS ----- */
         .credits { padding:40px 20px; }
