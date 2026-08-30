@@ -1,7 +1,10 @@
 <!--
 ╔══════════════════════════════════════════════════════════════════╗
-║                   BIG INTRODUCTORY COMMENT                       ║
-║  ... (same as before, but I'll keep it short for brevity)       ║
+║                   FULLY FIXED – DESKTOP & MOBILE               ║
+║  This version restores all error handlers and adds a safety    ║
+║  net for missing images. Mobile backgrounds are optional and   ║
+║  gracefully degrade. If something still breaks, open the       ║
+║  browser console (F12) to see error messages.                  ║
 ╚══════════════════════════════════════════════════════════════════╝
 -->
 <!DOCTYPE html>
@@ -55,7 +58,7 @@
         section { max-width:1200px; margin:0 auto; padding:60px 20px; }
         h1, h2, h3 { font-family:var(--font-body); font-weight:400; line-height:1.1; }
 
-        /* ----- GRAIN (keep but reduce opacity on mobile) ----- */
+        /* ----- GRAIN (lighter on mobile) ----- */
         body::after {
             content:"";
             position:fixed;
@@ -68,11 +71,9 @@
             background-repeat:repeat;
             background-size:100px 100px;
         }
-        @media (max-width:768px) {
-            body::after { opacity:0.02; } /* lighter grain for performance */
-        }
+        @media (max-width:768px) { body::after { opacity:0.02; } }
 
-        /* ----- PARALLAX (only on desktop; mobile uses static) ----- */
+        /* ----- PARALLAX (desktop only; mobile static) ----- */
         .bg-layer {
             position:fixed;
             top:0; left:0;
@@ -81,23 +82,23 @@
             background-size:100% auto;
             background-repeat:repeat-y;
             z-index:-2;
-            will-change:transform; /* only transform, not paint */
+            will-change:transform;
         }
         #layer-clouds { z-index:-1; }
 
-        /* On mobile, disable fixed positioning to improve scroll performance */
         @media (max-width:768px) {
             .bg-layer {
-                position:absolute;   /* not fixed, so no repaint on scroll */
+                position:absolute;
                 height:100vh;
-                background-attachment:scroll; /* static */
+                background-attachment:scroll;
                 will-change:auto;
             }
-            #layer-back { background-image:url('assets/bg-mobile-back.jpg') !important; }
-            #layer-clouds { background-image:url('assets/bg-mobile-clouds.png') !important; }
+            /* Optional: uncomment if you have mobile-optimised images */
+            /* #layer-back { background-image:url('assets/bg-mobile-back.jpg') !important; } */
+            /* #layer-clouds { background-image:url('assets/bg-mobile-clouds.png') !important; } */
         }
 
-        /* ----- LANGUAGE TOGGLE (smaller on mobile) ----- */
+        /* ----- LANGUAGE TOGGLE ----- */
         .lang-toggle {
             position:fixed;
             top:15px; right:15px;
@@ -118,7 +119,7 @@
             .lang-toggle { top:10px; right:10px; padding:6px 10px; font-size:11px; }
         }
 
-        /* ----- HERO SECTION ----- */
+        /* ----- HERO ----- */
         .hero {
             min-height:100vh;
             display:flex;
@@ -161,9 +162,7 @@
             list-style:none;
             margin-top:5px;
         }
-        .hero-nav li {
-            margin-bottom:8px;
-        }
+        .hero-nav li { margin-bottom:8px; }
         .hero-nav a {
             display:inline-block;
             font-size:clamp(12px, 1.4vw, 14px);
@@ -174,8 +173,7 @@
         }
         .hero-nav a:hover { color:var(--comic-blue); transform:translateX(5px); }
         .hero-rotator {
-            width:280px;
-            height:280px;
+            width:280px; height:280px;
             border-radius:2px;
             overflow:hidden;
             position:relative;
@@ -192,18 +190,9 @@
         }
         .hero-rotator img.active { opacity:1; }
 
-        /* Mobile hero adjustments */
         @media (max-width:800px) {
-            .hero-lower {
-                flex-direction:column;
-                align-items:stretch;
-                gap:20px;
-            }
-            .hero-rotator {
-                width:100%;
-                height:220px;
-                margin-top:10px;
-            }
+            .hero-lower { flex-direction:column; align-items:stretch; gap:20px; }
+            .hero-rotator { width:100%; height:220px; margin-top:10px; }
             .hero-title { font-size:clamp(32px, 10vw, 60px); }
             .hero-bar { font-size:clamp(18px, 5vw, 30px); padding:10px 15px; }
             .hero-subtitle { margin-bottom:15px; font-size:16px; }
@@ -214,7 +203,7 @@
             .hero { padding:40px 15px 20px; }
         }
 
-        /* ----- IMPRESSIONS (keep masonry, smaller on mobile) ----- */
+        /* ----- IMPRESSIONS ----- */
         .impressions { padding:30px 20px 20px; }
         .impressions-grid {
             display:grid;
@@ -231,12 +220,7 @@
             transition:transform 0.3s ease, box-shadow 0.3s ease;
         }
         .imp-item:hover { transform:translateY(-4px); box-shadow:6px 6px 0 0 var(--comic-blue); z-index:2; }
-        .imp-item img {
-            width:100%; height:100%;
-            object-fit:cover;
-            display:block;
-            transition:transform 0.5s ease;
-        }
+        .imp-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease; }
         .imp-item:hover img { transform:scale(1.05); }
         .imp-item .imp-caption {
             position:absolute;
@@ -309,7 +293,7 @@
             .imp-title span { font-size:clamp(22px, 4vw, 30px); }
         }
 
-        /* ----- ABOUT (reduce padding on mobile) ----- */
+        /* ----- ABOUT ----- */
         .about { padding:40px 20px; }
         .statement { max-width:550px; margin:0 auto; font-size:18px; }
         .statement h2 { font-size:24px; margin-bottom:20px; text-align:center; }
@@ -326,7 +310,7 @@
             .statement h2 { font-size:20px; }
         }
 
-        /* ----- CREDITS / EXPERIENCE ----- */
+        /* ----- CREDITS ----- */
         .credits { padding:40px 20px; }
         .credits h3 { font-size:16px; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.05em; }
         .credit-item {
@@ -356,7 +340,7 @@
         }
         .skill-list li:hover { border-color:var(--comic-blue); color:var(--comic-blue); }
 
-        /* ----- MARQUEE SECTIONS (simplify on mobile) ----- */
+        /* ----- MARQUEE ----- */
         .marquee-section { margin-bottom:40px; }
         .marquee-header {
             display:flex;
@@ -418,7 +402,6 @@
             from { transform:translateX(0); }
             to { transform:translateX(-50%); }
         }
-        /* On mobile, reduce speed or pause? We'll keep but make smaller items */
         .marquee-item {
             flex:0 0 auto;
             width:220px;
@@ -486,7 +469,7 @@
         @media (max-width:800px) {
             .marquee-item { width:180px; }
             .marquee-info h3 { font-size:16px; }
-            .marquee-track { gap:15px; animation-duration:18s; } /* slightly slower */
+            .marquee-track { gap:15px; animation-duration:18s; }
         }
         @media (max-width:480px) {
             .marquee-item { width:150px; }
@@ -494,7 +477,7 @@
             .marquee-track { gap:12px; animation-duration:15s; }
         }
 
-        /* ----- LIGHTBOX (same, but close button smaller on mobile) ----- */
+        /* ----- LIGHTBOX ----- */
         .lightbox {
             position:fixed;
             inset:0;
@@ -557,7 +540,7 @@
             .lightbox-title .sub { font-size:12px; }
         }
 
-        /* ----- CONTACT (more compact) ----- */
+        /* ----- CONTACT ----- */
         .contact-card {
             background:var(--sand);
             padding:30px 20px;
@@ -597,7 +580,7 @@
         }
         footer p { margin-bottom:4px; }
 
-        /* Performance: content-visibility for sections */
+        /* Performance */
         .about, .credits, .marquee-section, .contact { content-visibility:auto; contain-intrinsic-size:800px; }
     </style>
 </head>
@@ -648,7 +631,7 @@
         </div>
     </section>
 
-    <!-- GALLERY SECTIONS -->
+    <!-- GALLERY -->
     <section id="photography" class="marquee-section">
         <div class="marquee-header">
             <h2 class="section-title" data-i18n="sectionPhotography"></h2>
@@ -748,16 +731,587 @@
     </div>
 
     <script>
-        // (Keep the JavaScript exactly as it was – it already handles translations, lazy load, etc.)
-        // I've removed the redundant error handlers and improved some minor things,
-        // but the core logic remains the same for compatibility.
+        /* ============================================================
+           JAVASCRIPT – fully restored with error handling
+           ============================================================ */
 
-        // ---- Translations, gallery data, etc. ----
-        // I'll include a condensed version here – you can keep your existing JS.
-        // For space, I've kept the original JS block that you provided.
-        // Just paste the original JS below this comment.
-        // (Make sure to keep the original JS code exactly as before – it's already optimized.)
+        // ---- Translations ----
+        const translations = {
+            en: {
+                heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
+                heroBar: 'JOGDA',
+                heroSubtitle: 'Journey of Gestures, Digital Archive',
+                navAbout: 'About',
+                navPhotography: 'Photography',
+                navFilm: 'Film',
+                navArt: 'Art',
+                navExperience: 'Experience',
+                navContact: 'Contact',
+                aboutQuote: '"I am a 20-year-old South African with a Spanish name, and currently living in Austria. I\'m involved in a wide variety of things, such as design, photography and short films. I have traveled far alone but with that experience I understand others in a way that I want to be understood."',
+                aboutAuthor: '-Alejo',
+                sectionPhotography: 'Photography',
+                sectionFilm: 'Film',
+                sectionArt: 'Art',
+                seeAll: 'See All',
+                showLess: 'Show Less',
+                closePhoto: 'Close',
+                expandToAll: 'Expand to All',
+                experienceTitle: 'Production Experience',
+                credit1Title: 'Runner',
+                credit1Detail: 'Director: Helen Hideko | Vienna, Austria<br>Film set coordination, actor care, props management.',
+                credit2Title: 'Actor',
+                credit2Detail: 'Johannesburg, South Africa<br>Supporting role, on-set character development.',
+                skillsTitle: 'Key Skills',
+                skill1: 'Multilingual communication (EN/DE/NL)',
+                skill2: 'Organisation & coordination',
+                skill3: 'Problem-solving under pressure',
+                skill4: 'Acting experience',
+                skill5: 'Videography',
+                skill6: 'Photography',
+                techTitle: 'Tech Arsenal',
+                langTitle: 'Language Proficiency',
+                lang1: 'English (Native)',
+                lang2: 'German (B2)',
+                lang3: 'Dutch (B1)',
+                contactText: 'Whether you have a question, a project idea, or just want to say hi — my inbox is open.',
+                emailMe: 'Email me',
+                emailAddress: 'Alejandrowessels05@gmail.com',
+                socialInstagram: 'Instagram',
+                socialLinkedIn: 'LinkedIn',
+                socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
+                socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
+                footerAddress: 'Sechshauserstrasse 9, Wien, Austria',
+                footerPhone: '+43 681 84315549',
+                footerEmail: 'alejandrowessels05@gmail.com',
+                close: 'close ✕',
+                prev: '<',
+                next: '>',
+                folderAlbum1: 'Album 1',
+                folderAlbum2: 'Album 2',
+                folderAlbum3: 'Album 3',
+                folderAlbum4: 'Album 4',
+                folderAlbum5: 'Album 5',
+            },
+            de: {
+                heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
+                heroBar: 'JOGDA',
+                heroSubtitle: 'Reise der Gesten, Digitales Archiv',
+                navAbout: 'Über mich',
+                navPhotography: 'Fotografie',
+                navFilm: 'Film',
+                navArt: 'Kunst',
+                navExperience: 'Erfahrung',
+                navContact: 'Kontakt',
+                aboutQuote: '"Ich bin ein 20-jähriger Südafrikaner mit einem spanischen Namen und lebe derzeit in Österreich. Ich beschäftige mich mit den unterschiedlichsten Dingen, wie zum Beispiel Design, Fotografie und Kurzfilmen. Ich bin allein weit gereist, und durch diese Erfahrung verstehe ich andere so, wie ich selbst verstanden werden möchte."',
+                aboutAuthor: '-Alejo',
+                sectionPhotography: 'Fotografie',
+                sectionFilm: 'Film',
+                sectionArt: 'Kunst',
+                seeAll: 'Alle anzeigen',
+                showLess: 'Weniger anzeigen',
+                closePhoto: 'Schließen',
+                expandToAll: 'Alle erweitern',
+                experienceTitle: 'Produktionserfahrung',
+                credit1Title: 'Runner',
+                credit1Detail: 'Regie: Helen Hideko | Wien, Österreich<br>Film-Set-Koordination, Schauspielerbetreuung, Requisitenverwaltung.',
+                credit2Title: 'Schauspieler',
+                credit2Detail: 'Johannesburg, Südafrika<br>Nebenrolle, Charakterentwicklung am Set.',
+                skillsTitle: 'Kernkompetenzen',
+                skill1: 'Mehrsprachige Kommunikation (EN/DE/NL)',
+                skill2: 'Organisation & Koordination',
+                skill3: 'Problemlösung unter Druck',
+                skill4: 'Schauspielerfahrung',
+                skill5: 'Videografie',
+                skill6: 'Fotografie',
+                techTitle: 'Technisches Arsenal',
+                langTitle: 'Sprachkenntnisse',
+                lang1: 'Englisch (Muttersprache)',
+                lang2: 'Deutsch (B2)',
+                lang3: 'Niederländisch (B1)',
+                contactText: 'Ob du eine Frage hast, eine Projektidee oder einfach nur Hallo sagen möchtest – mein Postfach ist offen.',
+                emailMe: 'E-Mail schreiben',
+                emailAddress: 'Alejandrowessels05@gmail.com',
+                socialInstagram: 'Instagram',
+                socialLinkedIn: 'LinkedIn',
+                socialInstagramUrl: 'https://www.instagram.com/boob.co.za',
+                socialLinkedInUrl: 'https://www.linkedin.com/in/alejandro-fidel-regueros-wessels-7886aa351/?isSelfProfile=true',
+                footerAddress: 'Sechshauserstrasse 9, Wien, Österreich',
+                footerPhone: '+43 681 84315549',
+                footerEmail: 'alejandrowessels05@gmail.com',
+                close: 'schließen ✕',
+                prev: '<',
+                next: '>',
+                folderAlbum1: 'Album 1',
+                folderAlbum2: 'Album 2',
+                folderAlbum3: 'Album 3',
+                folderAlbum4: 'Album 4',
+                folderAlbum5: 'Album 5',
+            }
+        };
+
+        // ---- Gallery data ----
+        const galleryItems = [
+            { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.jpg" },
+            { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.jpg" },
+            { title: "Joy", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/03.jpg" },
+            { title: "Blissful ignorance", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/04.jpg" },
+            { title: "times up", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/05.jpg" },
+            { title: "ugh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/06.JPG" },
+            { title: " hmm.. ", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/07.JPG" },
+            { title: "ummm", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/08.JPG" },
+            { title: "urghh...", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/09.JPG" },
+            { title: "woahh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/10.JPG" },
+            { title: "Yawns", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/11.JPG" },
+            { title: "The dark angel", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/13.JPG" },
+            { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG" },
+            { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM" },
+            { title: "Land of art", category: "Art", image: "assets/gallery/A01.png" },
+            { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png" },
+            { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png" },
+            { title: "Jippy in catch me", category: "Art", image: "assets/gallery/A04.png" },
+            { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg" },
+        ];
+
+        const impressionItems = [
+            { title: "Carelesness", image: "assets/gallery/01.jpg" },
+            { title: "Joy", image: "assets/gallery/03.jpg" },
+            { title: "The dark angel", image: "assets/gallery/13.JPG" },
+            { title: "ugh", image: "assets/gallery/06.JPG" },
+            { title: "Land of art", image: "assets/gallery/A01.png" },
+            { title: "The Bullies of Belgrade", image: "assets/gallery/A03.png" },
+        ];
+
+        let currentLang = 'en';
+
+        // ---- Language application ----
+        function applyLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key] !== undefined) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+            const emailLink = document.getElementById('emailLink');
+            if (emailLink) {
+                emailLink.href = `mailto:${translations[lang].emailAddress}`;
+                emailLink.textContent = translations[lang].emailMe;
+            }
+            const instaLink = document.querySelector('[data-i18n="socialInstagram"]');
+            const linkedinLink = document.querySelector('[data-i18n="socialLinkedIn"]');
+            if (instaLink) instaLink.href = translations[lang].socialInstagramUrl;
+            if (linkedinLink) linkedinLink.href = translations[lang].socialLinkedInUrl;
+            updateButtonTexts();
+            const closeBtn = document.getElementById('lightboxClose');
+            if (closeBtn) closeBtn.textContent = translations[lang].close;
+            renderTrack('photoTrack', true);
+            renderTrack('filmTrack', true);
+            renderTrack('artTrack', true);
+        }
+
+        document.getElementById('langToggle').addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'de' : 'en';
+            applyLanguage(newLang);
+            document.getElementById('langToggle').textContent = newLang === 'en' ? 'DE' : 'EN';
+        });
+
+        // ---- Lazy load ----
+        function lazyLoadImage(img) {
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.src = entry.target.dataset.src;
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '200px' });
+                observer.observe(img);
+            } else {
+                img.src = img.dataset.src;
+            }
+        }
+
+        function getFolderDisplayName(folderKey) {
+            return translations[currentLang][folderKey] || folderKey;
+        }
+
+        // ---- Create folder card (with error fallback) ----
+        function createFolderCard(folderKey, items) {
+            const card = document.createElement('div');
+            card.className = 'marquee-item folder-card';
+            const coverItem = items[0];
+            const thumb = document.createElement('div');
+            thumb.className = 'marquee-thumb';
+            if (coverItem.image) {
+                const img = document.createElement('img');
+                img.dataset.src = coverItem.image;
+                img.alt = getFolderDisplayName(folderKey);
+                img.onerror = () => { thumb.style.background = '#ccc'; };
+                thumb.appendChild(img);
+                lazyLoadImage(img);
+            }
+            const countBadge = document.createElement('div');
+            countBadge.className = 'folder-count';
+            countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
+            thumb.appendChild(countBadge);
+            const info = document.createElement('div');
+            info.className = 'marquee-info';
+            info.innerHTML = `<h3>${getFolderDisplayName(folderKey)}</h3>`;
+            card.appendChild(thumb);
+            card.appendChild(info);
+            card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
+            return card;
+        }
+
+        // ---- Create single item (with error fallback) ----
+        function createMarqueeItem(item) {
+            const card = document.createElement('div');
+            card.className = 'marquee-item';
+            const thumb = document.createElement('div');
+            thumb.className = 'marquee-thumb';
+            if (item.image) {
+                const img = document.createElement('img');
+                img.dataset.src = item.image;
+                img.alt = item.title;
+                img.onerror = () => { thumb.style.background = '#ccc'; };
+                thumb.appendChild(img);
+                lazyLoadImage(img);
+            }
+            if (item.video) {
+                const badge = document.createElement('div');
+                badge.className = 'play-badge';
+                badge.textContent = '▶';
+                thumb.appendChild(badge);
+            }
+            const info = document.createElement('div');
+            info.className = 'marquee-info';
+            info.innerHTML = `<h3>${item.title}</h3>`;
+            card.appendChild(thumb);
+            card.appendChild(info);
+            card.addEventListener('click', () => openLightbox(item));
+            return card;
+        }
+
+        function groupByFolder(items) {
+            const groups = {};
+            items.forEach(item => {
+                const folderKey = item.folder || 'folderAlbum1';
+                if (!groups[folderKey]) groups[folderKey] = [];
+                groups[folderKey].push(item);
+            });
+            return groups;
+        }
+
+        const tracks = {
+            photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
+            filmTrack: { element: document.getElementById('filmTrack'), category: 'Film' },
+            artTrack: { element: document.getElementById('artTrack'), category: 'Art' }
+        };
+
+        function renderTrack(trackKey, duplicate) {
+            const track = tracks[trackKey];
+            if (!track) return;
+            const items = galleryItems.filter(item => item.category === track.category);
+            const outer = document.getElementById(trackKey.replace('Track', 'Outer'));
+            if (!outer) return;
+            const isExpanded = outer.classList.contains('expanded');
+            const isPhoto = trackKey === 'photoTrack';
+            const individual = isPhoto && outer.dataset.individual === 'true';
+            track.element.innerHTML = '';
+
+            if (isPhoto) {
+                if (!isExpanded) {
+                    const groups = groupByFolder(items);
+                    const folderKeys = Object.keys(groups);
+                    const animate = duplicate && folderKeys.length >= 4;
+                    const count = animate ? 2 : 1;
+                    for (let i = 0; i < count; i++) {
+                        folderKeys.forEach(folderKey => {
+                            track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
+                        });
+                    }
+                    track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
+                } else if (individual) {
+                    const animate = duplicate && items.length >= 4;
+                    const count = animate ? 2 : 1;
+                    for (let i = 0; i < count; i++) {
+                        items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+                    }
+                    track.element.style.animation = 'none';
+                } else {
+                    const groups = groupByFolder(items);
+                    const folderKeys = Object.keys(groups);
+                    folderKeys.forEach(folderKey => {
+                        track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
+                    });
+                    track.element.style.animation = 'none';
+                }
+            } else {
+                if (!isExpanded) {
+                    const animate = duplicate && items.length >= 4;
+                    const count = animate ? 2 : 1;
+                    for (let i = 0; i < count; i++) {
+                        items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+                    }
+                    track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
+                } else {
+                    items.forEach(item => track.element.appendChild(createMarqueeItem(item)));
+                    track.element.style.animation = 'none';
+                }
+            }
+            updateButtonTexts();
+        }
+
+        function updateButtonTexts() {
+            document.querySelectorAll('.see-all-btn').forEach(btn => {
+                const outer = document.getElementById(btn.dataset.target);
+                if (!outer) return;
+                const isPhoto = btn.dataset.target === 'photoOuter';
+                const expanded = outer.classList.contains('expanded');
+                if (isPhoto) {
+                    btn.textContent = expanded ? translations[currentLang].closePhoto : translations[currentLang].seeAll;
+                } else {
+                    btn.textContent = expanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
+                }
+            });
+            const secBtn = document.getElementById('photoSecondarySeeAll');
+            if (secBtn) {
+                const outer = document.getElementById('photoOuter');
+                const expanded = outer && outer.classList.contains('expanded');
+                const individual = outer && outer.dataset.individual === 'true';
+                if (expanded) {
+                    secBtn.textContent = individual ? translations[currentLang].showLess : translations[currentLang].expandToAll;
+                    secBtn.classList.add('visible');
+                } else {
+                    secBtn.classList.remove('visible');
+                }
+            }
+        }
+
+        // ---- Impressions ----
+        function buildImpressions() {
+            const grid = document.getElementById('impressionsGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            impressionItems.slice(0, 6).forEach((item, idx) => {
+                const tile = document.createElement('div');
+                tile.className = `imp-item imp-${idx + 1}`;
+                const img = document.createElement('img');
+                img.dataset.src = item.image;
+                img.alt = item.title || 'Work';
+                img.onerror = () => { tile.style.display = 'none'; };
+                tile.appendChild(img);
+                lazyLoadImage(img);
+
+                if (item.title) {
+                    const caption = document.createElement('div');
+                    caption.className = 'imp-caption';
+                    caption.textContent = item.title;
+                    tile.appendChild(caption);
+                }
+
+                const fullItem = galleryItems.find(g => g.image === item.image) || item;
+                tile.addEventListener('click', () => openLightbox(fullItem));
+                grid.appendChild(tile);
+            });
+
+            const titleTile = document.createElement('div');
+            titleTile.className = 'imp-title';
+            titleTile.innerHTML = `<span>Featured</span><span>Work</span>`;
+            grid.appendChild(titleTile);
+        }
+
+        // ---- Lightbox ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxMedia = document.getElementById('lightboxMedia');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        let currentSlideshow = [];
+        let currentSlideIndex = 0;
+
+        function openSlideshow(items, startIndex) {
+            currentSlideshow = items;
+            currentSlideIndex = startIndex;
+            updateLightboxMedia();
+            lightbox.classList.add('open');
+            updateNavButtons();
+        }
+
+        function openLightbox(item) { openSlideshow([item], 0); }
+        function openFolderSlideshow(folderKey, items) { openSlideshow(items, 0); }
+
+        function updateLightboxMedia() {
+            const item = currentSlideshow[currentSlideIndex];
+            lightboxMedia.innerHTML = '';
+            let titleText = item.title || '';
+            let subText = item.category || '';
+            if (item.folder) {
+                subText = getFolderDisplayName(item.folder) + (subText ? ` · ${subText}` : '');
+            }
+            lightboxTitle.innerHTML = titleText ? `${titleText} <span class="sub">${subText}</span>` : '';
+            if (item.video) {
+                const iframe = document.createElement('iframe');
+                iframe.src = item.video;
+                iframe.allow = "autoplay; fullscreen; picture-in-picture";
+                iframe.allowFullscreen = true;
+                lightboxMedia.appendChild(iframe);
+            } else if (item.image) {
+                const img = document.createElement('img');
+                img.src = item.image;
+                img.alt = item.title || '';
+                lightboxMedia.appendChild(img);
+            }
+        }
+
+        function showPrevSlide() {
+            if (currentSlideshow.length === 0) return;
+            currentSlideIndex = (currentSlideIndex - 1 + currentSlideshow.length) % currentSlideshow.length;
+            updateLightboxMedia();
+            updateNavButtons();
+        }
+        function showNextSlide() {
+            if (currentSlideshow.length === 0) return;
+            currentSlideIndex = (currentSlideIndex + 1) % currentSlideshow.length;
+            updateLightboxMedia();
+            updateNavButtons();
+        }
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const single = currentSlideshow.length <= 1;
+            prevBtn.style.display = single ? 'none' : 'block';
+            nextBtn.style.display = single ? 'none' : 'block';
+        }
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            lightboxMedia.innerHTML = '';
+            lightboxTitle.innerHTML = '';
+            currentSlideshow = [];
+            currentSlideIndex = 0;
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
+        document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrevSlide();
+            if (e.key === 'ArrowRight') showNextSlide();
+        });
+
+        // ---- See All buttons ----
+        document.querySelectorAll('.see-all-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.dataset.target;
+                const outer = document.getElementById(targetId);
+                const trackKey = targetId.replace('Outer', 'Track');
+                if (!outer || !tracks[trackKey]) return;
+                const isPhoto = targetId === 'photoOuter';
+                if (isPhoto) {
+                    const expanded = outer.classList.contains('expanded');
+                    if (!expanded) {
+                        outer.classList.add('expanded');
+                        outer.dataset.individual = 'false';
+                        renderTrack(trackKey, false);
+                    } else {
+                        outer.classList.remove('expanded');
+                        outer.dataset.individual = 'false';
+                        renderTrack(trackKey, true);
+                    }
+                } else {
+                    outer.classList.toggle('expanded');
+                    const expanded = outer.classList.contains('expanded');
+                    renderTrack(trackKey, !expanded);
+                }
+                updateButtonTexts();
+            });
+        });
+
+        document.getElementById('photoSecondarySeeAll').addEventListener('click', () => {
+            const outer = document.getElementById('photoOuter');
+            const trackKey = 'photoTrack';
+            if (!outer || !tracks[trackKey]) return;
+            if (!outer.classList.contains('expanded')) return;
+            const individual = outer.dataset.individual === 'true';
+            if (!individual) {
+                outer.dataset.individual = 'true';
+                renderTrack(trackKey, false);
+            } else {
+                outer.dataset.individual = 'false';
+                renderTrack(trackKey, false);
+            }
+            updateButtonTexts();
+        });
+
+        // ---- Hero rotator ----
+        const rotatorImages = document.querySelectorAll('#heroRotator img');
+        let currentImageIndex = 0;
+        rotatorImages.forEach(img => { img.src = img.dataset.src; });
+        function rotateImages() {
+            rotatorImages.forEach(img => img.classList.remove('active'));
+            currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
+            rotatorImages[currentImageIndex].classList.add('active');
+        }
+        setInterval(rotateImages, 800);
+
+        // ---- Parallax ----
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.bg-layer').forEach(layer => {
+                const bg = layer.getAttribute('data-bg');
+                if (bg) layer.style.backgroundImage = `url('${bg}')`;
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            if (window.innerWidth > 768) {
+                const scrolled = window.scrollY;
+                document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
+                document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
+            }
+        });
+
+        // ---- Background color transition ----
+        const baseBg = { r: 207, g: 194, b: 169 };
+        const darkBg = { r: 185, g: 170, b: 145 };
+        function handleBackgroundScroll() {
+            const scrollY = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = Math.min(scrollY / docHeight, 1);
+            const r = Math.round(baseBg.r + (darkBg.r - baseBg.r) * progress);
+            const g = Math.round(baseBg.g + (darkBg.g - baseBg.g) * progress);
+            const b = Math.round(baseBg.b + (darkBg.b - baseBg.b) * progress);
+            document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+        }
+        window.addEventListener('scroll', handleBackgroundScroll);
+
+        // ---- Fade in about ----
+        const statementParagraphs = document.querySelectorAll('.statement p');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.3 });
+        statementParagraphs.forEach(p => observer.observe(p));
+
+        // ---- Init ----
+        applyLanguage('en');
+        handleBackgroundScroll();
+        buildImpressions();
+
+        setTimeout(() => {
+            renderTrack('photoTrack', true);
+            renderTrack('filmTrack', true);
+            renderTrack('artTrack', true);
+            updateButtonTexts();
+        }, 50);
+
+        setTimeout(() => {
+            rotatorImages.forEach(img => { if (!img.src) img.src = img.dataset.src; });
+        }, 100);
+
+        console.log('✅ JOGDA site loaded successfully.');
     </script>
-    <!-- Paste your original JavaScript here (the one from your previous version) -->
 </body>
 </html>
