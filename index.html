@@ -880,6 +880,19 @@
             .lightbox-title { font-size: 16px; }
             .lightbox-title .sub { font-size: 12px; }
         }
+
+        /* ---------- MOBILE BACKGROUND IMAGES ---------- */
+        /* This media query overrides the parallax backgrounds on smaller screens.
+           It prevents tiling and improves load times on mobile devices.
+           Recommended image sizes: 768×1024px or taller for each. */
+        @media (max-width: 768px) {
+            #layer-back {
+                background-image: url('assets/bg-mobile-back.jpg') !important;
+            }
+            #layer-clouds {
+                background-image: url('assets/bg-mobile-clouds.png') !important;
+            }
+        }
     </style>
     <!-- End of CSS styles -->
 </head>
