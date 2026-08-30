@@ -286,52 +286,51 @@
             .imp-title span { font-size:clamp(22px, 4vw, 30px); }
         }
 
-        /* ----- ABOUT (with margin outside) ----- */
-       /* ----- ABOUT (BIGGER) ----- */
-.about {
-    margin-top: 120px;      /* more space above (outside) */
-    margin-bottom: 120px;   /* more space below (outside) */
-    padding: 160px 30px;    /* much taller box – more padding inside */
-}
-.statement { 
-    max-width: 800px;       /* wider text block */
-    margin: 0 auto; 
-    font-size: 24px;        /* bigger text */
-}
-.statement h2 { 
-    font-size: 42px;        /* much bigger heading */
-    margin-bottom: 35px; 
-    text-align: center; 
-}
-.statement p {
-    margin-bottom: 30px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-.statement p.visible { 
-    opacity: 1; 
-    transform: translateY(0); 
-}
+        /* ----- ABOUT (BIGGER) ----- */
+        .about {
+            margin-top: 120px;      /* more space above (outside) */
+            margin-bottom: 120px;   /* more space below (outside) */
+            padding: 160px 30px;    /* much taller box – more padding inside */
+        }
+        .statement { 
+            max-width: 800px;       /* wider text block */
+            margin: 0 auto; 
+            font-size: 24px;        /* bigger text */
+        }
+        .statement h2 { 
+            font-size: 42px;        /* much bigger heading */
+            margin-bottom: 35px; 
+            text-align: center; 
+        }
+        .statement p {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .statement p.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
 
-/* ----- Mobile adjustment (still bigger than before) ----- */
-@media (max-width: 480px) {
-    .about {
-        margin-top: 60px;
-        margin-bottom: 60px;
-        padding: 70px 20px;
-    }
-    .statement { 
-        font-size: 20px; 
-        max-width: 100%;
-    }
-    .statement h2 { 
-        font-size: 32px; 
-    }
-    .statement p {
-        margin-bottom: 20px;
-    }
-}
+        /* ----- Mobile adjustment for About ----- */
+        @media (max-width: 480px) {
+            .about {
+                margin-top: 60px;
+                margin-bottom: 60px;
+                padding: 70px 20px;
+            }
+            .statement { 
+                font-size: 20px; 
+                max-width: 100%;
+            }
+            .statement h2 { 
+                font-size: 32px; 
+            }
+            .statement p {
+                margin-bottom: 20px;
+            }
+        }
 
         /* ----- CREDITS ----- */
         .credits { padding:40px 20px; }
@@ -363,17 +362,21 @@
         }
         .skill-list li:hover { border-color:var(--comic-blue); color:var(--comic-blue); }
 
-        /* ----- MARQUEE SECTIONS (optimized for mobile) ----- */
+        /* ----- MARQUEE SECTIONS (BIGGER TITLES) ----- */
         .marquee-section { margin-bottom:40px; }
         .marquee-header {
             display:flex;
             justify-content:space-between;
             align-items:baseline;
-            margin-bottom:15px;
+            margin-bottom:30px;      /* more space below the header */
             flex-wrap:wrap;
-            gap:8px;
+            gap:16px;                /* more space between title and button */
         }
-        .marquee-header .section-title { font-size:clamp(24px, 3vw, 30px); letter-spacing:-0.01em; }
+        .marquee-header .section-title { 
+            font-size: clamp(38px, 5.5vw, 60px);  /* MUCH BIGGER titles */
+            letter-spacing: -0.02em; 
+            text-transform: uppercase; /* optional all caps */
+        }
         .see-all-btn {
             font-size:13px;
             letter-spacing:0.1em;
@@ -493,11 +496,17 @@
             .marquee-item { width:180px; }
             .marquee-info h3 { font-size:16px; }
             .marquee-track { gap:15px; animation-duration:18s; }
+            .marquee-header .section-title { 
+                font-size: clamp(30px, 5vw, 44px); /* slightly smaller on tablet */
+            }
         }
         @media (max-width:480px) {
             .marquee-item { width:150px; }
             .marquee-info h3 { font-size:14px; }
             .marquee-track { gap:12px; animation-duration:15s; }
+            .marquee-header .section-title { 
+                font-size: clamp(26px, 6vw, 34px); /* smaller but still prominent on mobile */
+            }
         }
 
         /* ----- LIGHTBOX (mobile friendly) ----- */
@@ -645,7 +654,7 @@
         <div class="impressions-grid" id="impressionsGrid"></div>
     </section>
 
-    <!-- ABOUT -->
+    <!-- ABOUT (BIGGER) -->
     <section class="about" id="about">
         <div class="statement">
             <h2>Alejandro Fidel Regueros-Wessels</h2>
@@ -654,7 +663,7 @@
         </div>
     </section>
 
-    <!-- GALLERY SECTIONS -->
+    <!-- GALLERY SECTIONS (BIGGER TITLES) -->
     <section id="photography" class="marquee-section">
         <div class="marquee-header">
             <h2 class="section-title" data-i18n="sectionPhotography"></h2>
@@ -755,7 +764,7 @@
 
     <script>
         /* ============================================================
-           JAVASCRIPT – full interactivity (optimized)
+           JAVASCRIPT – full interactivity
            ============================================================ */
 
         // ---- Translations (EN/DE) ----
