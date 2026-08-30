@@ -1,900 +1,603 @@
 <!--
 ╔══════════════════════════════════════════════════════════════════╗
-║                   BIG INTRODUCTORY COMMENT                      ║
-║                                                                ║
-║  This file is a single-page portfolio website for Alejandro    ║
-║  Fidel Regueros‑Wessels. It combines HTML, CSS, and JavaScript ║
-║  in one document. Below is a quick guide to the most common    ║
-║  HTML tags you'll see, so you can understand the structure.    ║
-║                                                                ║
-║  ┌──────────────────────────────────────────────────────────┐  ║
-║  │  HTML "building blocks" (like LEGO bricks):             │  ║
-║  │  • <div>   – a generic container (like a box). Use it   │  ║
-║  │               to group content and apply styles.        │  ║
-║  │  • <span>  – inline container for small pieces of text  │  ║
-║  │               (e.g., inside a paragraph).               │  ║
-║  │  • <section> – a thematic grouping of content, usually  │  ║
-║  │               with a heading.                           │  ║
-║  │  • <a>     – anchor (hyperlink). Used for links.        │  ║
-║  │  • <img>   – image tag. Displays a picture.            │  ║
-║  │  • <button> – clickable button.                        │  ║
-║  │  • <ul>/<li> – unordered list and list items.          │  ║
-║  │  • <style>  – contains CSS rules.                      │  ║
-║  │  • <script> – contains JavaScript code.                │  ║
-║  │  • <link>   – links external resources (fonts, icons). │  ║
-║  │  • <meta>   – provides metadata about the page (SEO).  │  ║
-║  │  • <title>  – sets the page title (shown in browser).  │  ║
-║  │  • <html>, <head>, <body> – the page skeleton.        │  ║
-║  └──────────────────────────────────────────────────────────┘  ║
-║                                                                ║
-║  💡 Think of each HTML tag as a "container" that you can      ║
-║     style, move, or nest inside others. The <div> is like a   ║
-║     universal box, while <section> is a semantic box for a    ║
-║     chapter of content.                                       ║
-║                                                                ║
-║  CSS (Cascading Style Sheets) controls the look: colors,      ║
-║  sizes, positioning, animations, etc. Look for the <style>    ║
-║  block for all visual rules.                                  ║
-║                                                                ║
-║  JavaScript (in the <script> block) adds interactivity:       ║
-║  rotating images, lightbox, language toggle, and the gallery  ║
-║  marquee.                                                     ║
-║                                                                ║
-║  You can edit any text in the "data-i18n" attributes or the   ║
-║  translations object to change languages. Add new gallery     ║
-║  items by modifying the `galleryItems` array. Adjust the      ║
-║  grid layout by changing CSS grid properties. The code is     ║
-║  written to be as modular and readable as possible.           ║
-║                                                                ║
-║  Now dive into the code – each line has a comment to guide    ║
-║  you!                                                         ║
+║                   BIG INTRODUCTORY COMMENT                       ║
+║  This file is a single-page portfolio website for Alejandro     ║
+║  Fidel Regueros‑Wessels. It combines HTML, CSS, and JavaScript  ║
+║  in one document. Both desktop and mobile are fully optimized.  ║
 ╚══════════════════════════════════════════════════════════════════╝
 -->
 <!DOCTYPE html>
-<!-- The DOCTYPE tells the browser this is an HTML5 document -->
 <html lang="en">
-<!-- The <html> element is the root of the page; lang="en" sets the language to English -->
 <head>
-    <!-- The <head> contains metadata, styles, and scripts that are not visible on the page -->
     <meta charset="UTF-8" />
-    <!-- <meta charset> defines the character encoding; UTF-8 covers most characters -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- The viewport meta makes the page responsive on mobile devices; width=device-width sets the width to the screen width, initial-scale=1.0 sets the zoom level -->
-
-    <!-- ===== PRIMARY META TAGS ===== -->
     <title>JOGDA.com | Alejandro Fidel Regueros-Wessels - Photography, Film & Art</title>
-    <!-- <title> sets the browser tab title and is used by search engines -->
     <meta name="description" content="Journey of Gestures, Digital Archive - Portfolio of Alejandro Fidel Regueros-Wessels featuring photography, film, art, and creative projects." />
-    <!-- <meta name="description"> provides a brief summary of the page for search engines -->
     <meta name="keywords" content="Alejandro Fidel Regueros-Wessels, JOGDA, photography, film, art, portfolio, digital archive, gestures" />
-    <!-- <meta name="keywords"> used to be for SEO, now less important but included -->
     <meta name="author" content="Alejandro Fidel Regueros-Wessels" />
-    <!-- <meta name="author"> indicates the author of the page -->
-
-    <!-- ===== CANONICAL URL ===== -->
     <link rel="canonical" href="https://jogda.com" />
-    <!-- <link rel="canonical"> tells search engines the preferred URL for this page, avoiding duplicate content issues -->
-
-    <!-- ===== OPEN GRAPH ===== -->
-    <!-- These meta tags control how the page appears when shared on social media (Facebook, etc.) -->
     <meta property="og:title" content="JOGDA.com | Alejandro Fidel Regueros-Wessels" />
     <meta property="og:description" content="Journey of Gestures, Digital Archive - Photography, Film & Art portfolio." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jogda.com" />
     <meta property="og:image" content="https://jogda.com/assets/og-image.jpg" />
-    <!-- The og:image is the thumbnail image shown when sharing the link -->
-
-    <!-- ===== TWITTER CARD ===== -->
-    <!-- Twitter-specific meta tags for sharing -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="JOGDA.com | Alejandro Fidel Regueros-Wessels" />
     <meta name="twitter:description" content="Journey of Gestures, Digital Archive - Photography, Film & Art portfolio." />
-
-    <!-- ===== FAVICON ===== -->
-    <!-- These <link> tags define the favicon (small icon in browser tab) -->
     <link rel="icon" type="image/png" href="/assets/favicon.png" />
     <link rel="shortcut icon" href="/assets/favicon.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.png" />
-
-    <!-- ===== FONT ===== -->
-    <!-- Preconnect to Google Fonts for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- crossorigin is needed for fonts from different origins -->
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
-    <!-- This loads the "Archivo Black" font from Google Fonts; it will be used throughout the site -->
 
-    <!-- ===== INTERNAL STYLES (CSS) ===== -->
     <style>
-        /* All CSS rules are inside this <style> tag.
-           CSS controls the visual appearance of every HTML element.
-           The syntax is: selector { property: value; }
-           Comments in CSS are /* ... * / (but we'll use //-style for brevity) */
-
-        /* ---------- CSS VARIABLES ---------- */
         :root {
-            /* :root defines global custom properties (variables) that can be reused anywhere */
-            --mustard: #EBD45C;     /* a yellowish color */
-            --sand: #CFC2A9;        /* a light beige/cream background */
-            --espresso: #211E1C;    /* a dark brown color, used for text and borders */
-            --comic-blue: #000000;  /* black (used for shadows/hover effects) */
-            --grain: 0.04;          /* opacity for the grain overlay */
-            --font-body: 'Archivo Black', sans-serif; /* the main font family */
+            --mustard: #EBD45C;
+            --sand: #CFC2A9;
+            --espresso: #211E1C;
+            --comic-blue: #000000;
+            --grain: 0.04;
+            --font-body: 'Archivo Black', sans-serif;
         }
-
-        /* ---------- Reset & Base ---------- */
-        * {
-            /* The universal selector (*) applies to all elements */
-            margin: 0;            /* remove default margins */
-            padding: 0;           /* remove default padding */
-            box-sizing: border-box; /* makes padding and border included in element's total width/height */
-        }
-        html {
-            scroll-behavior: smooth; /* enables smooth scrolling when clicking anchor links */
-        }
-
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
         body {
-            background-color: var(--sand); /* use the sand color as background */
-            color: var(--espresso);        /* default text color is dark brown */
-            font-family: var(--font-body); /* use the custom font */
-            font-size: 18px;
-            line-height: 1.5;             /* spacing between lines of text */
-            -webkit-font-smoothing: antialiased; /* makes text look smoother on WebKit browsers */
-            min-height: 100vh;             /* body takes at least full viewport height */
-            transition: background-color 0.4s ease; /* smooth color change when scrolling (see JS) */
+            background-color:var(--sand);
+            color:var(--espresso);
+            font-family:var(--font-body);
+            font-size:18px;
+            line-height:1.5;
+            -webkit-font-smoothing:antialiased;
+            min-height:100vh;
+            transition:background-color 0.4s ease;
         }
+        a { color:inherit; text-decoration:none; }
+        img { max-width:100%; display:block; }
+        section { max-width:1200px; margin:0 auto; padding:60px 20px; }
+        h1, h2, h3 { font-family:var(--font-body); font-weight:400; line-height:1.1; }
 
-        a {
-            color: inherit;   /* links inherit the parent text color instead of default blue */
-            text-decoration: none; /* remove underline from links */
-        }
-        img {
-            max-width: 100%;  /* images never overflow their container */
-            display: block;   /* removes extra space below images (inline-block default) */
-        }
-
-        section {
-            /* All <section> elements get these common styles */
-            max-width: 1200px;   /* maximum width, centering later via margin auto */
-            margin: 0 auto;      /* centers the section horizontally */
-            padding: 90px 24px;  /* top/bottom 90px, left/right 24px */
-        }
-
-        h1, h2, h3 {
-            font-family: var(--font-body); /* headings use the same bold font */
-            font-weight: 400;   /* "Archivo Black" only has one weight, so 400 is fine */
-            line-height: 1.1;   /* tighter line height for headings */
-        }
-
-        /* ---------- GRAIN OVERLAY ---------- */
+        /* ----- GRAIN (lighter on mobile) ----- */
         body::after {
-            /* ::after is a pseudo-element that creates an extra layer on top of body */
-            content: "";          /* required to make the pseudo-element appear */
-            position: fixed;      /* fixed positioning relative to viewport */
-            top: 0; left: 0;
-            width: 100vw;         /* full viewport width */
-            height: 100vh;        /* full viewport height */
-            pointer-events: none; /* allows clicks to pass through to elements underneath */
-            z-index: 999;         /* high z-index so it sits above everything */
-            opacity: var(--grain); /* opacity controlled by variable (0.04) */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23fff' fill-opacity='0.03'/%3E%3C/svg%3E");
-            /* the background-image is a tiny SVG pattern that creates a subtle noise/grain effect */
-            background-repeat: repeat;
-            background-size: 100px 100px; /* repeat every 100px */
+            content:"";
+            position:fixed;
+            top:0; left:0;
+            width:100vw; height:100vh;
+            pointer-events:none;
+            z-index:999;
+            opacity:var(--grain);
+            background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%23fff' fill-opacity='0.03'/%3E%3C/svg%3E");
+            background-repeat:repeat;
+            background-size:100px 100px;
+        }
+        @media (max-width:768px) {
+            body::after { opacity:0.02; }
         }
 
-        /* ---------- PARALLAX BACKGROUND LAYERS ---------- */
+        /* ----- PARALLAX (only on desktop; mobile static) ----- */
         .bg-layer {
-            /* class for the parallax background layers (fixed background images) */
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: 100% auto; /* width fits, height auto */
-            background-repeat: repeat-y; /* repeat vertically if needed */
-            z-index: -2;               /* behind everything */
-            will-change: transform;     /* hints browser for performance */
+            position:fixed;
+            top:0; left:0;
+            width:100%;
+            height:100%;
+            background-size:100% auto;
+            background-repeat:repeat-y;
+            z-index:-2;
+            will-change:transform;
         }
-        #layer-clouds {
-            z-index: -1; /* clouds layer sits above the back layer */
+        #layer-clouds { z-index:-1; }
+
+        @media (max-width:768px) {
+            .bg-layer {
+                position:absolute;
+                height:100vh;
+                background-attachment:scroll;
+                will-change:auto;
+            }
         }
 
-        /* ---------- LANGUAGE TOGGLE ---------- */
+        /* ----- LANGUAGE TOGGLE (smaller on mobile) ----- */
         .lang-toggle {
-            /* this button is fixed at the top-right corner */
-            position: fixed;
-            top: 20px; right: 25px;
-            z-index: 1000; /* on top of everything */
-            background: var(--espresso);
-            color: var(--sand);
-            border: none;
-            padding: 10px 18px;
-            font-family: var(--font-body);
-            font-size: 14px;
-            letter-spacing: 0.05em;
-            cursor: pointer; /* pointer cursor on hover */
-            border-radius: 2px;
-            transition: background-color 0.3s, color 0.3s;
+            position:fixed;
+            top:15px; right:15px;
+            z-index:1000;
+            background:var(--espresso);
+            color:var(--sand);
+            border:none;
+            padding:8px 14px;
+            font-family:var(--font-body);
+            font-size:13px;
+            letter-spacing:0.05em;
+            cursor:pointer;
+            border-radius:2px;
+            transition:background 0.3s, color 0.3s;
         }
-        .lang-toggle:hover {
-            background: var(--mustard);
-            color: var(--espresso);
+        .lang-toggle:hover { background:var(--mustard); color:var(--espresso); }
+        @media (max-width:480px) {
+            .lang-toggle { top:10px; right:10px; padding:6px 10px; font-size:11px; }
         }
 
-        /* ---------- HERO SECTION ---------- */
+        /* ----- HERO SECTION ----- */
         .hero {
-            min-height: 100vh;          /* at least full viewport height */
-            display: flex;
-            flex-direction: column;     /* stack children vertically */
-            justify-content: center;    /* center vertically */
-            position: relative;
-            padding-top: 40px;
-            padding-bottom: 60px;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            position:relative;
+            padding:60px 20px 40px;
         }
         .hero-title {
-            font-size: clamp(50px, 8vw, 100px); /* responsive font size: min 50px, ideal 8% viewport width, max 100px */
-            letter-spacing: -0.02em; /* tighten letters slightly */
-            color: var(--espresso);
-            line-height: 0.95;       /* very tight line height for impact */
-            margin-bottom: 20px;
+            font-size:clamp(40px, 8vw, 100px);
+            letter-spacing:-0.02em;
+            color:var(--espresso);
+            line-height:0.95;
+            margin-bottom:15px;
         }
         .hero-bar {
-            width: 100%;
-            background-color: var(--espresso);
-            color: var(--mustard);
-            text-align: center;
-            padding: 15px 20px;
-            font-size: clamp(24px, 4vw, 40px);
-            letter-spacing: 0.1em;   /* wide letter spacing for "JOGDA" */
-            margin-bottom: 25px;
-            border: none;
+            width:100%;
+            background:var(--espresso);
+            color:var(--mustard);
+            text-align:center;
+            padding:12px 20px;
+            font-size:clamp(22px, 4vw, 40px);
+            letter-spacing:0.1em;
+            margin-bottom:20px;
+            border:none;
         }
         .hero-lower {
-            display: flex;
-            gap: 30px;               /* space between left column and rotator */
-            align-items: flex-start;
+            display:flex;
+            gap:30px;
+            align-items:flex-start;
         }
-        .hero-left {
-            flex: 1;                 /* takes remaining space */
-        }
+        .hero-left { flex:1; }
         .hero-subtitle {
-            font-size: 20px;
-            letter-spacing: 0.02em;
-            color: var(--espresso);
-            margin-bottom: 40px;
+            font-size:clamp(16px, 2vw, 20px);
+            letter-spacing:0.02em;
+            color:var(--espresso);
+            margin-bottom:25px;
         }
         .hero-nav {
-            list-style: none;        /* remove bullet points */
-            margin-top: 10px;
+            list-style:none;
+            margin-top:5px;
         }
-        .hero-nav li {
-            margin-bottom: 10px;
-        }
+        .hero-nav li { margin-bottom:8px; }
         .hero-nav a {
-            display: inline-block;
-            font-size: 14px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--espresso);
-            transition: color 0.2s, transform 0.2s;
+            display:inline-block;
+            font-size:clamp(12px, 1.4vw, 14px);
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            color:var(--espresso);
+            transition:color 0.2s, transform 0.2s;
         }
-        .hero-nav a:hover {
-            color: var(--comic-blue); /* turn black on hover */
-            transform: translateX(5px); /* shift right slightly */
-        }
+        .hero-nav a:hover { color:var(--comic-blue); transform:translateX(5px); }
         .hero-rotator {
-            width: 300px;            /* fixed width for the rotating image box */
-            height: 300px;
-            border-radius: 2px;
-            overflow: hidden;        /* clips any overflow inside */
-            position: relative;
-            flex-shrink: 0;          /* prevents the rotator from shrinking */
+            width:280px; height:280px;
+            border-radius:2px;
+            overflow:hidden;
+            position:relative;
+            flex-shrink:0;
         }
         .hero-rotator img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;       /* image covers the area, cropping if needed */
-            position: absolute;
-            top: 0; left: 0;
-            opacity: 0;              /* hidden by default */
-            transform: scale(1.6);   /* slightly zoomed out (will be animated to 1) */
-            transition: none;        /* no transition; we'll use JS to swap instantly */
+            width:100%; height:100%;
+            object-fit:cover;
+            position:absolute;
+            top:0; left:0;
+            opacity:0;
+            transform:scale(1.6);
+            transition:none;
         }
-        .hero-rotator img.active {
-            opacity: 1;              /* the active image is visible */
+        .hero-rotator img.active { opacity:1; }
+
+        @media (max-width:800px) {
+            .hero-lower { flex-direction:column; align-items:stretch; gap:20px; }
+            .hero-rotator { width:100%; height:220px; margin-top:10px; }
+            .hero-title { font-size:clamp(32px, 10vw, 60px); }
+            .hero-bar { font-size:clamp(18px, 5vw, 30px); padding:10px 15px; }
+            .hero-subtitle { margin-bottom:15px; font-size:16px; }
+            .hero-nav li { margin-bottom:5px; }
+        }
+        @media (max-width:480px) {
+            .hero-rotator { height:180px; }
+            .hero { padding:40px 15px 20px; }
         }
 
-        /* ============================================================
-           IMPRESSIONS - masonry-style image collage
-           The "Featured / Work" title is a grid cell, left-aligned.
-           ============================================================ */
-        .impressions {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 24px 20px;
-            position: relative;
-        }
+        /* ----- IMPRESSIONS ----- */
+        .impressions { padding:30px 20px 20px; }
         .impressions-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr); /* 6 equal columns */
-            grid-auto-rows: 130px;                 /* each row is 130px high */
-            gap: 18px;                             /* spacing between cells */
+            display:grid;
+            grid-template-columns:repeat(6,1fr);
+            grid-auto-rows:130px;
+            gap:18px;
         }
         .imp-item {
-            /* each image tile */
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-            background: var(--espresso); /* fallback background */
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position:relative;
+            overflow:hidden;
+            border-radius:2px;
+            background:var(--espresso);
+            cursor:pointer;
+            transition:transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .imp-item:hover {
-            transform: translateY(-4px);            /* lift up */
-            box-shadow: 6px 6px 0 0 var(--comic-blue); /* comic-like shadow */
-            z-index: 2;
-        }
-        .imp-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-        .imp-item:hover img {
-            transform: scale(1.05); /* slight zoom on hover */
-        }
+        .imp-item:hover { transform:translateY(-4px); box-shadow:6px 6px 0 0 var(--comic-blue); z-index:2; }
+        .imp-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.5s ease; }
+        .imp-item:hover img { transform:scale(1.05); }
         .imp-item .imp-caption {
-            position: absolute;
-            bottom: 12px;
-            left: 12px;
-            background: rgba(33, 30, 28, 0.8);
-            color: var(--sand);
-            font-size: 13px;
-            letter-spacing: 0.05em;
-            padding: 6px 12px;
-            border-radius: 2px;
-            opacity: 0;           /* hidden initially */
-            transform: translateY(6px); /* shift down slightly */
-            transition: opacity 0.25s ease, transform 0.25s ease;
-            pointer-events: none; /* caption doesn't interfere with clicks */
+            position:absolute;
+            bottom:12px; left:12px;
+            background:rgba(33,30,28,0.8);
+            color:var(--sand);
+            font-size:13px;
+            letter-spacing:0.05em;
+            padding:6px 12px;
+            border-radius:2px;
+            opacity:0;
+            transform:translateY(6px);
+            transition:opacity 0.25s ease, transform 0.25s ease;
+            pointer-events:none;
         }
-        .imp-item:hover .imp-caption {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ---- FEATURED / WORK title - left-aligned, big ---- */
+        .imp-item:hover .imp-caption { opacity:1; transform:translateY(0); }
         .imp-title {
-            grid-column: 4 / 7;   /* spans columns 4 to 6 (i.e., 3 columns) */
-            grid-row: 5 / 7;      /* spans rows 5 and 6 (i.e., 2 rows) */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start; /* left-align */
-            gap: 0px;
-            padding: 8px 6px;
-            background: transparent; /* no background, just text */
-            border: none;
-            text-align: left;
+            grid-column:4 / 7;
+            grid-row:5 / 7;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:flex-start;
+            padding:8px 6px;
+            text-align:left;
         }
         .imp-title span {
-            display: block;
-            font-family: var(--font-body);
-            font-weight: 400;
-            text-transform: uppercase;
-            color: var(--espresso);
-            line-height: 0.92;
-            letter-spacing: 0.01em;
-            font-size: clamp(50px, 6vw, 80px); /* large responsive size */
+            display:block;
+            font-family:var(--font-body);
+            text-transform:uppercase;
+            color:var(--espresso);
+            line-height:0.92;
+            letter-spacing:0.01em;
+            font-size:clamp(40px, 6vw, 80px);
         }
+        .imp-1 { grid-column:1 / 4; grid-row:span 4; }
+        .imp-2 { grid-column:4 / 7; grid-row:span 2; }
+        .imp-3 { grid-column:4 / 5; grid-row:span 2; }
+        .imp-4 { grid-column:5 / 7; grid-row:span 2; }
+        .imp-5 { grid-column:1 / 3; grid-row:span 2; }
+        .imp-6 { grid-column:3 / 4; grid-row:span 2; }
 
-        /* Asymmetric placement - each tile is positioned in the grid */
-        .imp-1 { grid-column: 1 / 4; grid-row: span 4; }
-        .imp-2 { grid-column: 4 / 7; grid-row: span 2; }
-        .imp-3 { grid-column: 4 / 5; grid-row: span 2; }
-        .imp-4 { grid-column: 5 / 7; grid-row: span 2; }
-        .imp-5 { grid-column: 1 / 3; grid-row: span 2; }
-        .imp-6 { grid-column: 3 / 4; grid-row: span 2; }
-
-        /* ---------- Responsive adjustments for smaller screens ---------- */
-        @media (max-width: 800px) {
-            /* when viewport width <= 800px */
-            .impressions {
-                padding: 30px 20px 10px;
-            }
+        @media (max-width:800px) {
             .impressions-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns */
-                grid-auto-rows: 160px;
-                gap: 12px;
+                grid-template-columns:repeat(2,1fr);
+                grid-auto-rows:140px;
+                gap:12px;
             }
-            /* reposition each tile for 2-col layout */
-            .imp-1 { grid-column: 1 / 3; grid-row: span 3; }
-            .imp-2 { grid-column: 1 / 3; grid-row: span 2; }
-            .imp-3 { grid-column: 1 / 2; grid-row: span 2; }
-            .imp-4 { grid-column: 2 / 3; grid-row: span 2; }
-            .imp-5 { grid-column: 1 / 2; grid-row: span 2; }
-            .imp-6 { grid-column: 2 / 3; grid-row: span 2; }
+            .imp-1 { grid-column:1 / 3; grid-row:span 3; }
+            .imp-2 { grid-column:1 / 3; grid-row:span 2; }
+            .imp-3 { grid-column:1 / 2; grid-row:span 2; }
+            .imp-4 { grid-column:2 / 3; grid-row:span 2; }
+            .imp-5 { grid-column:1 / 2; grid-row:span 2; }
+            .imp-6 { grid-column:2 / 3; grid-row:span 2; }
             .imp-title {
-                order: 99; /* pushes the title to the end of the grid flow */
-                grid-column: 1 / 3;
-                grid-row: auto;
-                flex-direction: row; /* horizontal layout */
-                justify-content: flex-start;
-                align-items: center;
-                gap: 6px;
-                padding: 20px 10px 4px;
-                text-align: left;
+                grid-column:1 / 3;
+                grid-row:auto;
+                order:99;
+                flex-direction:row;
+                justify-content:flex-start;
+                align-items:center;
+                gap:6px;
+                padding:15px 10px 5px;
+                text-align:left;
             }
-            .imp-title span {
-                font-size: clamp(30px, 6vw, 45px);
-            }
+            .imp-title span { font-size:clamp(28px, 5vw, 40px); }
+        }
+        @media (max-width:480px) {
+            .impressions-grid { grid-auto-rows:120px; gap:8px; }
+            .imp-title span { font-size:clamp(22px, 4vw, 30px); }
         }
 
-        /* ---------- ABOUT SECTION ---------- */
-        .about {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 90px 24px;
-        }
-        .statement {
-            font-size: 20px;
-            color: var(--espresso);
-            max-width: 550px;  /* narrower for readability */
-            margin: 0 auto;
-        }
-        .statement h2 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 400;
-        }
+        /* ----- ABOUT ----- */
+        .about { padding:40px 20px; }
+        .statement { max-width:550px; margin:0 auto; font-size:18px; }
+        .statement h2 { font-size:24px; margin-bottom:20px; text-align:center; }
         .statement p {
-            margin-bottom: 30px;
-            opacity: 0;               /* hidden initially, then faded in by JS on scroll */
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            margin-bottom:20px;
+            opacity:0;
+            transform:translateY(20px);
+            transition:opacity 0.8s ease, transform 0.8s ease;
         }
-        .statement p.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .statement p.visible { opacity:1; transform:translateY(0); }
+        @media (max-width:480px) {
+            .about { padding:30px 15px; }
+            .statement { font-size:16px; }
+            .statement h2 { font-size:20px; }
         }
 
-        /* ---------- EXPERIENCE / CREDITS ---------- */
-        .credits {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 90px 24px;
-        }
-        .credits h3 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--espresso);
-        }
+        /* ----- CREDITS ----- */
+        .credits { padding:40px 20px; }
+        .credits h3 { font-size:16px; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.05em; }
         .credit-item {
-            margin-bottom: 25px;
-            padding: 10px 15px;
-            background-color: rgba(207, 194, 169, 0.5); /* semi-transparent sand */
-            border-radius: 2px;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            margin-bottom:18px;
+            padding:10px 15px;
+            background:rgba(207,194,169,0.5);
+            border-radius:2px;
+            transition:background 0.3s, box-shadow 0.3s;
         }
-        .credit-item:hover {
-            background-color: rgba(207, 194, 169, 0.8);
-            box-shadow: 5px 5px 0 0 var(--comic-blue);
-        }
-        .credit-title {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        .credit-detail {
-            font-size: 15px;
-            color: var(--espresso);
-        }
+        .credit-item:hover { background:rgba(207,194,169,0.8); box-shadow:5px 5px 0 0 var(--comic-blue); }
+        .credit-title { font-size:17px; margin-bottom:3px; }
+        .credit-detail { font-size:14px; color:var(--espresso); }
         .skill-list {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;   /* allow wrapping of skill tags */
-            gap: 10px;
-            margin-bottom: 30px;
+            list-style:none;
+            display:flex;
+            flex-wrap:wrap;
+            gap:8px;
+            margin-bottom:20px;
         }
         .skill-list li {
-            font-size: 14px;
-            background: var(--sand);
-            padding: 8px 15px;
-            border-radius: 20px; /* pill shape */
-            border: 1px solid var(--espresso);
-            transition: border-color 0.2s, color 0.2s;
+            font-size:13px;
+            background:var(--sand);
+            padding:6px 14px;
+            border-radius:20px;
+            border:1px solid var(--espresso);
+            transition:border-color 0.2s, color 0.2s;
         }
-        .skill-list li:hover {
-            border-color: var(--comic-blue);
-            color: var(--comic-blue);
-        }
+        .skill-list li:hover { border-color:var(--comic-blue); color:var(--comic-blue); }
 
-        /* ---------- GALLERY MARQUEE SECTIONS ---------- */
-        .marquee-section {
-            margin-bottom: 60px;
-        }
+        /* ----- MARQUEE SECTIONS (optimized for mobile) ----- */
+        .marquee-section { margin-bottom:40px; }
         .marquee-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 10px;
+            display:flex;
+            justify-content:space-between;
+            align-items:baseline;
+            margin-bottom:15px;
+            flex-wrap:wrap;
+            gap:8px;
         }
-        .marquee-header .section-title {
-            font-size: 30px;
-            letter-spacing: -0.01em;
-        }
-        .marquee-header .btn-group {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
+        .marquee-header .section-title { font-size:clamp(24px, 3vw, 30px); letter-spacing:-0.01em; }
         .see-all-btn {
-            font-size: 14px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--espresso);
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: color 0.2s;
-            padding: 4px 0;
+            font-size:13px;
+            letter-spacing:0.1em;
+            text-transform:uppercase;
+            color:var(--espresso);
+            background:none;
+            border:none;
+            cursor:pointer;
+            padding:4px 0;
         }
-        .see-all-btn:hover {
-            color: var(--comic-blue);
-        }
-
+        .see-all-btn:hover { color:var(--comic-blue); }
         .see-all-secondary {
-            /* secondary button for "Expand to All" / "Show Less" */
-            font-size: 13px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--espresso);
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px 0;
-            opacity: 0.7;
-            transition: opacity 0.2s, color 0.2s;
-            display: none; /* hidden by default */
+            font-size:12px;
+            letter-spacing:0.08em;
+            text-transform:uppercase;
+            color:var(--espresso);
+            background:none;
+            border:none;
+            cursor:pointer;
+            padding:4px 0;
+            opacity:0.7;
+            transition:opacity 0.2s, color 0.2s;
+            display:none;
         }
-        .see-all-secondary:hover {
-            color: var(--comic-blue);
-            opacity: 1;
-        }
-        .see-all-secondary.visible {
-            display: inline-block;
-        }
-
+        .see-all-secondary:hover { color:var(--comic-blue); opacity:1; }
+        .see-all-secondary.visible { display:inline-block; }
         .marquee-outer {
-            overflow-x: auto;    /* horizontal scroll if needed */
-            overflow-y: hidden;
-            padding: 10px 0;
-            border-top: 1px solid var(--espresso);
-            border-bottom: 1px solid var(--espresso);
-            scrollbar-width: thin; /* for Firefox */
-            scrollbar-color: var(--espresso) transparent;
+            overflow-x:auto;
+            overflow-y:hidden;
+            padding:8px 0;
+            border-top:1px solid var(--espresso);
+            border-bottom:1px solid var(--espresso);
+            scrollbar-width:thin;
+            scrollbar-color:var(--espresso) transparent;
         }
-        .marquee-outer::-webkit-scrollbar {
-            height: 6px;
-        }
-        .marquee-outer::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .marquee-outer::-webkit-scrollbar-thumb {
-            background: var(--espresso);
-            border-radius: 3px;
-        }
-
+        .marquee-outer::-webkit-scrollbar { height:4px; }
+        .marquee-outer::-webkit-scrollbar-thumb { background:var(--espresso); border-radius:2px; }
         .marquee-track {
-            display: flex;
-            gap: 25px;
-            padding: 0 20px;
-            width: max-content; /* track width is determined by content */
-            will-change: transform;
-            transform: translateZ(0); /* GPU acceleration */
-            animation: marqueeScroll 25s linear infinite; /* infinite scroll animation */
+            display:flex;
+            gap:20px;
+            padding:0 15px;
+            width:max-content;
+            will-change:transform;
+            transform:translateZ(0);
+            animation:marqueeScroll 25s linear infinite;
         }
-        .marquee-outer:hover .marquee-track {
-            animation-play-state: paused; /* pause animation on hover */
-        }
+        .marquee-outer:hover .marquee-track { animation-play-state:paused; }
         @keyframes marqueeScroll {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); } /* moves left by half the width, causing seamless loop */
+            from { transform:translateX(0); }
+            to { transform:translateX(-50%); }
         }
-
         .marquee-item {
-            flex: 0 0 auto;       /* do not grow or shrink */
-            width: 260px;
-            background: var(--sand);
-            border: 1px solid var(--espresso);
-            border-radius: 2px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            content-visibility: auto; /* improves performance by skipping rendering of off-screen items */
-            contain-intrinsic-size: 260px 325px; /* hint for size before rendering */
+            flex:0 0 auto;
+            width:220px;
+            background:var(--sand);
+            border:1px solid var(--espresso);
+            border-radius:2px;
+            overflow:hidden;
+            cursor:pointer;
+            transition:box-shadow 0.3s ease, transform 0.3s ease;
+            content-visibility:auto;
+            contain-intrinsic-size:220px 300px;
         }
-        .marquee-item:hover {
-            box-shadow: 6px 6px 0 0 var(--comic-blue);
-            transform: translateY(-4px);
-        }
+        .marquee-item:hover { box-shadow:6px 6px 0 0 var(--comic-blue); transform:translateY(-4px); }
         .marquee-thumb {
-            position: relative;
-            aspect-ratio: 4 / 5;   /* width/height ratio */
-            background-color: #e0d5c0;
-            overflow: hidden;
+            position:relative;
+            aspect-ratio:4/5;
+            background:#e0d5c0;
+            overflow:hidden;
         }
         .marquee-thumb img {
-            position: absolute;
-            inset: 0;              /* top:0; right:0; bottom:0; left:0; */
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            object-fit:cover;
         }
         .marquee-thumb .play-badge {
-            /* a small play button overlay for video items */
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--espresso);
-            color: var(--sand);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            z-index: 3;
+            position:absolute;
+            top:8px; right:8px;
+            width:24px; height:24px;
+            border-radius:50%;
+            background:var(--espresso);
+            color:var(--sand);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:10px;
+            z-index:3;
         }
         .folder-count {
-            /* badge showing number of photos in a folder */
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            background: var(--espresso);
-            color: var(--sand);
-            font-size: 12px;
-            padding: 4px 10px;
-            border-radius: 12px;
-            z-index: 3;
+            position:absolute;
+            bottom:8px; left:8px;
+            background:var(--espresso);
+            color:var(--sand);
+            font-size:11px;
+            padding:3px 10px;
+            border-radius:12px;
+            z-index:3;
         }
-        .marquee-info {
-            padding: 15px 18px;
-        }
-        .marquee-info h3 {
-            font-size: 20px;
-            font-weight: 400;
-        }
-
+        .marquee-info { padding:12px 15px; }
+        .marquee-info h3 { font-size:18px; font-weight:400; }
         .marquee-outer.expanded {
-            /* when "expanded" class is added, the track becomes a grid-like wrap */
-            overflow-x: visible;
-            overflow-y: visible;
+            overflow-x:visible;
+            overflow-y:visible;
         }
         .marquee-outer.expanded .marquee-track {
-            flex-wrap: wrap;
-            width: 100%;
-            padding: 20px;
-            justify-content: center;
-            animation: none !important; /* disable marquee scroll */
+            flex-wrap:wrap;
+            width:100%;
+            padding:15px;
+            justify-content:center;
+            animation:none !important;
         }
-        .marquee-outer.expanded .marquee-item {
-            content-visibility: visible; /* show all items */
+        .marquee-outer.expanded .marquee-item { content-visibility:visible; }
+
+        @media (max-width:800px) {
+            .marquee-item { width:180px; }
+            .marquee-info h3 { font-size:16px; }
+            .marquee-track { gap:15px; animation-duration:18s; }
+        }
+        @media (max-width:480px) {
+            .marquee-item { width:150px; }
+            .marquee-info h3 { font-size:14px; }
+            .marquee-track { gap:12px; animation-duration:15s; }
         }
 
-        /* ---------- LIGHTBOX ---------- */
+        /* ----- LIGHTBOX (mobile friendly) ----- */
         .lightbox {
-            position: fixed;
-            inset: 0;              /* covers entire viewport */
-            background: rgba(33, 30, 28, 0.95);
-            z-index: 100;
-            display: none;          /* hidden by default */
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            flex-direction: column;
+            position:fixed;
+            inset:0;
+            background:rgba(33,30,28,0.95);
+            z-index:100;
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:15px;
+            flex-direction:column;
         }
-        .lightbox.open {
-            display: flex;         /* shown when open class is added */
-        }
-        .lightbox-content {
-            max-width: 95vw;
-            max-height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        .lightbox-media {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-        .lightbox-media img {
-            max-width: 95vw;
-            max-height: 80vh;
-            object-fit: contain; /* preserve aspect ratio */
-            display: block;
-            width: auto;
-            height: auto;
-        }
-        .lightbox-media iframe {
-            width: 90vw;
-            height: 80vh;
-            border: 0;
-            display: block;
-        }
+        .lightbox.open { display:flex; }
+        .lightbox-content { max-width:95vw; max-height:85vh; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+        .lightbox-media { display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+        .lightbox-media img { max-width:95vw; max-height:80vh; object-fit:contain; display:block; }
+        .lightbox-media iframe { width:90vw; height:80vh; border:0; display:block; }
         .lightbox-title {
-            color: #fff;
-            font-family: var(--font-body);
-            font-size: 22px;
-            font-weight: 400;
-            margin-top: 20px;
-            text-align: center;
-            letter-spacing: 0.02em;
-            max-width: 90vw;
-            padding: 0 10px;
+            color:#fff;
+            font-family:var(--font-body);
+            font-size:20px;
+            font-weight:400;
+            margin-top:15px;
+            text-align:center;
+            letter-spacing:0.02em;
+            max-width:90vw;
+            padding:0 10px;
         }
-        .lightbox-title .sub {
-            font-size: 16px;
-            opacity: 0.6;
-            font-weight: 300;
-            display: block;
-            margin-top: 4px;
-        }
+        .lightbox-title .sub { font-size:14px; opacity:0.6; display:block; margin-top:4px; }
         .lightbox-close {
-            position: fixed;
-            top: 80px;
-            right: 25px;
-            font-size: 18px;
-            color: #fff;
-            background: none;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 0.05em;
-            z-index: 101;
+            position:fixed;
+            top:60px; right:20px;
+            font-size:16px;
+            color:#fff;
+            background:none;
+            border:none;
+            cursor:pointer;
+            letter-spacing:0.05em;
+            z-index:101;
         }
-        .lightbox-close:hover {
-            color: var(--mustard);
-        }
+        .lightbox-close:hover { color:var(--mustard); }
         .lightbox-nav {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 40px;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
-            z-index: 102;
-            padding: 10px;
+            position:fixed;
+            top:50%;
+            transform:translateY(-50%);
+            font-size:30px;
+            color:white;
+            background:none;
+            border:none;
+            cursor:pointer;
+            z-index:102;
+            padding:8px;
         }
-        .lightbox-prev { left: 20px; }
-        .lightbox-next { right: 20px; }
-        .lightbox-nav:hover {
-            color: var(--mustard);
+        .lightbox-prev { left:10px; }
+        .lightbox-next { right:10px; }
+        .lightbox-nav:hover { color:var(--mustard); }
+        @media (max-width:480px) {
+            .lightbox-close { top:40px; right:15px; font-size:14px; }
+            .lightbox-nav { font-size:24px; }
+            .lightbox-title { font-size:16px; }
+            .lightbox-title .sub { font-size:12px; }
         }
 
-        /* ---------- CONTACT ---------- */
+        /* ----- CONTACT (compact) ----- */
         .contact-card {
-            background: var(--sand);
-            padding: 50px;
-            border-radius: 2px;
-            text-align: center;
+            background:var(--sand);
+            padding:30px 20px;
+            border-radius:2px;
+            text-align:center;
         }
-        .contact-card p {
-            font-size: 18px;
-            margin-bottom: 35px;
-        }
+        .contact-card p { font-size:16px; margin-bottom:20px; }
         .contact-links {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
+            display:flex;
+            gap:15px;
+            justify-content:center;
+            flex-wrap:wrap;
         }
         .contact-links a {
-            color: var(--espresso);
-            font-size: 18px;
-            padding: 8px 15px;
-            display: inline-block;
-            border-radius: 2px;
-            transition: color 0.2s, box-shadow 0.2s, transform 0.2s;
+            color:var(--espresso);
+            font-size:16px;
+            padding:6px 14px;
+            border-radius:2px;
+            transition:color 0.2s, box-shadow 0.2s, transform 0.2s;
         }
-        .contact-links a:hover {
-            color: var(--comic-blue);
-            box-shadow: 5px 5px 0 0 var(--comic-blue);
-            transform: translateY(-2px);
+        .contact-links a:hover { color:var(--comic-blue); box-shadow:4px 4px 0 0 var(--comic-blue); transform:translateY(-2px); }
+        @media (max-width:480px) {
+            .contact-card { padding:20px 15px; }
+            .contact-card p { font-size:14px; }
+            .contact-links a { font-size:14px; padding:5px 12px; }
         }
 
-        /* ---------- FOOTER ---------- */
+        /* ----- FOOTER ----- */
         footer {
-            text-align: center;
-            padding: 40px 24px 60px;
-            font-size: 13px;
-            letter-spacing: 0.08em;
-            color: var(--espresso);
-            border-top: 1px solid var(--espresso);
-            background: var(--sand);
+            text-align:center;
+            padding:30px 20px 40px;
+            font-size:12px;
+            letter-spacing:0.08em;
+            color:var(--espresso);
+            border-top:1px solid var(--espresso);
+            background:var(--sand);
         }
-        footer p {
-            margin-bottom: 5px;
-        }
+        footer p { margin-bottom:4px; }
 
-        /* ---------- PERFORMANCE HINTS ---------- */
-        /* content-visibility: auto on sections helps browser skip rendering off-screen content */
-        .about, .credits, .marquee-section, .contact {
-            content-visibility: auto;
-            contain-intrinsic-size: 1000px;
-        }
-
-        /* ---------- RESPONSIVE FINE-TUNING ---------- */
-        @media (max-width: 800px) {
-            .hero-lower {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .hero-rotator {
-                width: 100%;
-                height: 250px;
-                margin-top: 20px;
-            }
-            .about { padding: 60px 20px; }
-            .credits { padding: 60px 20px; }
-            .hero { padding-top: 20px; }
-            .hero-title { font-size: 12vw; }
-            .marquee-item { width: 210px; }
-            .marquee-header .btn-group { gap: 10px; }
-            .lightbox-title { font-size: 18px; margin-top: 14px; }
-            .lightbox-title .sub { font-size: 14px; }
-            .lightbox-media iframe { width: 95vw; height: 70vh; }
-        }
-        @media (max-width: 480px) {
-            .marquee-item { width: 170px; }
-            .marquee-info h3 { font-size: 16px; }
-            .lightbox-title { font-size: 16px; }
-            .lightbox-title .sub { font-size: 12px; }
-        }
+        /* Performance: content-visibility for sections */
+        .about, .credits, .marquee-section, .contact { content-visibility:auto; contain-intrinsic-size:800px; }
     </style>
-    <!-- End of CSS styles -->
 </head>
-<!-- The <head> ends here; the visible content starts in <body> -->
 <body>
 
-    <!-- ============================================================
-    HTML STRUCTURE - the visible parts of the page
-    ============================================================ -->
-
-    <!-- Language toggle button: fixed at top-right -->
+    <!-- LANGUAGE TOGGLE -->
     <button class="lang-toggle" id="langToggle">DE</button>
-    <!-- When clicked, it will switch between English and German -->
 
-    <!-- Parallax background layers: these are fixed background images that move at different speeds on scroll -->
-    <div id="layer-back" class="bg-layer" data-bg="assets/bg-desktop-back.jpg"></div>
-    <!-- #layer-back will be the furthest background image -->
-    <div id="layer-clouds" class="bg-layer" data-bg="assets/bg-desktop-clouds.png"></div>
-    <!-- #layer-clouds is the foreground layer (clouds) -->
+    <!-- PARALLAX BACKGROUNDS -->
+    <div id="layer-back" class="bg-layer"></div>
+    <div id="layer-clouds" class="bg-layer"></div>
 
-    <!-- ================= HERO SECTION ================= -->
+    <!-- HERO -->
     <section class="hero" id="hero">
-        <!-- The hero section is the large introductory area -->
         <h1 class="hero-title" data-i18n="heroTitle"></h1>
-        <!-- The content comes from the translations; the <br> is inside the translation -->
         <div class="hero-bar" data-i18n="heroBar"></div>
-        <!-- The yellow bar with "JOGDA" -->
         <div class="hero-lower">
-            <!-- two columns: left text + right image rotator -->
             <div class="hero-left">
                 <div class="hero-subtitle" data-i18n="heroSubtitle"></div>
-                <!-- Navigation links -->
                 <ul class="hero-nav">
                     <li><a href="#about" data-i18n="navAbout"></a></li>
                     <li><a href="#photography" data-i18n="navPhotography"></a></li>
@@ -905,54 +608,41 @@
                 </ul>
             </div>
             <div class="hero-rotator" id="heroRotator">
-                <!-- Three images that rotate every 800ms -->
-                <img data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active" />
-                <img data-src="assets/gallery/hero-2.png" alt="Rotating image 2" />
-                <img data-src="assets/gallery/hero-3.png" alt="Rotating image 3" />
-                <!-- The src is set by JavaScript from data-src -->
+                <img src="" data-src="assets/gallery/hero-1.png" alt="Rotating image 1" class="active" />
+                <img src="" data-src="assets/gallery/hero-2.png" alt="Rotating image 2" />
+                <img src="" data-src="assets/gallery/hero-3.png" alt="Rotating image 3" />
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    IMPRESSIONS - masonry-style collage. 
-    The grid is built by JavaScript (buildImpressions function).
-    We just provide the container.
-    ============================================================ -->
+    <!-- IMPRESSIONS -->
     <section class="impressions" id="impressions">
         <div class="impressions-grid" id="impressionsGrid"></div>
-        <!-- JavaScript will fill this grid with images and the title cell -->
     </section>
 
-    <!-- ================= ABOUT ================= -->
+    <!-- ABOUT -->
     <section class="about" id="about">
         <div class="statement">
             <h2>Alejandro Fidel Regueros-Wessels</h2>
-            <!-- The paragraphs below use data-i18n for multilingual text -->
             <p data-i18n="aboutQuote"></p>
             <p data-i18n="aboutAuthor"></p>
         </div>
     </section>
 
-    <!-- ================= GALLERY SECTIONS ================= -->
-    <!-- Each of these sections is a marquee (horizontal scrolling gallery) -->
-    <!-- PHOTOGRAPHY -->
+    <!-- GALLERY SECTIONS -->
     <section id="photography" class="marquee-section">
         <div class="marquee-header">
             <h2 class="section-title" data-i18n="sectionPhotography"></h2>
             <div class="btn-group">
                 <button class="see-all-btn" data-target="photoOuter" data-i18n="seeAll"></button>
-                <!-- The secondary button is for expanding to individual items -->
                 <button class="see-all-secondary" id="photoSecondarySeeAll" data-i18n="expandToAll"></button>
             </div>
         </div>
         <div class="marquee-outer" id="photoOuter">
             <div class="marquee-track" id="photoTrack"></div>
-            <!-- The track holds the gallery items; JavaScript populates it -->
         </div>
     </section>
 
-    <!-- FILM -->
     <section id="film" class="marquee-section">
         <div class="marquee-header">
             <h2 class="section-title" data-i18n="sectionFilm"></h2>
@@ -963,7 +653,6 @@
         </div>
     </section>
 
-    <!-- ART -->
     <section id="art" class="marquee-section">
         <div class="marquee-header">
             <h2 class="section-title" data-i18n="sectionArt"></h2>
@@ -974,24 +663,18 @@
         </div>
     </section>
 
-    <!-- ================= EXPERIENCE ================= -->
+    <!-- EXPERIENCE -->
     <section class="credits" id="experience">
         <h3 data-i18n="experienceTitle"></h3>
-        <!-- Credit items -->
         <div class="credit-item">
-            <div class="credit-title">
-                <span data-i18n="credit1Title"></span> | <em>Mizuko</em>
-            </div>
+            <div class="credit-title"><span data-i18n="credit1Title"></span> | <em>Mizuko</em></div>
             <div class="credit-detail" data-i18n="credit1Detail"></div>
         </div>
         <div class="credit-item">
-            <div class="credit-title">
-                <span data-i18n="credit2Title"></span> | Diprente / Netflix Production
-            </div>
+            <div class="credit-title"><span data-i18n="credit2Title"></span> | Diprente / Netflix Production</div>
             <div class="credit-detail" data-i18n="credit2Detail"></div>
         </div>
-
-        <h3 style="margin-top:40px;" data-i18n="skillsTitle"></h3>
+        <h3 style="margin-top:30px;" data-i18n="skillsTitle"></h3>
         <ul class="skill-list">
             <li data-i18n="skill1"></li>
             <li data-i18n="skill2"></li>
@@ -1000,14 +683,12 @@
             <li data-i18n="skill5"></li>
             <li data-i18n="skill6"></li>
         </ul>
-
         <h3 data-i18n="techTitle"></h3>
         <ul class="skill-list">
             <li>DaVinci Resolve</li>
             <li>Adobe Creative Suite (Premiere, After Effects, Photoshop)</li>
             <li>Blender</li>
         </ul>
-
         <h3 data-i18n="langTitle"></h3>
         <ul class="skill-list">
             <li data-i18n="lang1"></li>
@@ -1016,20 +697,19 @@
         </ul>
     </section>
 
-    <!-- ================= CONTACT ================= -->
+    <!-- CONTACT -->
     <section id="contact">
         <div class="contact-card">
             <p data-i18n="contactText"></p>
             <div class="contact-links">
                 <a href="#" id="emailLink" data-i18n="emailMe"></a>
-                <!-- The href will be set by JavaScript to mailto: -->
                 <a href="#" data-i18n="socialInstagram"></a>
                 <a href="#" data-i18n="socialLinkedIn"></a>
             </div>
         </div>
     </section>
 
-    <!-- ================= FOOTER ================= -->
+    <!-- FOOTER -->
     <footer>
         <p>&copy; 2026 Alejandro Fidel Regueros-Wessels</p>
         <p data-i18n="footerAddress"></p>
@@ -1037,33 +717,23 @@
         <p data-i18n="footerEmail"></p>
     </footer>
 
-    <!-- ================= LIGHTBOX ================= -->
-    <!-- This overlay is hidden by default; it appears when an image/video is clicked -->
+    <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" id="lightboxClose" data-i18n="close"></button>
         <button class="lightbox-nav lightbox-prev" id="lightboxPrev" data-i18n="prev"></button>
         <button class="lightbox-nav lightbox-next" id="lightboxNext" data-i18n="next"></button>
         <div class="lightbox-content">
             <div class="lightbox-media" id="lightboxMedia"></div>
-            <!-- The media (image or iframe) will be inserted here -->
             <div class="lightbox-title" id="lightboxTitle"></div>
-            <!-- The title and subtitle appear below -->
         </div>
     </div>
 
-    <!-- ============================================================
-    JAVASCRIPT - all the interactive logic
-    ============================================================ -->
     <script>
-        /* 
-           JavaScript adds interactivity: language switching, gallery building,
-           lightbox, marquee, hero rotator, parallax, and more.
-           All code runs after the page loads.
-        */
+        /* ============================================================
+           JAVASCRIPT – full interactivity (optimized)
+           ============================================================ */
 
-        // ---- Translations ----
-        // The translations object contains all text in English and German.
-        // Each key corresponds to a data-i18n attribute in the HTML.
+        // ---- Translations (EN/DE) ----
         const translations = {
             en: {
                 heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
@@ -1112,8 +782,8 @@
                 footerPhone: '+43 681 84315549',
                 footerEmail: 'alejandrowessels05@gmail.com',
                 close: 'close ✕',
-                prev: '←',
-                next: '→',
+                prev: '<',
+                next: '>',
                 folderAlbum1: 'Album 1',
                 folderAlbum2: 'Album 2',
                 folderAlbum3: 'Album 3',
@@ -1167,8 +837,8 @@
                 footerPhone: '+43 681 84315549',
                 footerEmail: 'alejandrowessels05@gmail.com',
                 close: 'schließen ✕',
-                prev: '←',
-                next: '→',
+                prev: '<',
+                next: '>',
                 folderAlbum1: 'Album 1',
                 folderAlbum2: 'Album 2',
                 folderAlbum3: 'Album 3',
@@ -1178,8 +848,6 @@
         };
 
         // ---- Gallery data ----
-        // This array holds all items shown in the marquee sections.
-        // Each item has a title, category, folder (optional), image, and optionally a video link.
         const galleryItems = [
             { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.jpg" },
             { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.jpg" },
@@ -1202,7 +870,6 @@
             { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg" },
         ];
 
-        // ---- Impression items (the 6 images in the masonry grid) ----
         const impressionItems = [
             { title: "Carelesness", image: "assets/gallery/01.jpg" },
             { title: "Joy", image: "assets/gallery/03.jpg" },
@@ -1212,51 +879,41 @@
             { title: "The Bullies of Belgrade", image: "assets/gallery/A03.png" },
         ];
 
-        // ---- Current language ----
-        let currentLang = 'en'; // default to English
+        let currentLang = 'en';
 
-        // ---- Language application function ----
+        // ---- Language application ----
         function applyLanguage(lang) {
             currentLang = lang;
-            // Select all elements with data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key] !== undefined) {
-                    el.innerHTML = translations[lang][key]; // replace inner HTML with translation
+                    el.innerHTML = translations[lang][key];
                 }
             });
-            // Update email link
             const emailLink = document.getElementById('emailLink');
             if (emailLink) {
-                const email = translations[lang].emailAddress;
-                emailLink.href = `mailto:${email}`;
+                emailLink.href = `mailto:${translations[lang].emailAddress}`;
                 emailLink.textContent = translations[lang].emailMe;
             }
-            // Update social links
             const instaLink = document.querySelector('[data-i18n="socialInstagram"]');
             const linkedinLink = document.querySelector('[data-i18n="socialLinkedIn"]');
             if (instaLink) instaLink.href = translations[lang].socialInstagramUrl;
             if (linkedinLink) linkedinLink.href = translations[lang].socialLinkedInUrl;
-            // Update button texts
             updateButtonTexts();
-            // Update lightbox close button
             const closeBtn = document.getElementById('lightboxClose');
             if (closeBtn) closeBtn.textContent = translations[lang].close;
-            // Re-render marquee tracks to update folder names
             renderTrack('photoTrack', true);
             renderTrack('filmTrack', true);
             renderTrack('artTrack', true);
         }
 
-        // ---- Language toggle event ----
         document.getElementById('langToggle').addEventListener('click', () => {
             const newLang = currentLang === 'en' ? 'de' : 'en';
             applyLanguage(newLang);
             document.getElementById('langToggle').textContent = newLang === 'en' ? 'DE' : 'EN';
         });
 
-        // ---- Helper functions ----
-        // Lazy load images using IntersectionObserver
+        // ---- Lazy load ----
         function lazyLoadImage(img) {
             if ('IntersectionObserver' in window) {
                 const observer = new IntersectionObserver((entries) => {
@@ -1266,24 +923,22 @@
                             observer.unobserve(entry.target);
                         }
                     });
-                }, { rootMargin: '200px' }); // start loading when within 200px of viewport
+                }, { rootMargin: '200px' });
                 observer.observe(img);
             } else {
-                // Fallback: load immediately
                 img.src = img.dataset.src;
             }
         }
 
-        // Get translated folder name
         function getFolderDisplayName(folderKey) {
             return translations[currentLang][folderKey] || folderKey;
         }
 
-        // ---- Create a folder card (for Photography marquee) ----
+        // ---- Folder card ----
         function createFolderCard(folderKey, items) {
             const card = document.createElement('div');
             card.className = 'marquee-item folder-card';
-            const coverItem = items[0]; // first image in folder
+            const coverItem = items[0];
             const thumb = document.createElement('div');
             thumb.className = 'marquee-thumb';
             if (coverItem.image) {
@@ -1293,7 +948,6 @@
                 thumb.appendChild(img);
                 lazyLoadImage(img);
             }
-            // Badge showing number of photos
             const countBadge = document.createElement('div');
             countBadge.className = 'folder-count';
             countBadge.textContent = `${items.length} ${currentLang === 'en' ? 'photos' : 'Fotos'}`;
@@ -1303,12 +957,11 @@
             info.innerHTML = `<h3>${getFolderDisplayName(folderKey)}</h3>`;
             card.appendChild(thumb);
             card.appendChild(info);
-            // Click opens folder slideshow
             card.addEventListener('click', () => openFolderSlideshow(folderKey, items));
             return card;
         }
 
-        // ---- Create a single marquee item (for Film/Art or expanded Photography) ----
+        // ---- Single item ----
         function createMarqueeItem(item) {
             const card = document.createElement('div');
             card.className = 'marquee-item';
@@ -1322,7 +975,6 @@
                 lazyLoadImage(img);
             }
             if (item.video) {
-                // Add play badge for video items
                 const badge = document.createElement('div');
                 badge.className = 'play-badge';
                 badge.textContent = '▶';
@@ -1337,25 +989,22 @@
             return card;
         }
 
-        // ---- Group items by folder ----
         function groupByFolder(items) {
             const groups = {};
             items.forEach(item => {
-                const folderKey = item.folder || 'folderAlbum1'; // default folder
+                const folderKey = item.folder || 'folderAlbum1';
                 if (!groups[folderKey]) groups[folderKey] = [];
                 groups[folderKey].push(item);
             });
             return groups;
         }
 
-        // ---- Track references ----
         const tracks = {
             photoTrack: { element: document.getElementById('photoTrack'), category: 'Photography' },
             filmTrack: { element: document.getElementById('filmTrack'), category: 'Film' },
             artTrack: { element: document.getElementById('artTrack'), category: 'Art' }
         };
 
-        // ---- Render a marquee track ----
         function renderTrack(trackKey, duplicate) {
             const track = tracks[trackKey];
             if (!track) return;
@@ -1364,17 +1013,15 @@
             if (!outer) return;
             const isExpanded = outer.classList.contains('expanded');
             const isPhoto = trackKey === 'photoTrack';
-            const individual = isPhoto && outer.dataset.individual === 'true'; // special state for photo
-            track.element.innerHTML = ''; // clear track
+            const individual = isPhoto && outer.dataset.individual === 'true';
+            track.element.innerHTML = '';
 
             if (isPhoto) {
-                // Photography track: by default show folders; if expanded, can show folders or individual items
                 if (!isExpanded) {
-                    // Collapsed: show folder cards (with animation if enough folders)
                     const groups = groupByFolder(items);
                     const folderKeys = Object.keys(groups);
                     const animate = duplicate && folderKeys.length >= 4;
-                    const count = animate ? 2 : 1; // duplicate to create seamless loop
+                    const count = animate ? 2 : 1;
                     for (let i = 0; i < count; i++) {
                         folderKeys.forEach(folderKey => {
                             track.element.appendChild(createFolderCard(folderKey, groups[folderKey]));
@@ -1382,7 +1029,6 @@
                     }
                     track.element.style.animation = animate ? 'marqueeScroll 25s linear infinite' : 'none';
                 } else if (individual) {
-                    // Expanded and showing individual items (not folders)
                     const animate = duplicate && items.length >= 4;
                     const count = animate ? 2 : 1;
                     for (let i = 0; i < count; i++) {
@@ -1390,7 +1036,6 @@
                     }
                     track.element.style.animation = 'none';
                 } else {
-                    // Expanded but still showing folders (default expanded view)
                     const groups = groupByFolder(items);
                     const folderKeys = Object.keys(groups);
                     folderKeys.forEach(folderKey => {
@@ -1399,7 +1044,6 @@
                     track.element.style.animation = 'none';
                 }
             } else {
-                // Film and Art: always show individual items
                 if (!isExpanded) {
                     const animate = duplicate && items.length >= 4;
                     const count = animate ? 2 : 1;
@@ -1415,7 +1059,6 @@
             updateButtonTexts();
         }
 
-        // ---- Update button texts after language or state change ----
         function updateButtonTexts() {
             document.querySelectorAll('.see-all-btn').forEach(btn => {
                 const outer = document.getElementById(btn.dataset.target);
@@ -1442,17 +1085,15 @@
             }
         }
 
-        // ---- Build the impressions grid ----
+        // ---- Impressions ----
         function buildImpressions() {
             const grid = document.getElementById('impressionsGrid');
             if (!grid) return;
             grid.innerHTML = '';
 
-            // Add the 6 image tiles
             impressionItems.slice(0, 6).forEach((item, idx) => {
                 const tile = document.createElement('div');
                 tile.className = `imp-item imp-${idx + 1}`;
-
                 const img = document.createElement('img');
                 img.dataset.src = item.image;
                 img.alt = item.title || 'Work';
@@ -1468,21 +1109,16 @@
 
                 const fullItem = galleryItems.find(g => g.image === item.image) || item;
                 tile.addEventListener('click', () => openLightbox(fullItem));
-
                 grid.appendChild(tile);
             });
 
-            // ---- "Featured / Work" title - left-aligned, big ----
             const titleTile = document.createElement('div');
             titleTile.className = 'imp-title';
-            titleTile.innerHTML = `
-                <span>Featured</span>
-                <span>Work</span>
-            `;
+            titleTile.innerHTML = `<span>Featured</span><span>Work</span>`;
             grid.appendChild(titleTile);
         }
 
-        // ---- Lightbox logic ----
+        // ---- Lightbox ----
         const lightbox = document.getElementById('lightbox');
         const lightboxMedia = document.getElementById('lightboxMedia');
         const lightboxTitle = document.getElementById('lightboxTitle');
@@ -1497,13 +1133,8 @@
             updateNavButtons();
         }
 
-        function openLightbox(item) {
-            openSlideshow([item], 0);
-        }
-
-        function openFolderSlideshow(folderKey, items) {
-            openSlideshow(items, 0);
-        }
+        function openLightbox(item) { openSlideshow([item], 0); }
+        function openFolderSlideshow(folderKey, items) { openSlideshow(items, 0); }
 
         function updateLightboxMedia() {
             const item = currentSlideshow[currentSlideIndex];
@@ -1534,14 +1165,12 @@
             updateLightboxMedia();
             updateNavButtons();
         }
-
         function showNextSlide() {
             if (currentSlideshow.length === 0) return;
             currentSlideIndex = (currentSlideIndex + 1) % currentSlideshow.length;
             updateLightboxMedia();
             updateNavButtons();
         }
-
         function updateNavButtons() {
             const prevBtn = document.getElementById('lightboxPrev');
             const nextBtn = document.getElementById('lightboxNext');
@@ -1549,7 +1178,6 @@
             prevBtn.style.display = single ? 'none' : 'block';
             nextBtn.style.display = single ? 'none' : 'block';
         }
-
         function closeLightbox() {
             lightbox.classList.remove('open');
             lightboxMedia.innerHTML = '';
@@ -1558,7 +1186,6 @@
             currentSlideIndex = 0;
         }
 
-        // ---- Lightbox event listeners ----
         document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
         document.getElementById('lightboxPrev').addEventListener('click', showPrevSlide);
         document.getElementById('lightboxNext').addEventListener('click', showNextSlide);
@@ -1569,7 +1196,7 @@
             if (e.key === 'ArrowRight') showNextSlide();
         });
 
-        // ---- "See All" buttons ----
+        // ---- See All buttons ----
         document.querySelectorAll('.see-all-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const targetId = btn.dataset.target;
@@ -1597,7 +1224,6 @@
             });
         });
 
-        // ---- Secondary "Expand to All" / "Show Less" for Photography ----
         document.getElementById('photoSecondarySeeAll').addEventListener('click', () => {
             const outer = document.getElementById('photoOuter');
             const trackKey = 'photoTrack';
@@ -1617,33 +1243,40 @@
         // ---- Hero rotator ----
         const rotatorImages = document.querySelectorAll('#heroRotator img');
         let currentImageIndex = 0;
-        rotatorImages.forEach(img => { img.src = img.dataset.src; }); // load images
-
+        rotatorImages.forEach(img => { img.src = img.dataset.src; });
         function rotateImages() {
             rotatorImages.forEach(img => img.classList.remove('active'));
             currentImageIndex = (currentImageIndex + 1) % rotatorImages.length;
             rotatorImages[currentImageIndex].classList.add('active');
         }
-        setInterval(rotateImages, 800); // change every 800ms
+        setInterval(rotateImages, 800);
 
-        // ---- Parallax background ----
-        window.addEventListener('load', () => {
-            document.querySelectorAll('.bg-layer').forEach(layer => {
-                const bg = layer.getAttribute('data-bg');
-                if (bg) layer.style.backgroundImage = `url('${bg}')`;
-            });
-        });
+        // ---- Parallax backgrounds: pick the right image set for this
+        //      viewport ONCE, after load, so mobile never downloads the
+        //      (much larger) desktop images and vice-versa.
+        function loadBackgrounds() {
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            const backSrc = isMobile ? 'assets/bg-mobile-back.jpg' : 'assets/bg-desktop-back.jpg';
+            const cloudsSrc = isMobile ? 'assets/bg-mobile-clouds.webp' : 'assets/bg-desktop-clouds.webp';
+            const backLayer = document.getElementById('layer-back');
+            const cloudsLayer = document.getElementById('layer-clouds');
+            if (backLayer) backLayer.style.backgroundImage = `url('${backSrc}')`;
+            if (cloudsLayer) cloudsLayer.style.backgroundImage = `url('${cloudsSrc}')`;
+        }
+        window.addEventListener('load', loadBackgrounds);
 
         window.addEventListener('scroll', function() {
-            const scrolled = window.scrollY;
-            document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
-            document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
+            // Only apply parallax on desktop (screen width > 768px)
+            if (window.innerWidth > 768) {
+                const scrolled = window.scrollY;
+                document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
+                document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
+            }
         });
 
-        // ---- Background color transition on scroll ----
+        // ---- Background color transition ----
         const baseBg = { r: 207, g: 194, b: 169 };
         const darkBg = { r: 185, g: 170, b: 145 };
-
         function handleBackgroundScroll() {
             const scrollY = window.scrollY;
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1655,7 +1288,7 @@
         }
         window.addEventListener('scroll', handleBackgroundScroll);
 
-        // ---- Fade in About paragraphs on scroll ----
+        // ---- Fade in about ----
         const statementParagraphs = document.querySelectorAll('.statement p');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1664,12 +1297,11 @@
         }, { threshold: 0.3 });
         statementParagraphs.forEach(p => observer.observe(p));
 
-        // ---- Initialization ----
-        applyLanguage('en'); // set default language
+        // ---- Init ----
+        applyLanguage('en');
         handleBackgroundScroll();
         buildImpressions();
 
-        // Render tracks after a short delay to ensure DOM is ready
         setTimeout(() => {
             renderTrack('photoTrack', true);
             renderTrack('filmTrack', true);
@@ -1677,13 +1309,9 @@
             updateButtonTexts();
         }, 50);
 
-        // Ensure hero images load
         setTimeout(() => {
             rotatorImages.forEach(img => { if (!img.src) img.src = img.dataset.src; });
         }, 100);
-
-        // End of JavaScript
     </script>
-    <!-- End of script -->
 </body>
 </html>
