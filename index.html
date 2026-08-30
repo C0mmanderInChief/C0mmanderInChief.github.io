@@ -76,16 +76,25 @@
 
         /* ----- PARALLAX (only on desktop; mobile static) ----- */
         .bg-layer {
-            position:absolute;
+            position:fixed;
             top:0; left:0;
             width:100%;
-            /* height is set in px by JS to the full document height —
-               percentage/vh heights are what caused the coverage gaps */
-            background-size:100% 100%;
-            background-repeat:no-repeat;
+            height:100%;
+            background-size:100% auto;
+            background-repeat:repeat-y;
             z-index:-2;
+            will-change:transform;
         }
         #layer-clouds { z-index:-1; }
+
+        @media (max-width:768px) {
+            .bg-layer {
+                position:absolute;
+                height:100vh;
+                background-attachment:scroll;
+                will-change:auto;
+            }
+        }
 
         /* ----- LANGUAGE TOGGLE (smaller on mobile) ----- */
         .lang-toggle {
@@ -1245,41 +1254,25 @@
         // ---- Parallax backgrounds: pick the right image set for this
         //      viewport ONCE, after load, so mobile never downloads the
         //      (much larger) desktop images and vice-versa.
-        const backLayer = document.getElementById('layer-back');
-        const cloudsLayer = document.getElementById('layer-clouds');
-
         function loadBackgrounds() {
             const isMobile = window.matchMedia('(max-width: 768px)').matches;
             const backSrc = isMobile ? 'assets/bg-mobile-back.jpg' : 'assets/bg-desktop-back.jpg';
             const cloudsSrc = isMobile ? 'assets/bg-mobile-clouds.webp' : 'assets/bg-desktop-clouds.webp';
+            const backLayer = document.getElementById('layer-back');
+            const cloudsLayer = document.getElementById('layer-clouds');
             if (backLayer) backLayer.style.backgroundImage = `url('${backSrc}')`;
             if (cloudsLayer) cloudsLayer.style.backgroundImage = `url('${cloudsSrc}')`;
         }
+        window.addEventListener('load', loadBackgrounds);
 
-        // Make each layer exactly as tall as the whole document, in real
-        // pixels (not vh/%, which is what caused the coverage gaps on
-        // iOS Safari's shifting viewport). Re-measure whenever the page's
-        // actual height could have changed.
-        function sizeBackgroundLayers() {
-            const h = document.documentElement.scrollHeight + 'px';
-            if (backLayer) backLayer.style.height = h;
-            if (cloudsLayer) cloudsLayer.style.height = h;
-        }
-
-        window.addEventListener('load', () => {
-            loadBackgrounds();
-            sizeBackgroundLayers();
+        window.addEventListener('scroll', function() {
+            // Only apply parallax on desktop (screen width > 768px)
+            if (window.innerWidth > 768) {
+                const scrolled = window.scrollY;
+                document.getElementById('layer-back').style.backgroundPositionY = (-scrolled * 0.2) + 'px';
+                document.getElementById('layer-clouds').style.backgroundPositionY = (-scrolled * 0.5) + 'px';
+            }
         });
-        window.addEventListener('resize', sizeBackgroundLayers);
-        // The page's real height changes a lot after load — lazy images
-        // finishing, the "See All" galleries expanding, language toggle
-        // changing text length. Watch the body itself so the background
-        // layers always match, instead of guessing with setTimeout.
-        if ('ResizeObserver' in window) {
-            new ResizeObserver(sizeBackgroundLayers).observe(document.body);
-        } else {
-            setInterval(sizeBackgroundLayers, 1000);
-        }
 
         // ---- Background color transition ----
         const baseBg = { r: 207, g: 194, b: 169 };
