@@ -167,7 +167,6 @@
         .hero-nav a:hover { color:var(--comic-blue); transform:translateX(5px); }
 
         /* Highlighted project link (The Bullies of Burggasse Project) */
-        /* Highlighted project link (The Bullies of Burggasse Project) */
         .hero-nav li.nav-project { margin: 28px 0; }
 
         .hero-rotator {
@@ -503,31 +502,71 @@
         .lightbox {
             position:fixed;
             inset:0;
-            background:rgba(33,30,28,0.95);
+            background:rgba(33,30,28,0.98); /* Slightly darker for better text contrast */
             z-index:100;
             display:none;
             align-items:center;
             justify-content:center;
-            padding:15px;
+            padding:60px 20px 20px;
             flex-direction:column;
         }
         .lightbox.open { display:flex; }
-        .lightbox-content { max-width:95vw; max-height:85vh; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-        .lightbox-media { display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
-        .lightbox-media img { max-width:95vw; max-height:80vh; object-fit:contain; display:block; }
-        .lightbox-media iframe { width:90vw; height:80vh; border:0; display:block; }
+        
+        .lightbox-content { 
+            width:100%; 
+            max-width:1300px;
+            max-height:100%;
+            display:flex; 
+            flex-direction:column; 
+            align-items:center; 
+            justify-content:center;
+            gap: 30px;
+        }
+        
+        .lightbox-media { 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            width:100%; 
+        }
+        .lightbox-media img { max-width:100%; max-height:75vh; object-fit:contain; display:block; }
+        .lightbox-media iframe { width:90vw; height:75vh; border:0; display:block; }
+        
+        .lightbox-sidebar {
+            width: 100%;
+            max-width: 500px;
+            text-align: left;
+        }
+        
         .lightbox-title {
             color:#fff;
             font-family:var(--font-body);
-            font-size:20px;
+            font-size:22px;
             font-weight:400;
-            margin-top:15px;
-            text-align:center;
+            margin-bottom: 15px;
             letter-spacing:0.02em;
-            max-width:90vw;
-            padding:0 10px;
         }
         .lightbox-title .sub { font-size:14px; opacity:0.6; display:block; margin-top:4px; }
+        
+        .lightbox-description {
+            color: var(--sand);
+            font-family: system-ui, -apple-system, sans-serif; 
+            font-size: 15px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        .lightbox-description p { margin-bottom: 12px; }
+        .lightbox-description strong { color: var(--mustard); }
+
+        /* Side-by-side layout for Desktop */
+        @media (min-width: 900px) {
+            .lightbox { padding: 20px; }
+            .lightbox-content { flex-direction: row; align-items: center; }
+            .lightbox-media { flex: 1; justify-content: flex-end; }
+            .lightbox-sidebar { flex: 1; justify-content: flex-start; max-width: 450px; max-height: 85vh; overflow-y: auto; }
+            .lightbox-media img { max-height:85vh; }
+        }
+        
         .lightbox-close {
             position:fixed;
             top:60px; right:20px;
@@ -558,7 +597,7 @@
         @media (max-width:480px) {
             .lightbox-close { top:40px; right:15px; font-size:14px; }
             .lightbox-nav { font-size:24px; }
-            .lightbox-title { font-size:16px; }
+            .lightbox-title { font-size:18px; }
             .lightbox-title .sub { font-size:12px; }
         }
 
@@ -751,7 +790,10 @@
         <button class="lightbox-nav lightbox-next" id="lightboxNext" data-i18n="next"></button>
         <div class="lightbox-content">
             <div class="lightbox-media" id="lightboxMedia"></div>
-            <div class="lightbox-title" id="lightboxTitle"></div>
+            <div class="lightbox-sidebar" id="lightboxSidebar">
+                <div class="lightbox-title" id="lightboxTitle"></div>
+                <div class="lightbox-description" id="lightboxDescription"></div>
+            </div>
         </div>
     </div>
 
@@ -888,24 +930,57 @@
             { title: "ummm", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/08.JPG" },
             { title: "urghh...", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/09.JPG" },
             { title: "woahh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/10.JPG" },
-            { title: "grahhh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/11.JPG" },
+            { title: "Yawns", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/11.JPG" },
             { title: "The dark angel", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/13.JPG" },
             { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG" },
             { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM" },
-            { title: "Bullies of Burg Gasse 1", category: "Art", folder: "folderArt1", image: "assets/gallery/A01.png" },
-            { title: "Bullies of Burg Gasse 2", category: "Art", folder: "folderArt1", image: "assets/gallery/A02.png" },
-            { title: "Bullies of Burg Gasse 3", category: "Art", folder: "folderArt1", image: "assets/gallery/A03.png" },
-            { title: "Bullies of Burg Gasse 4", category: "Art", folder: "folderArt1", image: "assets/gallery/A04.png" },
-            { title: "Bullies of Burg Gasse 5", category: "Art", folder: "folderArt1", image: "assets/gallery/A05.jpg" },
+            { title: "Land of art", category: "Art", folder: "folderArt1", image: "assets/gallery/A01.png" },
+            
+            { 
+                title: "Bullies of Burg Gasse", 
+                category: "Art", 
+                folder: "folderArt1", 
+                image: "assets/gallery/A02.png",
+                description: `
+                    <p><strong>Director:</strong> Alejandro Fidel Regueros-Wessels</p>
+                    <p><strong>Photographer:</strong> Yoanna Angelova Zabcheva</p>
+                    <p><strong>Actors:</strong><br>
+                    Luca Strobl<br>
+                    Kilian<br>
+                    Jakob Nepomuk Eder<br>
+                    Nikolas Lajos Kendi</p>
+                    <p><strong>Poster Designer:</strong> Maja</p>
+                `
+            },
+            
+            { 
+                title: "Bullies of Burg Gasse MK1", 
+                category: "Art", 
+                folder: "folderArt1", 
+                image: "assets/gallery/A03.png",
+                description: `
+                    <p><strong>Director:</strong> Alejandro Fidel Regueros-Wessels</p>
+                    <p><strong>Photographer:</strong> Yoanna Angelova Zabcheva</p>
+                    <p><strong>Actors:</strong><br>
+                    Luca Strobl<br>
+                    Kilian<br>
+                    Jakob Nepomuk Eder<br>
+                    Nikolas Lajos Kendi</p>
+                    <p><strong>Poster Designer:</strong> Maja</p>
+                `
+            },
+            
+            { title: "Jippy in catch me", category: "Art", folder: "folderArt1", image: "assets/gallery/A04.png" },
+            { title: "Lost cow", category: "Art", folder: "folderArt1", image: "assets/gallery/A05.jpg" },
         ];
 
         const impressionItems = [
             { title: "Carelesness", image: "assets/gallery/01.jpg" },
             { title: "Joy", image: "assets/gallery/03.jpg" },
-            { title: "The Bullies of Burg Gasse 2", image: "assets/gallery/A02.png" },
+            { title: "The dark angel", image: "assets/gallery/13.JPG" },
             { title: "ugh", image: "assets/gallery/06.JPG" },
-            { title: "The Bullies of Burg Gasse 1", image: "assets/gallery/A01.png" },
-            { title: "The Bullies of Burg Gasse 3", image: "assets/gallery/A03.png" },
+            { title: "Land of art", image: "assets/gallery/A01.png" },
+            { title: "The Bullies of Burg Gasse", image: "assets/gallery/A03.png" },
         ];
 
         let currentLang = 'en';
@@ -1181,6 +1256,19 @@
                 subText = getFolderDisplayName(item.folder) + (subText ? ` · ${subText}` : '');
             }
             lightboxTitle.innerHTML = titleText ? `${titleText} <span class="sub">${subText}</span>` : '';
+            
+            // NEW: Inject the description text
+            const descEl = document.getElementById('lightboxDescription');
+            if (descEl) {
+                if (item.description) {
+                    descEl.innerHTML = item.description;
+                    descEl.style.display = 'block';
+                } else {
+                    descEl.innerHTML = '';
+                    descEl.style.display = 'none';
+                }
+            }
+
             if (item.video) {
                 const iframe = document.createElement('iframe');
                 iframe.src = item.video;
