@@ -166,9 +166,6 @@
         }
         .hero-nav a:hover { color:var(--comic-blue); transform:translateX(5px); }
 
-        /* Highlighted project link (The Bullies of Burggasse Project) */
-        .hero-nav li.nav-project { margin: 28px 0; }
-
         .hero-rotator {
             width:280px; height:280px;
             border-radius:2px;
@@ -811,7 +808,7 @@
                 navAbout: 'About',
                 navPhotography: 'Photography',
                 navFilm: 'Film',
-                navArt: 'The Bullies of Burggasse Project',
+                navArt: 'Current Projects',
                 navExperience: 'Experience',
                 navContact: 'Contact',
                 aboutQuote: '"I am a 20-year-old South African with a Spanish name, and currently living in Austria. I\'m involved in a wide variety of things, such as design, photography and short films. I have traveled far alone but with that experience I understand others in a way that I want to be understood."',
@@ -867,7 +864,7 @@
                 navAbout: 'Über mich',
                 navPhotography: 'Fotografie',
                 navFilm: 'Film',
-                navArt: 'The Bullies of Burggasse Projekt',
+                navArt: 'Aktuelle Projekte',
                 navExperience: 'Erfahrung',
                 navContact: 'Kontakt',
                 aboutQuote: '"Ich bin ein 20-jähriger Südafrikaner mit einem spanischen Namen und lebe derzeit in Österreich. Ich beschäftige mich mit den unterschiedlichsten Dingen, wie zum Beispiel Design, Fotografie und Kurzfilmen. Ich bin allein weit gereist, und durch diese Erfahrung verstehe ich andere so, wie ich selbst verstanden werden möchte."',
@@ -920,19 +917,149 @@
 
         // ---- Gallery data ----
         const galleryItems = [
-            { title: "Carelesness", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/01.jpg" },
-            { title: "Constructed exhaustion", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/02.jpg" },
-            { title: "Joy", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/03.jpg" },
-            { title: "Blissful ignorance", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/04.jpg" },
-            { title: "times up", category: "Photography", folder: "folderAlbum1", image: "assets/gallery/05.jpg" },
-            { title: "ugh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/06.JPG" },
-            { title: " hmm.. ", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/07.JPG" },
-            { title: "ummm", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/08.JPG" },
-            { title: "urghh...", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/09.JPG" },
-            { title: "woahh", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/10.JPG" },
-            { title: "Yawns", category: "Photography", folder: "folderAlbum2", image: "assets/gallery/11.JPG" },
-            { title: "The dark angel", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/13.JPG" },
-            { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG" },
+            { 
+                title: "Carelesness", 
+                category: "Photography", 
+                folder: "folderAlbum1", 
+                image: "assets/gallery/01.jpg",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "Constructed exhaustion", 
+                category: "Photography", 
+                folder: "folderAlbum1", 
+                image: "assets/gallery/02.jpg",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "Joy", 
+                category: "Photography", 
+                folder: "folderAlbum1", 
+                image: "assets/gallery/03.jpg",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "Blissful ignorance", 
+                category: "Photography", 
+                folder: "folderAlbum1", 
+                image: "assets/gallery/04.jpg",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "times up", 
+                category: "Photography", 
+                folder: "folderAlbum1", 
+                image: "assets/gallery/05.jpg",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "ugh", 
+                category: "Photography", 
+                folder: "folderAlbum2", 
+                image: "assets/gallery/06.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: " hmm.. ", 
+                category: "Photography", 
+                folder: "folderAlbum2", 
+                image: "assets/gallery/07.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "ummm", 
+                category: "Photography", 
+                folder: "folderAlbum2", 
+                image: "assets/gallery/08.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "urghh...", 
+                category: "Photography", 
+                folder: "folderAlbum2", 
+                image: "assets/gallery/09.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "woahh", 
+                category: "Photography", 
+                folder: "folderAlbum2", 
+                image: "assets/gallery/10.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "Yawns", 
+                category: "Photography", 
+                folder: "folderAlbum2", 
+                image: "assets/gallery/11.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "The dark angel", 
+                category: "Photography", 
+                folder: "folderAlbum3", 
+                image: "assets/gallery/13.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
+            { 
+                title: "Curiosity", 
+                category: "Photography", 
+                folder: "folderAlbum3", 
+                image: "assets/gallery/14.JPG",
+                description: `
+                    <p><strong>Photographer:</strong> Alejandro</p>
+                    <p><strong>Actors:</strong><br>Isabella Buys</p>
+                    <p><strong>Location:</strong><br>South Africa</p>
+                `
+            },
             { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM" },
             
             
@@ -1020,9 +1147,6 @@
                     <p><strong>Poster Designer:</strong> Maja</p>
                 `
             },
-        
-            
-            
         ];
 
         const impressionItems = [
