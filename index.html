@@ -675,7 +675,10 @@
     <section id="art" class="marquee-section">
         <div class="marquee-header">
             <h2 class="section-title" data-i18n="sectionArt"></h2>
-            <button class="see-all-btn" data-target="artOuter" data-i18n="seeAll"></button>
+            <div class="btn-group">
+                <button class="see-all-btn" data-target="artOuter" data-i18n="seeAll"></button>
+                <button class="see-all-secondary" id="artSecondarySeeAll" data-i18n="expandToAll"></button>
+            </div>
         </div>
         <div class="marquee-outer" id="artOuter">
             <div class="marquee-track" id="artTrack"></div>
@@ -749,7 +752,7 @@
 
     <script>
         /* ============================================================
-           JAVASCRIPT – full interactivity (unchanged)
+           JAVASCRIPT – full interactivity
            ============================================================ */
 
         // ---- Translations (EN/DE) ----
@@ -808,6 +811,7 @@
                 folderAlbum3: 'Album 3',
                 folderAlbum4: 'Album 4',
                 folderAlbum5: 'Album 5',
+                folderArt1: 'Posters Phase 1',
             },
             de: {
                 heroTitle: 'Alejandro Fidel<br>Regueros-Wessels',
@@ -863,6 +867,7 @@
                 folderAlbum3: 'Album 3',
                 folderAlbum4: 'Album 4',
                 folderAlbum5: 'Album 5',
+                folderArt1: 'Posters Phase 1',
             }
         };
 
@@ -882,11 +887,11 @@
             { title: "The dark angel", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/13.JPG" },
             { title: "Curiosity", category: "Photography", folder: "folderAlbum3", image: "assets/gallery/14.JPG" },
             { title: "Midnight Snack", category: "Film", image: "assets/gallery/film-1.jpg", video: "https://www.youtube.com/embed/p0pZ9HH-_PM" },
-            { title: "Land of art", category: "Art", image: "assets/gallery/A01.png" },
-            { title: "Bullies of Belgrade", category: "Art", image: "assets/gallery/A02.png" },
-            { title: "Bullies of Belgrade MK1", category: "Art", image: "assets/gallery/A03.png" },
-            { title: "Jippy in catch me", category: "Art", image: "assets/gallery/A04.png" },
-            { title: "Lost cow", category: "Art", image: "assets/gallery/A05.jpg" },
+            { title: "Land of art", category: "Art", folder: "folderArt1", image: "assets/gallery/A01.png" },
+            { title: "Bullies of Burg Gasse", category: "Art", folder: "folderArt1", image: "assets/gallery/A02.png" },
+            { title: "Bullies of Burg Gasse MK1", category: "Art", folder: "folderArt1", image: "assets/gallery/A03.png" },
+            { title: "Jippy in catch me", category: "Art", folder: "folderArt1", image: "assets/gallery/A04.png" },
+            { title: "Lost cow", category: "Art", folder: "folderArt1", image: "assets/gallery/A05.jpg" },
         ];
 
         const impressionItems = [
@@ -895,7 +900,7 @@
             { title: "The dark angel", image: "assets/gallery/13.JPG" },
             { title: "ugh", image: "assets/gallery/06.JPG" },
             { title: "Land of art", image: "assets/gallery/A01.png" },
-            { title: "The Bullies of Belgrade", image: "assets/gallery/A03.png" },
+            { title: "The Bullies of Burg Gasse", image: "assets/gallery/A03.png" },
         ];
 
         let currentLang = 'en';
@@ -1024,6 +1029,12 @@
             artTrack: { element: document.getElementById('artTrack'), category: 'Art' }
         };
 
+        // Photography and Art share the folder-based behaviour:
+        //   collapsed -> animated folder cards
+        //   expanded  -> static folder grid, with a secondary "Expand to All" button
+        //   individual-> all items shown one by one
+        const FOLDER_TRACKS = ['photoTrack', 'artTrack'];
+
         function renderTrack(trackKey, duplicate) {
             const track = tracks[trackKey];
             if (!track) return;
@@ -1031,11 +1042,11 @@
             const outer = document.getElementById(trackKey.replace('Track', 'Outer'));
             if (!outer) return;
             const isExpanded = outer.classList.contains('expanded');
-            const isPhoto = trackKey === 'photoTrack';
-            const individual = isPhoto && outer.dataset.individual === 'true';
+            const isFolderTrack = FOLDER_TRACKS.includes(trackKey);
+            const individual = isFolderTrack && outer.dataset.individual === 'true';
             track.element.innerHTML = '';
 
-            if (isPhoto) {
+            if (isFolderTrack) {
                 if (!isExpanded) {
                     const groups = groupByFolder(items);
                     const folderKeys = Object.keys(groups);
@@ -1082,17 +1093,18 @@
             document.querySelectorAll('.see-all-btn').forEach(btn => {
                 const outer = document.getElementById(btn.dataset.target);
                 if (!outer) return;
-                const isPhoto = btn.dataset.target === 'photoOuter';
+                const isFolderTrack = btn.dataset.target === 'photoOuter' || btn.dataset.target === 'artOuter';
                 const expanded = outer.classList.contains('expanded');
-                if (isPhoto) {
+                if (isFolderTrack) {
                     btn.textContent = expanded ? translations[currentLang].closePhoto : translations[currentLang].seeAll;
                 } else {
                     btn.textContent = expanded ? translations[currentLang].showLess : translations[currentLang].seeAll;
                 }
             });
-            const secBtn = document.getElementById('photoSecondarySeeAll');
-            if (secBtn) {
-                const outer = document.getElementById('photoOuter');
+            ['photoSecondarySeeAll', 'artSecondarySeeAll'].forEach(id => {
+                const secBtn = document.getElementById(id);
+                if (!secBtn) return;
+                const outer = document.getElementById(id.replace('SecondarySeeAll', 'Outer'));
                 const expanded = outer && outer.classList.contains('expanded');
                 const individual = outer && outer.dataset.individual === 'true';
                 if (expanded) {
@@ -1101,7 +1113,7 @@
                 } else {
                     secBtn.classList.remove('visible');
                 }
-            }
+            });
         }
 
         // ---- Impressions ----
@@ -1222,8 +1234,8 @@
                 const outer = document.getElementById(targetId);
                 const trackKey = targetId.replace('Outer', 'Track');
                 if (!outer || !tracks[trackKey]) return;
-                const isPhoto = targetId === 'photoOuter';
-                if (isPhoto) {
+                const isFolderTrack = targetId === 'photoOuter' || targetId === 'artOuter';
+                if (isFolderTrack) {
                     const expanded = outer.classList.contains('expanded');
                     if (!expanded) {
                         outer.classList.add('expanded');
@@ -1243,20 +1255,25 @@
             });
         });
 
-        document.getElementById('photoSecondarySeeAll').addEventListener('click', () => {
-            const outer = document.getElementById('photoOuter');
-            const trackKey = 'photoTrack';
-            if (!outer || !tracks[trackKey]) return;
-            if (!outer.classList.contains('expanded')) return;
-            const individual = outer.dataset.individual === 'true';
-            if (!individual) {
-                outer.dataset.individual = 'true';
-                renderTrack(trackKey, false);
-            } else {
-                outer.dataset.individual = 'false';
-                renderTrack(trackKey, false);
-            }
-            updateButtonTexts();
+        // ---- Secondary "Expand to All" buttons (Photography + Art) ----
+        ['photoSecondarySeeAll', 'artSecondarySeeAll'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (!btn) return;
+            btn.addEventListener('click', () => {
+                const outer = document.getElementById(id.replace('SecondarySeeAll', 'Outer'));
+                const trackKey = id.replace('SecondarySeeAll', 'Track');
+                if (!outer || !tracks[trackKey]) return;
+                if (!outer.classList.contains('expanded')) return;
+                const individual = outer.dataset.individual === 'true';
+                if (!individual) {
+                    outer.dataset.individual = 'true';
+                    renderTrack(trackKey, false);
+                } else {
+                    outer.dataset.individual = 'false';
+                    renderTrack(trackKey, false);
+                }
+                updateButtonTexts();
+            });
         });
 
         // ---- Hero rotator ----
